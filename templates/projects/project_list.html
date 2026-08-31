@@ -1,0 +1,968 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Government Projects | Uruan Local Government Area
+{% endblock %}
+
+{% block content %}
+
+<!-- ============================================================
+     HERO
+============================================================ -->
+
+<section class="relative overflow-hidden bg-green-950">
+
+    <div class="absolute inset-0">
+
+        <img
+            src="{% static 'images/uruan-banner.jpg' %}"
+            alt="Uruan Government Projects"
+            class="w-full h-full object-cover opacity-30"
+        >
+
+        <div class="absolute inset-0 bg-green-950/80"></div>
+
+    </div>
+
+    <div class="relative container mx-auto px-6 py-20 lg:py-28">
+
+        <!-- Breadcrumb -->
+
+        <nav class="mb-8 text-sm text-green-100">
+
+            <a
+                href="{% url 'home' %}"
+                class="hover:text-yellow-300 transition"
+            >
+                Home
+            </a>
+
+            <span class="mx-2">/</span>
+
+            <span class="text-yellow-300">
+                Government Projects
+            </span>
+
+        </nav>
+
+
+        <div class="max-w-4xl">
+
+            <span
+                class="inline-flex items-center
+                       bg-yellow-500
+                       text-green-950
+                       px-4 py-2
+                       rounded-full
+                       text-sm
+                       font-bold
+                       uppercase
+                       tracking-wider"
+            >
+
+                Development & Infrastructure
+
+            </span>
+
+
+            <h1
+                class="mt-6
+                       text-4xl
+                       sm:text-5xl
+                       lg:text-6xl
+                       font-extrabold
+                       text-white
+                       leading-tight"
+            >
+
+                Government Projects
+
+            </h1>
+
+
+            <p
+                class="mt-6
+                       text-lg
+                       lg:text-xl
+                       text-green-100
+                       leading-relaxed
+                       max-w-3xl"
+            >
+
+                Explore development projects, infrastructure initiatives
+                and public investments transforming communities across
+                Uruan Local Government Area.
+
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ============================================================
+     PROJECT STATISTICS
+============================================================ -->
+
+<section class="bg-white py-12">
+
+    <div class="container mx-auto px-6">
+
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-5">
+
+
+            <!-- TOTAL -->
+
+            <div
+                class="bg-gray-50
+                       border border-gray-200
+                       rounded-2xl
+                       p-6
+                       text-center"
+            >
+
+                <div
+                    class="w-12 h-12
+                           mx-auto
+                           rounded-full
+                           bg-green-100
+                           text-green-700
+                           flex items-center
+                           justify-center
+                           text-xl"
+                >
+                    📊
+                </div>
+
+                <p class="mt-4 text-3xl font-extrabold text-green-700">
+                    {{ total_projects }}
+                </p>
+
+                <p class="mt-1 text-gray-600">
+                    Total Projects
+                </p>
+
+            </div>
+
+
+            <!-- ONGOING -->
+
+            <div
+                class="bg-yellow-50
+                       border border-yellow-200
+                       rounded-2xl
+                       p-6
+                       text-center"
+            >
+
+                <div
+                    class="w-12 h-12
+                           mx-auto
+                           rounded-full
+                           bg-yellow-100
+                           text-yellow-700
+                           flex items-center
+                           justify-center
+                           text-xl"
+                >
+                    🔨
+                </div>
+
+                <p class="mt-4 text-3xl font-extrabold text-yellow-700">
+                    {{ ongoing_count }}
+                </p>
+
+                <p class="mt-1 text-gray-600">
+                    Ongoing
+                </p>
+
+            </div>
+
+
+            <!-- COMPLETED -->
+
+            <div
+                class="bg-green-50
+                       border border-green-200
+                       rounded-2xl
+                       p-6
+                       text-center"
+            >
+
+                <div
+                    class="w-12 h-12
+                           mx-auto
+                           rounded-full
+                           bg-green-100
+                           text-green-700
+                           flex items-center
+                           justify-center
+                           text-xl"
+                >
+                    ✓
+                </div>
+
+                <p class="mt-4 text-3xl font-extrabold text-green-700">
+                    {{ completed_count }}
+                </p>
+
+                <p class="mt-1 text-gray-600">
+                    Completed
+                </p>
+
+            </div>
+
+
+            <!-- PLANNING -->
+
+            <div
+                class="bg-blue-50
+                       border border-blue-200
+                       rounded-2xl
+                       p-6
+                       text-center"
+            >
+
+                <div
+                    class="w-12 h-12
+                           mx-auto
+                           rounded-full
+                           bg-blue-100
+                           text-blue-700
+                           flex items-center
+                           justify-center
+                           text-xl"
+                >
+                    📋
+                </div>
+
+                <p class="mt-4 text-3xl font-extrabold text-blue-700">
+                    {{ planning_count }}
+                </p>
+
+                <p class="mt-1 text-gray-600">
+                    Planning
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ============================================================
+     PROJECT FILTER
+============================================================ -->
+
+<section class="bg-gray-50 border-y border-gray-200">
+
+    <div class="container mx-auto px-6 py-8">
+
+        <div
+            class="flex flex-col
+                   lg:flex-row
+                   lg:items-center
+                   lg:justify-between
+                   gap-5"
+        >
+
+            <div>
+
+                <h2 class="text-xl font-bold text-gray-900">
+                    Browse Projects
+                </h2>
+
+                <p class="text-sm text-gray-500 mt-1">
+                    Filter projects by their current development status.
+                </p>
+
+            </div>
+
+
+            <div class="flex flex-wrap gap-2">
+
+
+                <!-- ALL -->
+
+                <a
+                    href="{% url 'project_list' %}"
+                    class="
+                        px-5 py-2.5
+                        rounded-lg
+                        text-sm
+                        font-semibold
+                        transition
+
+                        {% if not selected_status %}
+                            bg-green-700 text-white shadow
+                        {% else %}
+                            bg-white
+                            text-gray-700
+                            border border-gray-300
+                            hover:border-green-600
+                            hover:text-green-700
+                        {% endif %}
+                    "
+                >
+                    All Projects
+                </a>
+
+
+                <!-- ONGOING -->
+
+                <a
+                    href="?status=Ongoing"
+                    class="
+                        px-5 py-2.5
+                        rounded-lg
+                        text-sm
+                        font-semibold
+                        transition
+
+                        {% if selected_status == 'Ongoing' %}
+                            bg-yellow-500 text-black shadow
+                        {% else %}
+                            bg-white
+                            text-gray-700
+                            border border-gray-300
+                            hover:border-yellow-500
+                            hover:text-yellow-700
+                        {% endif %}
+                    "
+                >
+                    Ongoing
+                </a>
+
+
+                <!-- COMPLETED -->
+
+                <a
+                    href="?status=Completed"
+                    class="
+                        px-5 py-2.5
+                        rounded-lg
+                        text-sm
+                        font-semibold
+                        transition
+
+                        {% if selected_status == 'Completed' %}
+                            bg-green-700 text-white shadow
+                        {% else %}
+                            bg-white
+                            text-gray-700
+                            border border-gray-300
+                            hover:border-green-600
+                            hover:text-green-700
+                        {% endif %}
+                    "
+                >
+                    Completed
+                </a>
+
+
+                <!-- PLANNING -->
+
+                <a
+                    href="?status=Planning"
+                    class="
+                        px-5 py-2.5
+                        rounded-lg
+                        text-sm
+                        font-semibold
+                        transition
+
+                        {% if selected_status == 'Planning' %}
+                            bg-blue-600 text-white shadow
+                        {% else %}
+                            bg-white
+                            text-gray-700
+                            border border-gray-300
+                            hover:border-blue-500
+                            hover:text-blue-700
+                        {% endif %}
+                    "
+                >
+                    Planning
+                </a>
+
+
+                <!-- SUSPENDED -->
+
+                <a
+                    href="?status=Suspended"
+                    class="
+                        px-5 py-2.5
+                        rounded-lg
+                        text-sm
+                        font-semibold
+                        transition
+
+                        {% if selected_status == 'Suspended' %}
+                            bg-red-600 text-white shadow
+                        {% else %}
+                            bg-white
+                            text-gray-700
+                            border border-gray-300
+                            hover:border-red-500
+                            hover:text-red-700
+                        {% endif %}
+                    "
+                >
+                    Suspended
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ============================================================
+     PROJECT LIST
+============================================================ -->
+
+<section class="bg-white py-16 lg:py-24">
+
+    <div class="container mx-auto px-6">
+
+
+        <!-- SECTION HEADER -->
+
+        <div
+            class="flex flex-col
+                   md:flex-row
+                   md:items-end
+                   md:justify-between
+                   gap-5
+                   mb-10"
+        >
+
+            <div>
+
+                <span
+                    class="text-green-700
+                           font-bold
+                           uppercase
+                           tracking-widest
+                           text-sm"
+                >
+                    Public Development
+                </span>
+
+                <h2
+                    class="mt-2
+                           text-3xl
+                           lg:text-4xl
+                           font-extrabold
+                           text-gray-900"
+                >
+
+                    {% if selected_status %}
+                        {{ selected_status }} Projects
+                    {% else %}
+                        All Government Projects
+                    {% endif %}
+
+                </h2>
+
+            </div>
+
+
+            <div class="text-sm text-gray-500">
+
+                Showing
+                <span class="font-bold text-gray-900">
+                    {{ projects|length }}
+                </span>
+                project{{ projects|length|pluralize }}
+
+            </div>
+
+        </div>
+
+
+        {% if projects %}
+
+
+        <!-- PROJECT CARDS -->
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+
+            {% for project in projects %}
+
+            <article
+                class="group
+                       bg-white
+                       rounded-2xl
+                       border border-gray-200
+                       overflow-hidden
+                       shadow-sm
+                       hover:shadow-2xl
+                       hover:-translate-y-1
+                       transition-all
+                       duration-300"
+            >
+
+
+                <!-- IMAGE -->
+
+                <div class="relative overflow-hidden">
+
+                    {% if project.image %}
+
+                    <img
+                        src="{{ project.image.url }}"
+                        alt="{{ project.title }}"
+                        class="w-full
+                               h-60
+                               object-cover
+                               group-hover:scale-105
+                               transition
+                               duration-500"
+                    >
+
+                    {% else %}
+
+                    <div
+                        class="w-full
+                               h-60
+                               bg-green-100
+                               flex items-center
+                               justify-center
+                               text-green-700"
+                    >
+
+                        <div class="text-center">
+
+                            <div class="text-4xl">
+                                🏗️
+                            </div>
+
+                            <p class="mt-2 font-semibold">
+                                Government Project
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    {% endif %}
+
+
+                    <!-- STATUS -->
+
+                    <div class="absolute top-4 left-4">
+
+                        <span
+                            class="
+                                inline-flex
+                                px-3 py-1.5
+                                rounded-full
+                                text-xs
+                                font-bold
+                                shadow
+
+                                {% if project.status == 'Completed' %}
+                                    bg-green-100 text-green-800
+
+                                {% elif project.status == 'Ongoing' %}
+                                    bg-yellow-100 text-yellow-800
+
+                                {% elif project.status == 'Suspended' %}
+                                    bg-red-100 text-red-800
+
+                                {% else %}
+                                    bg-blue-100 text-blue-800
+                                {% endif %}
+                            "
+                        >
+
+                            {{ project.status }}
+
+                        </span>
+
+                    </div>
+
+
+                    {% if project.featured %}
+
+                    <div class="absolute top-4 right-4">
+
+                        <span
+                            class="bg-yellow-500
+                                   text-green-950
+                                   px-3 py-1.5
+                                   rounded-full
+                                   text-xs
+                                   font-bold
+                                   shadow"
+                        >
+
+                            ★ Featured
+
+                        </span>
+
+                    </div>
+
+                    {% endif %}
+
+                </div>
+
+
+                <!-- CONTENT -->
+
+                <div class="p-6">
+
+
+                    <h3
+                        class="text-xl
+                               font-bold
+                               text-gray-900
+                               leading-snug
+                               group-hover:text-green-700
+                               transition"
+                    >
+
+                        {{ project.title }}
+
+                    </h3>
+
+
+                    <!-- LOCATION -->
+
+                    <div
+                        class="mt-3
+                               flex items-center
+                               gap-2
+                               text-sm
+                               text-gray-500"
+                    >
+
+                        <span class="text-green-700">
+                            📍
+                        </span>
+
+                        {{ project.location }}
+
+                    </div>
+
+
+                    <!-- DESCRIPTION -->
+
+                    <p
+                        class="mt-4
+                               text-gray-600
+                               text-sm
+                               leading-relaxed"
+                    >
+
+                        {{ project.description|truncatewords:22 }}
+
+                    </p>
+
+
+                    <!-- PROGRESS -->
+
+                    <div class="mt-6">
+
+                        <div
+                            class="flex
+                                   justify-between
+                                   items-center
+                                   text-sm
+                                   mb-2"
+                        >
+
+                            <span class="font-semibold text-gray-700">
+                                Project Progress
+                            </span>
+
+                            <span class="font-bold text-green-700">
+                                {{ project.progress }}%
+                            </span>
+
+                        </div>
+
+
+                        <div
+                            class="w-full
+                                   h-3
+                                   bg-gray-200
+                                   rounded-full
+                                   overflow-hidden"
+                        >
+
+                            <div
+                                class="h-full
+                                       bg-green-600
+                                       rounded-full
+                                       transition-all"
+                                style="width: {{ project.progress }}%;"
+                            ></div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- DATE -->
+
+                    <div
+                        class="mt-5
+                               pt-5
+                               border-t
+                               border-gray-100
+                               flex
+                               justify-between
+                               text-xs
+                               text-gray-500"
+                    >
+
+                        <span>
+
+                            Started
+                            {{ project.start_date|date:"M Y" }}
+
+                        </span>
+
+                        <span>
+
+                            Due
+                            {{ project.expected_completion|date:"M Y" }}
+
+                        </span>
+
+                    </div>
+
+
+                    <!-- DETAILS -->
+
+                    <a
+                        href="{{ project.get_absolute_url }}"
+                        class="mt-6
+                               inline-flex
+                               items-center
+                               gap-2
+                               text-green-700
+                               font-bold
+                               text-sm
+                               hover:text-green-900
+                               transition"
+                    >
+
+                        View Project Details
+
+                        <span
+                            class="group-hover:translate-x-1
+                                   transition-transform"
+                        >
+                            →
+                        </span>
+
+                    </a>
+
+                </div>
+
+            </article>
+
+            {% endfor %}
+
+        </div>
+
+
+        {% else %}
+
+
+        <!-- EMPTY STATE -->
+
+        <div
+            class="max-w-2xl
+                   mx-auto
+                   text-center
+                   bg-gray-50
+                   border border-gray-200
+                   rounded-2xl
+                   p-12 lg:p-16"
+        >
+
+            <div
+                class="w-20 h-20
+                       mx-auto
+                       rounded-full
+                       bg-green-100
+                       text-green-700
+                       flex items-center
+                       justify-center
+                       text-3xl"
+            >
+
+                🏗️
+
+            </div>
+
+
+            <h3
+                class="mt-6
+                       text-2xl
+                       font-bold
+                       text-gray-900"
+            >
+
+                No Projects Found
+
+            </h3>
+
+
+            <p
+                class="mt-3
+                       text-gray-600
+                       leading-relaxed"
+            >
+
+                {% if selected_status %}
+
+                    There are currently no projects listed under
+                    the <strong>{{ selected_status }}</strong> category.
+
+                {% else %}
+
+                    Government project information will be published
+                    here when available.
+
+                {% endif %}
+
+            </p>
+
+
+            {% if selected_status %}
+
+            <a
+                href="{% url 'project_list' %}"
+                class="inline-flex
+                       items-center
+                       mt-6
+                       bg-green-700
+                       hover:bg-green-800
+                       text-white
+                       font-semibold
+                       px-6 py-3
+                       rounded-lg
+                       transition"
+            >
+
+                View All Projects
+
+            </a>
+
+            {% endif %}
+
+        </div>
+
+
+        {% endif %}
+
+    </div>
+
+</section>
+
+
+<!-- ============================================================
+     TRANSPARENCY MESSAGE
+============================================================ -->
+
+<section class="bg-green-950 text-white">
+
+    <div class="container mx-auto px-6 py-16">
+
+        <div class="max-w-4xl mx-auto text-center">
+
+            <div
+                class="w-16 h-16
+                       mx-auto
+                       rounded-full
+                       bg-yellow-500
+                       text-green-950
+                       flex items-center
+                       justify-center
+                       text-2xl"
+            >
+
+                ✓
+
+            </div>
+
+
+            <h2
+                class="mt-6
+                       text-3xl
+                       sm:text-4xl
+                       font-bold"
+            >
+
+                Transparency in Development
+
+            </h2>
+
+
+            <p
+                class="mt-5
+                       text-green-100
+                       text-lg
+                       leading-relaxed"
+            >
+
+                Uruan Local Government Area is committed to providing
+                accessible information about public development projects,
+                their progress and the communities they serve.
+
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ============================================================
+     BACK HOME
+============================================================ -->
+
+<section class="bg-white py-10">
+
+    <div class="container mx-auto px-6 text-center">
+
+        <a
+            href="{% url 'home' %}"
+            class="inline-flex
+                   items-center
+                   gap-2
+                   border border-gray-300
+                   hover:border-green-700
+                   hover:text-green-700
+                   text-gray-700
+                   font-semibold
+                   px-7 py-3
+                   rounded-lg
+                   transition"
+        >
+
+            ← Return to Homepage
+
+        </a>
+
+    </div>
+
+</section>
+
+{% endblock %}

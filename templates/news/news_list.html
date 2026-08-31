@@ -1,0 +1,499 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Latest News | Uruan Local Government Area
+{% endblock %}
+
+{% block content %}
+
+<!-- ============================================================
+     NEWS HERO
+============================================================ -->
+<section class="relative bg-green-950 text-white overflow-hidden">
+
+    <div class="absolute inset-0">
+        <div class="absolute inset-0 bg-gradient-to-r from-green-950 via-green-900/95 to-green-900/70"></div>
+    </div>
+
+    <div class="relative container mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
+
+        <div class="max-w-4xl">
+
+            <span class="inline-flex items-center gap-2
+                         bg-yellow-500/20
+                         border border-yellow-400/40
+                         text-yellow-300
+                         px-4 py-2
+                         rounded-full
+                         text-sm font-semibold">
+
+                <span class="w-2 h-2 bg-yellow-400 rounded-full"></span>
+
+                Uruan News Centre
+
+            </span>
+
+            <h1 class="mt-6 text-4xl sm:text-5xl lg:text-6xl
+                       font-extrabold leading-tight">
+
+                Latest News &amp;
+                <span class="text-yellow-400">
+                    Updates
+                </span>
+
+            </h1>
+
+            <p class="mt-6 max-w-2xl
+                      text-lg sm:text-xl
+                      text-green-100
+                      leading-relaxed">
+
+                Stay informed about government activities,
+                community development, events, announcements
+                and important happenings across Uruan Local
+                Government Area.
+
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ============================================================
+     SEARCH + NEWS CONTENT
+============================================================ -->
+<section class="bg-gray-50 py-12 lg:py-16">
+
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+
+        <!-- SEARCH -->
+        <div class="max-w-3xl mx-auto mb-12">
+
+            <form method="get"
+                  action="{% url 'news:search' %}"
+                  class="flex flex-col sm:flex-row gap-3">
+
+                <div class="relative flex-1">
+
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                         class="absolute left-4 top-1/2
+                                -translate-y-1/2
+                                w-5 h-5 text-gray-400"
+                         fill="none"
+                         viewBox="0 0 24 24"
+                         stroke="currentColor">
+
+                        <path stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="2"
+                              d="M21 21l-4.35-4.35m2.35-5.65a8 8 0 11-16 0 8 8 0 0116 0z"/>
+
+                    </svg>
+
+                    <input type="search"
+                           name="q"
+                           placeholder="Search news..."
+                           value="{{ request.GET.q|default:'' }}"
+                           class="w-full pl-12 pr-4 py-4
+                                  bg-white
+                                  border border-gray-300
+                                  rounded-xl
+                                  focus:outline-none
+                                  focus:ring-2
+                                  focus:ring-green-600
+                                  focus:border-green-600">
+
+                </div>
+
+                <button type="submit"
+                        class="bg-green-700
+                               hover:bg-green-800
+                               text-white
+                               font-semibold
+                               px-7 py-4
+                               rounded-xl
+                               transition">
+
+                    Search
+
+                </button>
+
+            </form>
+
+        </div>
+
+
+        <!-- CATEGORY NAVIGATION -->
+        {% if categories %}
+
+        <div class="flex gap-3 overflow-x-auto pb-4 mb-10">
+
+            <a href="{% url 'news:news_list' %}"
+               class="whitespace-nowrap
+                      px-5 py-2.5
+                      rounded-full
+                      bg-green-700
+                      text-white
+                      font-semibold">
+
+                All News
+
+            </a>
+
+            {% for category in categories %}
+
+            <a href="{% url 'news:category_posts' category.slug %}"
+               class="whitespace-nowrap
+                      px-5 py-2.5
+                      rounded-full
+                      bg-white
+                      border border-gray-200
+                      text-gray-700
+                      hover:border-green-600
+                      hover:text-green-700
+                      transition">
+
+                {{ category.name }}
+
+            </a>
+
+            {% endfor %}
+
+        </div>
+
+        {% endif %}
+
+
+        <!-- ====================================================
+             FEATURED NEWS
+        ==================================================== -->
+        {% if featured_news %}
+
+        <div class="flex items-center justify-between mb-7">
+
+            <div>
+
+                <span class="text-sm font-bold
+                             uppercase tracking-widest
+                             text-green-700">
+
+                    Featured
+
+                </span>
+
+                <h2 class="mt-2 text-3xl
+                           font-bold text-gray-900">
+
+                    Top Stories
+
+                </h2>
+
+            </div>
+
+        </div>
+
+
+        <div class="grid lg:grid-cols-3 gap-7 mb-16">
+
+            {% for post in featured_news %}
+
+            <article class="group bg-white
+                            rounded-2xl
+                            overflow-hidden
+                            shadow-sm
+                            border border-gray-200
+                            hover:shadow-xl
+                            transition duration-300">
+
+                {% if post.image %}
+
+                <a href="{% url 'news:news_detail' post.slug %}">
+
+                    <div class="relative overflow-hidden">
+
+                        <img src="{{ post.image.url }}"
+                             alt="{{ post.title }}"
+                             class="w-full h-64
+                                    object-cover
+                                    group-hover:scale-105
+                                    transition duration-500">
+
+                        <div class="absolute top-4 left-4">
+
+                            <span class="bg-yellow-500
+                                         text-black
+                                         text-xs
+                                         font-bold
+                                         px-3 py-1.5
+                                         rounded-full">
+
+                                FEATURED
+
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </a>
+
+                {% endif %}
+
+                <div class="p-6">
+
+                    <div class="flex items-center gap-3
+                                text-sm text-gray-500">
+
+                        <span class="text-green-700 font-semibold">
+
+                            {{ post.category }}
+
+                        </span>
+
+                        <span>•</span>
+
+                        <span>
+                            {{ post.created_at|date:"M d, Y" }}
+                        </span>
+
+                    </div>
+
+                    <h3 class="mt-3 text-xl
+                               font-bold text-gray-900
+                               group-hover:text-green-700
+                               transition">
+
+                        <a href="{% url 'news:news_detail' post.slug %}">
+                            {{ post.title }}
+                        </a>
+
+                    </h3>
+
+                    <p class="mt-3 text-gray-600
+                              leading-relaxed">
+
+                        {{ post.summary|truncatewords:25 }}
+
+                    </p>
+
+                    <a href="{% url 'news:news_detail' post.slug %}"
+                       class="inline-flex items-center gap-2
+                              mt-5
+                              text-green-700
+                              font-bold">
+
+                        Read Story
+
+                        <span class="group-hover:translate-x-1
+                                     transition">
+                            →
+                        </span>
+
+                    </a>
+
+                </div>
+
+            </article>
+
+            {% endfor %}
+
+        </div>
+
+        {% endif %}
+
+
+        <!-- ====================================================
+             LATEST NEWS
+        ==================================================== -->
+
+        <div class="flex items-end justify-between mb-7">
+
+            <div>
+
+                <span class="text-sm font-bold
+                             uppercase tracking-widest
+                             text-green-700">
+
+                    Newsroom
+
+                </span>
+
+                <h2 class="mt-2 text-3xl
+                           font-bold text-gray-900">
+
+                    Latest News
+
+                </h2>
+
+            </div>
+
+        </div>
+
+
+        {% if latest_news or news %}
+
+        <div class="grid sm:grid-cols-2
+                    lg:grid-cols-3
+                    gap-7">
+
+            {% for post in latest_news|default:news %}
+
+            <article class="group bg-white
+                            rounded-2xl
+                            overflow-hidden
+                            border border-gray-200
+                            shadow-sm
+                            hover:shadow-xl
+                            transition duration-300">
+
+                {% if post.image %}
+
+                <a href="{% url 'news:news_detail' post.slug %}">
+
+                    <div class="overflow-hidden">
+
+                        <img src="{{ post.image.url }}"
+                             alt="{{ post.title }}"
+                             class="w-full h-56
+                                    object-cover
+                                    group-hover:scale-105
+                                    transition duration-500">
+
+                    </div>
+
+                </a>
+
+                {% else %}
+
+                <div class="h-56
+                            bg-gradient-to-br
+                            from-green-800
+                            to-green-950
+                            flex items-center
+                            justify-center">
+
+                    <span class="text-white
+                                 text-4xl
+                                 font-bold">
+
+                        URUAN
+
+                    </span>
+
+                </div>
+
+                {% endif %}
+
+
+                <div class="p-6">
+
+                    <div class="flex items-center gap-2
+                                text-xs text-gray-500">
+
+                        <span class="bg-green-100
+                                     text-green-800
+                                     px-3 py-1
+                                     rounded-full
+                                     font-semibold">
+
+                            {{ post.category }}
+
+                        </span>
+
+                        <span>
+                            {{ post.created_at|date:"M d, Y" }}
+                        </span>
+
+                    </div>
+
+
+                    <h3 class="mt-4
+                               text-xl
+                               font-bold
+                               text-gray-900
+                               group-hover:text-green-700
+                               transition">
+
+                        <a href="{% url 'news:news_detail' post.slug %}">
+
+                            {{ post.title }}
+
+                        </a>
+
+                    </h3>
+
+
+                    <p class="mt-3
+                              text-gray-600
+                              text-sm
+                              leading-relaxed">
+
+                        {{ post.summary|truncatewords:22 }}
+
+                    </p>
+
+
+                    <div class="mt-5
+                                pt-4
+                                border-t
+                                border-gray-100
+                                flex items-center
+                                justify-between">
+
+                        <span class="text-sm text-gray-500">
+
+                            {{ post.views }} views
+
+                        </span>
+
+                        <a href="{% url 'news:news_detail' post.slug %}"
+                           class="text-green-700
+                                  font-semibold">
+
+                            Read More →
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+            {% endfor %}
+
+        </div>
+
+        {% else %}
+
+        <div class="bg-white
+                    rounded-2xl
+                    border border-gray-200
+                    p-12
+                    text-center">
+
+            <div class="text-5xl mb-4">
+                📰
+            </div>
+
+            <h3 class="text-2xl font-bold text-gray-800">
+                No news available
+            </h3>
+
+            <p class="mt-2 text-gray-500">
+                News stories will appear here when published.
+            </p>
+
+        </div>
+
+        {% endif %}
+
+    </div>
+
+</section>
+
+{% endblock %}

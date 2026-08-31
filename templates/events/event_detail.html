@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<section>
+
+    {% if event.image %}
+    <img src="{{ event.image.url }}"
+         class="w-full h-[500px] object-cover">
+    {% endif %}
+
+</section>
+
+<section class="py-16">
+
+    <div class="container mx-auto px-6 max-w-5xl">
+
+        <span class="bg-green-100 text-green-800 px-4 py-2 rounded">
+
+            {{ event.event_type }}
+
+        </span>
+
+        <h1 class="text-5xl font-bold mt-6">
+
+            {{ event.title }}
+
+        </h1>
+
+        <div class="mt-8 space-y-3">
+
+            <p><strong>Venue:</strong> {{ event.venue }}</p>
+
+            <p>
+                <strong>Starts:</strong>
+                {{ event.start_date }}
+            </p>
+
+            <p>
+                <strong>Ends:</strong>
+                {{ event.end_date }}
+            </p>
+
+            <p>
+                <strong>Organizer:</strong>
+                {{ event.organizer }}
+            </p>
+
+        </div>
+
+        <div class="mt-10 prose max-w-none">
+
+            {{ event.description|linebreaks }}
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

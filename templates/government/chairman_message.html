@@ -1,0 +1,338 @@
+{% extends "base.html" %}
+
+{% block title %}
+{% if chairman %}
+{{ chairman.message_title }} | Uruan Local Government Area
+{% else %}
+Chairman's Message | Uruan Local Government Area
+{% endif %}
+{% endblock %}
+
+{% block content %}
+
+<section class="bg-green-950 text-white py-20">
+
+    <div class="container mx-auto px-6">
+
+        {% if chairman %}
+
+        <div class="max-w-6xl mx-auto">
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+
+                <!-- PHOTO -->
+                <div>
+
+                    {% if chairman.photo %}
+
+                    <img
+                        src="{{ chairman.photo.url }}"
+                        alt="{{ chairman.full_name }}"
+                        class="w-full h-[500px] object-cover rounded-2xl shadow-2xl"
+                    >
+
+                    {% else %}
+
+                    <div class="w-full h-[500px] rounded-2xl bg-green-900 flex items-center justify-center">
+
+                        <span class="text-green-300 text-lg">
+                            No photograph available
+                        </span>
+
+                    </div>
+
+                    {% endif %}
+
+                </div>
+
+
+                <!-- INTRODUCTION -->
+                <div>
+
+                    <span class="inline-block bg-yellow-500 text-green-950
+                                 px-4 py-2 rounded-full text-sm font-bold">
+
+                        Executive Chairman
+
+                    </span>
+
+                    <h1 class="mt-6 text-4xl md:text-5xl font-extrabold leading-tight">
+
+                        {{ chairman.title }}
+                        {{ chairman.full_name }}
+
+                    </h1>
+
+                    <p class="mt-4 text-xl text-yellow-300 font-semibold">
+
+                        {{ chairman.display_designation }}
+
+                    </p>
+
+                    {% if chairman.community or chairman.ward %}
+
+                    <p class="mt-5 text-green-100">
+
+                        {% if chairman.community %}
+                            {{ chairman.community }}
+                        {% endif %}
+
+                        {% if chairman.community and chairman.ward %}
+                            ·
+                        {% endif %}
+
+                        {% if chairman.ward %}
+                            Ward {{ chairman.ward }}
+                        {% endif %}
+
+                    </p>
+
+                    {% endif %}
+
+                    {% if chairman.political_party %}
+
+                    <p class="mt-3 text-green-200">
+                        {{ chairman.political_party }}
+                    </p>
+
+                    {% endif %}
+
+                </div>
+
+            </div>
+
+        </div>
+
+        {% else %}
+
+        <div class="max-w-3xl mx-auto text-center">
+
+            <h1 class="text-4xl font-bold">
+                Chairman's Message
+            </h1>
+
+            <p class="mt-5 text-green-100">
+                The Chairman's message is currently unavailable.
+            </p>
+
+        </div>
+
+        {% endif %}
+
+    </div>
+
+</section>
+
+
+{% if chairman %}
+
+<!-- MESSAGE -->
+<section class="bg-white py-20">
+
+    <div class="container mx-auto px-6">
+
+        <div class="max-w-4xl mx-auto">
+
+            <div class="text-center mb-12">
+
+                <span class="text-green-700 font-bold uppercase
+                             tracking-widest text-sm">
+
+                    Message from the Executive Chairman
+
+                </span>
+
+                <h2 class="mt-3 text-3xl md:text-4xl font-bold text-gray-900">
+
+                    {{ chairman.message_title|default:"Chairman's Message" }}
+
+                </h2>
+
+                <div class="w-20 h-1 bg-yellow-500 mx-auto mt-5"></div>
+
+            </div>
+
+
+            <div class="bg-gray-50 border border-gray-200
+                        rounded-2xl p-8 md:p-12 shadow-sm">
+
+                <div class="prose prose-lg max-w-none text-gray-700">
+
+                    {{ chairman.chairman_message|linebreaks }}
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- CHAIRMAN PROFILE -->
+<section class="bg-gray-50 py-20">
+
+    <div class="container mx-auto px-6">
+
+        <div class="max-w-5xl mx-auto">
+
+            <div class="text-center mb-12">
+
+                <span class="text-green-700 font-bold uppercase
+                             tracking-widest text-sm">
+
+                    Leadership Profile
+
+                </span>
+
+                <h2 class="mt-3 text-3xl md:text-4xl font-bold text-gray-900">
+
+                    About the Chairman
+
+                </h2>
+
+                <div class="w-20 h-1 bg-yellow-500 mx-auto mt-5"></div>
+
+            </div>
+
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+                {% if chairman.profession %}
+
+                <div class="bg-white p-6 rounded-xl shadow-sm">
+
+                    <p class="text-sm text-gray-500">
+                        Profession
+                    </p>
+
+                    <p class="mt-2 font-semibold text-gray-900">
+                        {{ chairman.profession }}
+                    </p>
+
+                </div>
+
+                {% endif %}
+
+
+                {% if chairman.qualification %}
+
+                <div class="bg-white p-6 rounded-xl shadow-sm">
+
+                    <p class="text-sm text-gray-500">
+                        Qualification
+                    </p>
+
+                    <p class="mt-2 font-semibold text-gray-900">
+                        {{ chairman.qualification }}
+                    </p>
+
+                </div>
+
+                {% endif %}
+
+
+                {% if chairman.date_assumed_office %}
+
+                <div class="bg-white p-6 rounded-xl shadow-sm">
+
+                    <p class="text-sm text-gray-500">
+                        Assumed Office
+                    </p>
+
+                    <p class="mt-2 font-semibold text-gray-900">
+
+                        {{ chairman.date_assumed_office|date:"F d, Y" }}
+
+                    </p>
+
+                </div>
+
+                {% endif %}
+
+
+                {% if chairman.community %}
+
+                <div class="bg-white p-6 rounded-xl shadow-sm">
+
+                    <p class="text-sm text-gray-500">
+                        Community
+                    </p>
+
+                    <p class="mt-2 font-semibold text-gray-900">
+                        {{ chairman.community }}
+                    </p>
+
+                </div>
+
+                {% endif %}
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- BIOGRAPHY -->
+{% if chairman.biography %}
+
+<section class="bg-white py-20">
+
+    <div class="container mx-auto px-6">
+
+        <div class="max-w-4xl mx-auto">
+
+            <h2 class="text-3xl font-bold text-green-800 mb-6">
+                Biography
+            </h2>
+
+            <div class="text-gray-700 leading-8">
+
+                {{ chairman.biography|linebreaks }}
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endif %}
+
+
+<!-- ACHIEVEMENTS -->
+{% if chairman.achievements %}
+
+<section class="bg-gray-50 py-20">
+
+    <div class="container mx-auto px-6">
+
+        <div class="max-w-4xl mx-auto">
+
+            <h2 class="text-3xl font-bold text-green-800 mb-6">
+                Achievements
+            </h2>
+
+            <div class="text-gray-700 leading-8">
+
+                {{ chairman.achievements|linebreaks }}
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endif %}
+
+{% endif %}
+
+{% endblock %}

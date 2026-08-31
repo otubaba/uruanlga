@@ -1,0 +1,2163 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+Executive Leadership | Uruan Local Government Area
+{% endblock %}
+
+{% block content %}
+
+<!-- ============================================================
+     HERO
+============================================================ -->
+<section class="relative overflow-hidden bg-green-950 text-white">
+
+    <!-- Background -->
+    <div class="absolute inset-0">
+
+        <img
+            src="{% static 'images/uruan-banner.jpg' %}"
+            alt="Uruan Local Government Area"
+            class="w-full h-full object-cover opacity-25"
+        >
+
+        <div class="absolute inset-0 bg-gradient-to-r from-green-950/95 via-green-950/90 to-green-950/75"></div>
+
+    </div>
+
+
+    <!-- Decorative Elements -->
+    <div class="absolute -top-24 -right-24 w-72 h-72 rounded-full bg-yellow-400/10 blur-3xl"></div>
+    <div class="absolute -bottom-32 -left-24 w-80 h-80 rounded-full bg-green-400/10 blur-3xl"></div>
+
+
+    <!-- HERO CONTENT -->
+    <div class="relative container mx-auto px-6 py-20 md:py-28">
+
+        <!-- Breadcrumb -->
+        <nav
+            class="mb-8 text-sm"
+            aria-label="Breadcrumb"
+        >
+
+            <ol class="flex flex-wrap items-center gap-2">
+
+                <li>
+                    <a
+                        href="{% url 'home' %}"
+                        class="text-green-200 hover:text-yellow-300 transition"
+                    >
+                        Home
+                    </a>
+                </li>
+
+                <li class="text-green-500">
+                    /
+                </li>
+
+                <li class="text-yellow-300">
+                    Executive Leadership
+                </li>
+
+            </ol>
+
+        </nav>
+
+
+        <!-- Label -->
+        <div
+            class="inline-flex
+                   items-center
+                   gap-2
+                   px-4 py-2
+                   rounded-full
+                   bg-yellow-500/15
+                   border border-yellow-400/40
+                   text-yellow-300
+                   text-xs sm:text-sm
+                   font-bold
+                   uppercase
+                   tracking-widest"
+        >
+
+            <span
+                class="w-2 h-2
+                       rounded-full
+                       bg-yellow-400
+                       animate-pulse"
+            ></span>
+
+            Executive Arm of Government
+
+        </div>
+
+
+        <!-- Heading -->
+        <h1
+            class="mt-6
+                   max-w-4xl
+                   text-4xl
+                   sm:text-5xl
+                   lg:text-6xl
+                   font-extrabold
+                   leading-tight"
+        >
+
+            Executive Leadership
+
+        </h1>
+
+
+        <!-- Description -->
+        <p
+            class="mt-6
+                   max-w-3xl
+                   text-lg
+                   md:text-xl
+                   text-green-100
+                   leading-relaxed"
+        >
+
+            Meet the Executive Chairman and other leaders who have
+            served and continue to serve the people of Uruan Local
+            Government Area through responsible governance and
+            community-focused administration.
+
+        </p>
+
+
+        <!-- Quick Links -->
+        <div class="mt-9 flex flex-wrap gap-4">
+
+            <a
+                href="#current-administration"
+                class="inline-flex
+                       items-center
+                       gap-2
+                       bg-yellow-500
+                       hover:bg-yellow-400
+                       text-green-950
+                       font-bold
+                       px-6 py-3
+                       rounded-lg
+                       transition
+                       shadow-lg"
+            >
+
+                Current Administration
+
+                <svg
+                    class="w-5 h-5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                >
+
+                    <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M19 9l-7 7-7-7"
+                    />
+
+                </svg>
+
+            </a>
+
+
+            <a
+                href="#leadership-archive"
+                class="inline-flex
+                       items-center
+                       gap-2
+                       border
+                       border-green-300/40
+                       hover:border-yellow-400
+                       hover:text-yellow-300
+                       text-white
+                       font-bold
+                       px-6 py-3
+                       rounded-lg
+                       transition"
+            >
+
+                Leadership Archive
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ============================================================
+     INTRODUCTION / QUICK FACTS
+============================================================ -->
+<section class="bg-white py-12 md:py-16">
+
+    <div class="container mx-auto px-6">
+
+        <div class="max-w-6xl mx-auto">
+
+            <div class="grid lg:grid-cols-3 gap-8 items-center">
+
+                <!-- INTRO -->
+                <div class="lg:col-span-2">
+
+                    <span
+                        class="text-sm
+                               uppercase
+                               tracking-widest
+                               font-bold
+                               text-yellow-600"
+                    >
+                        The Executive Arm
+                    </span>
+
+
+                    <h2
+                        class="mt-3
+                               text-3xl
+                               md:text-4xl
+                               font-extrabold
+                               text-gray-900"
+                    >
+
+                        Leading Administration and Development
+
+                    </h2>
+
+
+                    <div
+                        class="w-20 h-1
+                               bg-yellow-500
+                               mt-5"
+                    ></div>
+
+
+                    <p
+                        class="mt-6
+                               text-gray-600
+                               text-lg
+                               leading-relaxed"
+                    >
+
+                        The Executive Arm of Uruan Local Government Area
+                        provides leadership and direction for the administration
+                        of the Local Government. It is responsible for
+                        implementing policies, coordinating development
+                        initiatives and delivering services that respond to
+                        the needs of communities across Uruan.
+
+                    </p>
+
+                </div>
+
+
+                <!-- GOVERNANCE CARD -->
+                <div
+                    class="bg-green-50
+                           border
+                           border-green-100
+                           rounded-2xl
+                           p-7"
+                >
+
+                    <div
+                        class="w-14 h-14
+                               rounded-2xl
+                               bg-green-800
+                               text-yellow-400
+                               flex
+                               items-center
+                               justify-center
+                               shadow-lg"
+                    >
+
+                        <svg
+                            class="w-7 h-7"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                        >
+
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="1.8"
+                                d="M3 10h18M5 10v10m4-10v10
+                                   m6-10v10m4-10v10M4 20h16
+                                   M12 3l9 5H3l9-5z"
+                            />
+
+                        </svg>
+
+                    </div>
+
+
+                    <h3
+                        class="mt-5
+                               text-xl
+                               font-extrabold
+                               text-gray-900"
+                    >
+
+                        Executive Administration
+
+                    </h3>
+
+
+                    <p
+                        class="mt-3
+                               text-gray-600
+                               leading-relaxed"
+                    >
+
+                        Providing leadership, coordination and direction
+                        for effective local government administration.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ============================================================
+     CURRENT EXECUTIVE CHAIRMAN
+============================================================ -->
+{% if current_chairman %}
+
+<section
+    id="current-administration"
+    class="bg-gray-50 py-16 md:py-20"
+>
+
+    <div class="container mx-auto px-6">
+
+        <div class="max-w-6xl mx-auto">
+
+            <!-- SECTION HEADER -->
+            <div class="text-center mb-12">
+
+                <span
+                    class="inline-flex
+                           items-center
+                           gap-2
+                           bg-green-100
+                           text-green-800
+                           px-4 py-2
+                           rounded-full
+                           text-xs
+                           sm:text-sm
+                           font-bold
+                           uppercase
+                           tracking-wider"
+                >
+
+                    <span
+                        class="w-2 h-2
+                               rounded-full
+                               bg-green-600
+                               animate-pulse"
+                    ></span>
+
+                    Current Administration
+
+                </span>
+
+
+                <h2
+                    class="mt-5
+                           text-3xl
+                           md:text-4xl
+                           font-extrabold
+                           text-gray-900"
+                >
+
+                    Executive Chairman
+
+                </h2>
+
+
+                <div
+                    class="w-20 h-1
+                           bg-yellow-500
+                           mx-auto
+                           mt-5"
+                ></div>
+
+
+                <p
+                    class="mt-5
+                           max-w-2xl
+                           mx-auto
+                           text-gray-600
+                           text-lg"
+                >
+
+                    The current Executive Chairman provides strategic
+                    leadership for the administration and development
+                    of Uruan Local Government Area.
+
+                </p>
+
+            </div>
+
+
+            <!-- CHAIRMAN CARD -->
+            <div
+                class="bg-white
+                       rounded-3xl
+                       overflow-hidden
+                       shadow-xl
+                       border
+                       border-gray-200"
+            >
+
+                <div class="grid lg:grid-cols-2">
+
+
+                    <!-- ==================================================
+                         PHOTO
+                    =================================================== -->
+                    <div
+                        class="relative
+                               min-h-[430px]
+                               lg:min-h-[560px]
+                               bg-green-950"
+                    >
+
+                        {% if current_chairman.photo %}
+
+                        <img
+                            src="{{ current_chairman.photo.url }}"
+                            alt="{{ current_chairman.full_name }}"
+                            loading="eager"
+                            class="absolute
+                                   inset-0
+                                   w-full
+                                   h-full
+                                   object-cover"
+                        >
+
+                        <div
+                            class="absolute
+                                   inset-0
+                                   bg-gradient-to-t
+                                   from-green-950/80
+                                   via-transparent
+                                   to-transparent"
+                        ></div>
+
+                        {% else %}
+
+                        <div
+                            class="absolute
+                                   inset-0
+                                   bg-gradient-to-br
+                                   from-green-800
+                                   to-green-950
+                                   flex
+                                   items-center
+                                   justify-center"
+                        >
+
+                            <svg
+                                class="w-40 h-40 text-yellow-400/90"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                            >
+
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="1.2"
+                                    d="M5.121 17.804A13.937
+                                       13.937 0 0112 16c2.5
+                                       0 4.847.655 6.879
+                                       1.804M15 10a3 3 0
+                                       11-6 0 3 3 0
+                                       016 0z"
+                                />
+
+                            </svg>
+
+                        </div>
+
+                        {% endif %}
+
+
+                        <!-- SERVING BADGE -->
+                        <div
+                            class="absolute
+                                   top-6
+                                   left-6"
+                        >
+
+                            <span
+                                class="inline-flex
+                                       items-center
+                                       gap-2
+                                       bg-yellow-500
+                                       text-green-950
+                                       px-4 py-2
+                                       rounded-full
+                                       text-xs
+                                       font-bold
+                                       uppercase
+                                       tracking-wide
+                                       shadow-xl"
+                            >
+
+                                <span
+                                    class="w-2 h-2
+                                           bg-green-900
+                                           rounded-full
+                                           animate-pulse"
+                                ></span>
+
+                                Serving Chairman
+
+                            </span>
+
+                        </div>
+
+
+                        <!-- NAME OVERLAY ON LARGE SCREEN -->
+                        <div
+                            class="hidden
+                                   lg:block
+                                   absolute
+                                   bottom-0
+                                   left-0
+                                   right-0
+                                   p-8
+                                   text-white"
+                        >
+
+                            <p
+                                class="text-sm
+                                       uppercase
+                                       tracking-widest
+                                       text-yellow-300
+                                       font-bold"
+                            >
+
+                                Executive Leadership
+
+                            </p>
+
+                            <h3
+                                class="mt-2
+                                       text-3xl
+                                       font-extrabold"
+                            >
+
+                                {{ current_chairman.full_name }}
+
+                            </h3>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- ==================================================
+                         DETAILS
+                    =================================================== -->
+                    <div class="p-8 md:p-10 lg:p-12">
+
+                        <p
+                            class="text-sm
+                                   uppercase
+                                   tracking-widest
+                                   font-bold
+                                   text-green-700"
+                        >
+
+                            Executive Arm
+
+                        </p>
+
+
+                        <h3
+                            class="mt-3
+                                   text-3xl
+                                   md:text-4xl
+                                   font-extrabold
+                                   text-gray-900"
+                        >
+
+                            {{ current_chairman.full_name }}
+
+                        </h3>
+
+
+                        {% if current_chairman.designation %}
+
+                        <p
+                            class="mt-3
+                                   text-xl
+                                   font-bold
+                                   text-green-700"
+                        >
+
+                            {{ current_chairman.designation }}
+
+                        </p>
+
+                        {% endif %}
+
+
+                        <!-- DIVIDER -->
+                        <div
+                            class="w-16
+                                   h-1
+                                   bg-yellow-500
+                                   mt-5"
+                        ></div>
+
+
+                        <!-- BIOGRAPHY -->
+                        {% if current_chairman.biography %}
+
+                        <div
+                            class="mt-7
+                                   text-gray-600
+                                   leading-8"
+                        >
+
+                            {{ current_chairman.biography|truncatewords:75 }}
+
+                        </div>
+
+                        {% else %}
+
+                        <p
+                            class="mt-7
+                                   text-gray-600
+                                   leading-8"
+                        >
+
+                            The Executive Chairman provides leadership
+                            and strategic direction for the administration
+                            of Uruan Local Government Area.
+
+                        </p>
+
+                        {% endif %}
+
+
+                        <!-- DETAILS GRID -->
+                        <div
+                            class="mt-8
+                                   grid
+                                   sm:grid-cols-2
+                                   gap-x-6
+                                   gap-y-6
+                                   border-t
+                                   border-gray-200
+                                   pt-7"
+                        >
+
+                            {% if current_chairman.date_assumed_office %}
+
+                            <div>
+
+                                <p
+                                    class="text-xs
+                                           uppercase
+                                           tracking-wider
+                                           font-bold
+                                           text-gray-400"
+                                >
+
+                                    Assumed Office
+
+                                </p>
+
+                                <p
+                                    class="mt-1
+                                           font-semibold
+                                           text-gray-800"
+                                >
+
+                                    {{ current_chairman.date_assumed_office|date:"F j, Y" }}
+
+                                </p>
+
+                            </div>
+
+                            {% endif %}
+
+
+                            {% if current_chairman.political_party %}
+
+                            <div>
+
+                                <p
+                                    class="text-xs
+                                           uppercase
+                                           tracking-wider
+                                           font-bold
+                                           text-gray-400"
+                                >
+
+                                    Political Party
+
+                                </p>
+
+                                <p
+                                    class="mt-1
+                                           font-semibold
+                                           text-gray-800"
+                                >
+
+                                    {{ current_chairman.political_party }}
+
+                                </p>
+
+                            </div>
+
+                            {% endif %}
+
+
+                            {% if current_chairman.profession %}
+
+                            <div>
+
+                                <p
+                                    class="text-xs
+                                           uppercase
+                                           tracking-wider
+                                           font-bold
+                                           text-gray-400"
+                                >
+
+                                    Profession
+
+                                </p>
+
+                                <p
+                                    class="mt-1
+                                           font-semibold
+                                           text-gray-800"
+                                >
+
+                                    {{ current_chairman.profession }}
+
+                                </p>
+
+                            </div>
+
+                            {% endif %}
+
+
+                            {% if current_chairman.ward %}
+
+                            <div>
+
+                                <p
+                                    class="text-xs
+                                           uppercase
+                                           tracking-wider
+                                           font-bold
+                                           text-gray-400"
+                                >
+
+                                    Ward
+
+                                </p>
+
+                                <p
+                                    class="mt-1
+                                           font-semibold
+                                           text-gray-800"
+                                >
+
+                                    {{ current_chairman.ward }}
+
+                                </p>
+
+                            </div>
+
+                            {% endif %}
+
+                        </div>
+
+
+                        <!-- PROFILE BUTTON -->
+                        {% if current_chairman.slug %}
+
+                        <div class="mt-9">
+
+                            <a
+                                href="{% url 'chairman_detail' current_chairman.slug %}"
+                                class="inline-flex
+                                       items-center
+                                       justify-center
+                                       gap-2
+                                       bg-green-800
+                                       hover:bg-green-700
+                                       text-white
+                                       font-bold
+                                       px-7
+                                       py-3.5
+                                       rounded-xl
+                                       transition
+                                       shadow-md
+                                       hover:shadow-lg"
+                            >
+
+                                View Full Profile
+
+                                <svg
+                                    class="w-5 h-5"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M9 5l7 7-7 7"
+                                    />
+
+                                </svg>
+
+                            </a>
+
+                        </div>
+
+                        {% endif %}
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endif %}
+
+
+<!-- ============================================================
+     EXECUTIVE LEADERSHIP ARCHIVE
+============================================================ -->
+<section
+    id="leadership-archive"
+    class="bg-white py-16 md:py-20"
+>
+
+    <div class="container mx-auto px-6">
+
+        <div class="max-w-7xl mx-auto">
+
+            <!-- SECTION HEADER -->
+            <div
+                class="flex
+                       flex-col
+                       md:flex-row
+                       md:items-end
+                       md:justify-between
+                       gap-6
+                       mb-12"
+            >
+
+                <div>
+
+                    <p
+                        class="text-sm
+                               uppercase
+                               tracking-widest
+                               font-bold
+                               text-yellow-600"
+                    >
+
+                        Leadership Archive
+
+                    </p>
+
+
+                    <h2
+                        class="mt-2
+                               text-3xl
+                               md:text-4xl
+                               font-extrabold
+                               text-gray-900"
+                    >
+
+                        Executive Leadership Records
+
+                    </h2>
+
+
+                    <p
+                        class="mt-3
+                               text-gray-600
+                               max-w-2xl
+                               leading-relaxed"
+                    >
+
+                        Explore the record of individuals who have
+                        served in executive leadership positions
+                        within Uruan Local Government Area.
+
+                    </p>
+
+                </div>
+
+
+                {% if executives %}
+
+                <div
+                    class="flex-shrink-0
+                           inline-flex
+                           items-center
+                           gap-2
+                           bg-green-100
+                           text-green-800
+                           px-4 py-2
+                           rounded-full
+                           font-semibold"
+                >
+
+                    <svg
+                        class="w-5 h-5"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                    >
+
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M17 20h5V4H2v16h5"
+                        />
+
+                    </svg>
+
+                    {{ executives|length }}
+                    Leader{{ executives|length|pluralize }}
+
+                </div>
+
+                {% endif %}
+
+            </div>
+
+
+            <!-- ====================================================
+                 EXECUTIVES
+            ===================================================== -->
+            {% if executives %}
+
+            <div
+                class="grid
+                       grid-cols-1
+                       sm:grid-cols-2
+                       lg:grid-cols-3
+                       xl:grid-cols-4
+                       gap-7"
+            >
+
+                {% for leader in executives %}
+
+                <article
+                    class="group
+                           bg-white
+                           rounded-2xl
+                           overflow-hidden
+                           border
+                           border-gray-200
+                           shadow-md
+                           hover:shadow-2xl
+                           hover:-translate-y-2
+                           transition-all
+                           duration-300"
+                >
+
+                    <!-- PHOTO -->
+                    <div
+                        class="relative
+                               overflow-hidden
+                               bg-green-950"
+                    >
+
+                        {% if leader.photo %}
+
+                        <img
+                            src="{{ leader.photo.url }}"
+                            alt="{{ leader.full_name }}"
+                            loading="lazy"
+                            class="w-full
+                                   h-80
+                                   object-cover
+                                   object-center
+                                   group-hover:scale-105
+                                   transition-transform
+                                   duration-700"
+                        >
+
+                        {% else %}
+
+                        <div
+                            class="w-full
+                                   h-80
+                                   bg-gradient-to-br
+                                   from-green-800
+                                   to-green-950
+                                   flex
+                                   items-center
+                                   justify-center"
+                        >
+
+                            <svg
+                                class="w-28 h-28 text-yellow-400"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                            >
+
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="1.2"
+                                    d="M5.121 17.804A13.937
+                                       13.937 0 0112 16c2.5
+                                       0 4.847.655 6.879
+                                       1.804M15 10a3 3 0
+                                       11-6 0 3 3 0
+                                       016 0z"
+                                />
+
+                            </svg>
+
+                        </div>
+
+                        {% endif %}
+
+
+                        <!-- IMAGE OVERLAY -->
+                        <div
+                            class="absolute
+                                   inset-x-0
+                                   bottom-0
+                                   h-24
+                                   bg-gradient-to-t
+                                   from-green-950/70
+                                   to-transparent"
+                        ></div>
+
+
+                        <!-- CURRENT -->
+                        {% if leader.current %}
+
+                        <span
+                            class="absolute
+                                   top-4
+                                   left-4
+                                   inline-flex
+                                   items-center
+                                   gap-2
+                                   bg-yellow-500
+                                   text-green-950
+                                   px-3
+                                   py-1.5
+                                   rounded-full
+                                   text-xs
+                                   font-bold
+                                   uppercase
+                                   tracking-wide
+                                   shadow-lg"
+                        >
+
+                            <span
+                                class="w-2 h-2
+                                       bg-green-900
+                                       rounded-full
+                                       animate-pulse"
+                            ></span>
+
+                            Current
+
+                        </span>
+
+                        {% endif %}
+
+                    </div>
+
+
+                    <!-- CONTENT -->
+                    <div class="p-6">
+
+                        <p
+                            class="text-xs
+                                   uppercase
+                                   tracking-widest
+                                   font-bold
+                                   text-green-700"
+                        >
+
+                            Executive Leadership
+
+                        </p>
+
+
+                        <h3
+                            class="mt-2
+                                   text-xl
+                                   font-extrabold
+                                   text-gray-900
+                                   group-hover:text-green-700
+                                   transition"
+                        >
+
+                            {{ leader.full_name }}
+
+                        </h3>
+
+
+                        {% if leader.designation %}
+
+                        <p
+                            class="mt-2
+                                   font-semibold
+                                   text-gray-700"
+                        >
+
+                            {{ leader.designation }}
+
+                        </p>
+
+                        {% endif %}
+
+
+                        <!-- SERVICE PERIOD -->
+                        {% if leader.date_assumed_office or leader.date_left_office %}
+
+                        <div
+                            class="mt-5
+                                   flex
+                                   items-center
+                                   gap-3
+                                   text-sm
+                                   text-gray-500"
+                        >
+
+                            <div
+                                class="w-9 h-9
+                                       rounded-lg
+                                       bg-green-50
+                                       text-green-700
+                                       flex
+                                       items-center
+                                       justify-center
+                                       flex-shrink-0"
+                            >
+
+                                <svg
+                                    class="w-5 h-5"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M8 7V3m8 4V3m-9
+                                           8h10M5 21h14a2 2
+                                           0 002-2V7a2 2
+                                           0 00-2-2H5a2 2
+                                           0 00-2 2v12a2 2
+                                           0 002 2z"
+                                    />
+
+                                </svg>
+
+                            </div>
+
+
+                            <div>
+
+                                <p
+                                    class="text-xs
+                                           uppercase
+                                           tracking-wider
+                                           font-bold
+                                           text-gray-400"
+                                >
+
+                                    Service Period
+
+                                </p>
+
+
+                                <p
+                                    class="mt-0.5
+                                           font-semibold
+                                           text-gray-700"
+                                >
+
+                                    {% if leader.date_assumed_office %}
+                                        {{ leader.date_assumed_office|date:"Y" }}
+                                    {% endif %}
+
+                                    -
+
+                                    {% if leader.current %}
+                                        Present
+                                    {% elif leader.date_left_office %}
+                                        {{ leader.date_left_office|date:"Y" }}
+                                    {% endif %}
+
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                        {% endif %}
+
+
+                        <!-- PARTY -->
+                        {% if leader.political_party %}
+
+                        <div class="mt-4">
+
+                            <span
+                                class="inline-flex
+                                       items-center
+                                       bg-gray-100
+                                       text-gray-700
+                                       px-3
+                                       py-1.5
+                                       rounded-full
+                                       text-xs
+                                       font-semibold"
+                            >
+
+                                {{ leader.political_party }}
+
+                            </span>
+
+                        </div>
+
+                        {% endif %}
+
+
+                        <!-- PROFILE -->
+                        {% if leader.slug %}
+
+                        <div
+                            class="mt-6
+                                   pt-5
+                                   border-t
+                                   border-gray-100"
+                        >
+
+                            <a
+                                href="{% url 'chairman_detail' leader.slug %}"
+                                class="inline-flex
+                                       items-center
+                                       gap-2
+                                       text-green-700
+                                       font-bold
+                                       text-sm
+                                       hover:text-green-950
+                                       transition"
+                            >
+
+                                View Profile
+
+                                <svg
+                                    class="w-4 h-4
+                                           group-hover:translate-x-1
+                                           transition-transform"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M9 5l7 7-7 7"
+                                    />
+
+                                </svg>
+
+                            </a>
+
+                        </div>
+
+                        {% endif %}
+
+                    </div>
+
+                </article>
+
+                {% endfor %}
+
+            </div>
+
+
+            {% else %}
+
+            <!-- EMPTY STATE -->
+            <div
+                class="max-w-2xl
+                       mx-auto
+                       text-center
+                       bg-gray-50
+                       border
+                       border-gray-200
+                       rounded-3xl
+                       p-12
+                       md:p-16"
+            >
+
+                <div
+                    class="w-20 h-20
+                           mx-auto
+                           rounded-2xl
+                           bg-green-100
+                           text-green-700
+                           flex
+                           items-center
+                           justify-center"
+                >
+
+                    <svg
+                        class="w-9 h-9"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                    >
+
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M12 4v16m8-8H4"
+                        />
+
+                    </svg>
+
+                </div>
+
+
+                <h3
+                    class="mt-6
+                           text-2xl
+                           font-extrabold
+                           text-gray-900"
+                >
+
+                    Executive Leadership Records
+
+                </h3>
+
+
+                <p
+                    class="mt-3
+                           text-gray-600
+                           leading-relaxed"
+                >
+
+                    Executive leadership records will be published
+                    here as they become available.
+
+                </p>
+
+            </div>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ============================================================
+     EXECUTIVE RESPONSIBILITIES
+============================================================ -->
+<section class="bg-gray-50 py-16 md:py-20">
+
+    <div class="container mx-auto px-6">
+
+        <div class="max-w-6xl mx-auto">
+
+            <!-- HEADER -->
+            <div class="text-center mb-12">
+
+                <span
+                    class="text-sm
+                           uppercase
+                           tracking-widest
+                           font-bold
+                           text-yellow-600"
+                >
+
+                    Role & Responsibilities
+
+                </span>
+
+
+                <h2
+                    class="mt-3
+                           text-3xl
+                           md:text-4xl
+                           font-extrabold
+                           text-gray-900"
+                >
+
+                    The Role of the Executive Arm
+
+                </h2>
+
+
+                <p
+                    class="mt-4
+                           max-w-2xl
+                           mx-auto
+                           text-gray-600
+                           leading-relaxed"
+                >
+
+                    The Executive Arm provides administrative leadership
+                    and coordinates activities aimed at improving the
+                    wellbeing and development of communities across Uruan.
+
+                </p>
+
+            </div>
+
+
+            <!-- RESPONSIBILITIES -->
+            <div
+                class="grid
+                       md:grid-cols-2
+                       lg:grid-cols-4
+                       gap-6"
+            >
+
+                <!-- ADMINISTRATION -->
+                <div
+                    class="group
+                           bg-white
+                           rounded-2xl
+                           p-7
+                           border
+                           border-gray-200
+                           shadow-sm
+                           hover:shadow-xl
+                           hover:-translate-y-1
+                           transition"
+                >
+
+                    <div
+                        class="w-12 h-12
+                               rounded-xl
+                               bg-green-100
+                               text-green-800
+                               flex
+                               items-center
+                               justify-center"
+                    >
+
+                        <svg
+                            class="w-6 h-6"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                        >
+
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M3 10h18M5 10v10m4-10v10
+                                   m6-10v10m4-10v10M4 20h16
+                                   M12 3l9 5H3l9-5z"
+                            />
+
+                        </svg>
+
+                    </div>
+
+
+                    <h3
+                        class="mt-5
+                               text-xl
+                               font-bold
+                               text-gray-900"
+                    >
+
+                        Administration
+
+                    </h3>
+
+
+                    <p
+                        class="mt-3
+                               text-gray-600
+                               leading-relaxed"
+                    >
+
+                        Providing effective administrative leadership
+                        and coordinating local government operations.
+
+                    </p>
+
+                </div>
+
+
+                <!-- DEVELOPMENT -->
+                <div
+                    class="group
+                           bg-white
+                           rounded-2xl
+                           p-7
+                           border
+                           border-gray-200
+                           shadow-sm
+                           hover:shadow-xl
+                           hover:-translate-y-1
+                           transition"
+                >
+
+                    <div
+                        class="w-12 h-12
+                               rounded-xl
+                               bg-yellow-100
+                               text-yellow-700
+                               flex
+                               items-center
+                               justify-center"
+                    >
+
+                        <svg
+                            class="w-6 h-6"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                        >
+
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M12 3v18m9-9H3"
+                            />
+
+                        </svg>
+
+                    </div>
+
+
+                    <h3
+                        class="mt-5
+                               text-xl
+                               font-bold
+                               text-gray-900"
+                    >
+
+                        Development
+
+                    </h3>
+
+
+                    <p
+                        class="mt-3
+                               text-gray-600
+                               leading-relaxed"
+                    >
+
+                        Coordinating projects and initiatives that
+                        contribute to sustainable local development.
+
+                    </p>
+
+                </div>
+
+
+                <!-- SERVICE DELIVERY -->
+                <div
+                    class="group
+                           bg-white
+                           rounded-2xl
+                           p-7
+                           border
+                           border-gray-200
+                           shadow-sm
+                           hover:shadow-xl
+                           hover:-translate-y-1
+                           transition"
+                >
+
+                    <div
+                        class="w-12 h-12
+                               rounded-xl
+                               bg-green-100
+                               text-green-800
+                               flex
+                               items-center
+                               justify-center"
+                    >
+
+                        <svg
+                            class="w-6 h-6"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                        >
+
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M5 13l4 4L19 7"
+                            />
+
+                        </svg>
+
+                    </div>
+
+
+                    <h3
+                        class="mt-5
+                               text-xl
+                               font-bold
+                               text-gray-900"
+                    >
+
+                        Service Delivery
+
+                    </h3>
+
+
+                    <p
+                        class="mt-3
+                               text-gray-600
+                               leading-relaxed"
+                    >
+
+                        Supporting the delivery of essential services
+                        and programmes to local communities.
+
+                    </p>
+
+                </div>
+
+
+                <!-- COMMUNITY -->
+                <div
+                    class="group
+                           bg-white
+                           rounded-2xl
+                           p-7
+                           border
+                           border-gray-200
+                           shadow-sm
+                           hover:shadow-xl
+                           hover:-translate-y-1
+                           transition"
+                >
+
+                    <div
+                        class="w-12 h-12
+                               rounded-xl
+                               bg-yellow-100
+                               text-yellow-700
+                               flex
+                               items-center
+                               justify-center"
+                    >
+
+                        <svg
+                            class="w-6 h-6"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                        >
+
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M17 20h5V4H2v16h5
+                                   M9 20v-6h6v6"
+                            />
+
+                        </svg>
+
+                    </div>
+
+
+                    <h3
+                        class="mt-5
+                               text-xl
+                               font-bold
+                               text-gray-900"
+                    >
+
+                        Community Engagement
+
+                    </h3>
+
+
+                    <p
+                        class="mt-3
+                               text-gray-600
+                               leading-relaxed"
+                    >
+
+                        Engaging communities and responding to local
+                        needs, concerns and development priorities.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ============================================================
+     OTHER GOVERNMENT ARMS
+============================================================ -->
+<section class="bg-white py-16 md:py-20">
+
+    <div class="container mx-auto px-6">
+
+        <div class="max-w-5xl mx-auto text-center">
+
+            <span
+                class="text-sm
+                       uppercase
+                       tracking-widest
+                       font-bold
+                       text-yellow-600"
+            >
+
+                Government Structure
+
+            </span>
+
+
+            <h2
+                class="mt-3
+                       text-3xl
+                       md:text-4xl
+                       font-extrabold
+                       text-gray-900"
+            >
+
+                Explore Other Leadership Arms
+
+            </h2>
+
+
+            <p
+                class="mt-4
+                       max-w-2xl
+                       mx-auto
+                       text-gray-600"
+            >
+
+                Learn more about the institutions and leadership
+                structures that contribute to governance in Uruan.
+
+            </p>
+
+
+            <div
+                class="mt-10
+                       grid
+                       sm:grid-cols-3
+                       gap-6"
+            >
+
+                <!-- LEGISLATIVE -->
+                <a
+                    href="{% url 'legislative_leadership' %}"
+                    class="group
+                           bg-gray-50
+                           p-7
+                           rounded-2xl
+                           border
+                           border-gray-200
+                           hover:shadow-xl
+                           hover:-translate-y-1
+                           transition"
+                >
+
+                    <div
+                        class="w-14 h-14
+                               mx-auto
+                               rounded-2xl
+                               bg-green-100
+                               text-green-800
+                               flex
+                               items-center
+                               justify-center"
+                    >
+
+                        <svg
+                            class="w-7 h-7"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                        >
+
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M3 10h18M5 10v10m4-10v10
+                                   m6-10v10m4-10v10M4 20h16
+                                   M12 3l9 5H3l9-5z"
+                            />
+
+                        </svg>
+
+                    </div>
+
+
+                    <h3
+                        class="mt-5
+                               font-bold
+                               text-lg
+                               text-gray-900
+                               group-hover:text-green-700"
+                    >
+
+                        Legislative
+
+                    </h3>
+
+
+                    <p
+                        class="mt-2
+                               text-sm
+                               text-gray-500
+                               leading-relaxed"
+                    >
+
+                        Explore the legislative arm and its
+                        representatives.
+
+                    </p>
+
+                </a>
+
+
+                <!-- TRADITIONAL -->
+                <a
+                    href="{% url 'traditional_leadership' %}"
+                    class="group
+                           bg-gray-50
+                           p-7
+                           rounded-2xl
+                           border
+                           border-gray-200
+                           hover:shadow-xl
+                           hover:-translate-y-1
+                           transition"
+                >
+
+                    <div
+                        class="w-14 h-14
+                               mx-auto
+                               rounded-2xl
+                               bg-yellow-100
+                               text-yellow-700
+                               flex
+                               items-center
+                               justify-center"
+                    >
+
+                        <svg
+                            class="w-7 h-7"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                        >
+
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M12 3l2.5 5h5.5l-4.5
+                                   3.5 1.5 5.5L12 14l-5
+                                   3 1.5-5.5L4 8h5.5L12 3z"
+                            />
+
+                        </svg>
+
+                    </div>
+
+
+                    <h3
+                        class="mt-5
+                               font-bold
+                               text-lg
+                               text-gray-900
+                               group-hover:text-green-700"
+                    >
+
+                        Traditional
+
+                    </h3>
+
+
+                    <p
+                        class="mt-2
+                               text-sm
+                               text-gray-500
+                               leading-relaxed"
+                    >
+
+                        Discover traditional institutions and
+                        leadership across Uruan.
+
+                    </p>
+
+                </a>
+
+
+                <!-- ARCHIVE -->
+                <a
+                    href="{% url 'past_chairman_list' %}"
+                    class="group
+                           bg-gray-50
+                           p-7
+                           rounded-2xl
+                           border
+                           border-gray-200
+                           hover:shadow-xl
+                           hover:-translate-y-1
+                           transition"
+                >
+
+                    <div
+                        class="w-14 h-14
+                               mx-auto
+                               rounded-2xl
+                               bg-green-100
+                               text-green-800
+                               flex
+                               items-center
+                               justify-center"
+                    >
+
+                        <svg
+                            class="w-7 h-7"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                        >
+
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M4 6h16M4 12h16M4 18h16"
+                            />
+
+                        </svg>
+
+                    </div>
+
+
+                    <h3
+                        class="mt-5
+                               font-bold
+                               text-lg
+                               text-gray-900
+                               group-hover:text-green-700"
+                    >
+
+                        Leadership Archive
+
+                    </h3>
+
+
+                    <p
+                        class="mt-2
+                               text-sm
+                               text-gray-500
+                               leading-relaxed"
+                    >
+
+                        View historical records of Uruan's
+                        executive leadership.
+
+                    </p>
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ============================================================
+     CTA
+============================================================ -->
+<section
+    class="relative
+           overflow-hidden
+           bg-green-950
+           py-16
+           md:py-20"
+>
+
+    <!-- Decorative -->
+    <div
+        class="absolute
+               -top-20
+               -right-20
+               w-72
+               h-72
+               rounded-full
+               bg-yellow-400/10
+               blur-3xl"
+    ></div>
+
+
+    <div
+        class="relative
+               container
+               mx-auto
+               px-6
+               text-center"
+    >
+
+        <span
+            class="inline-block
+                   text-yellow-400
+                   text-sm
+                   uppercase
+                   tracking-widest
+                   font-bold"
+        >
+
+            Leadership & Service
+
+        </span>
+
+
+        <h2
+            class="mt-3
+                   text-3xl
+                   md:text-4xl
+                   font-extrabold
+                   text-white"
+        >
+
+            Serving Uruan Through Responsible Leadership
+
+        </h2>
+
+
+        <p
+            class="mt-5
+                   max-w-2xl
+                   mx-auto
+                   text-green-100
+                   text-lg
+                   leading-relaxed"
+        >
+
+            The Executive Arm remains committed to effective
+            administration, responsible governance and initiatives
+            that contribute to the development and wellbeing of
+            communities across Uruan Local Government Area.
+
+        </p>
+
+
+        <div
+            class="mt-8
+                   flex
+                   flex-wrap
+                   justify-center
+                   gap-4"
+        >
+
+            <a
+                href="{% url 'legislative_leadership' %}"
+                class="inline-flex
+                       items-center
+                       gap-2
+                       bg-yellow-500
+                       hover:bg-yellow-400
+                       text-green-950
+                       font-bold
+                       px-6
+                       py-3
+                       rounded-lg
+                       transition"
+            >
+
+                Explore Government
+
+                <svg
+                    class="w-5 h-5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                >
+
+                    <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M9 5l7 7-7 7"
+                    />
+
+                </svg>
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

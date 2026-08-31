@@ -1,0 +1,200 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<!-- HERO SECTION -->
+<section class="relative">
+
+    {% if section.image %}
+        <img src="{{ section.image.url }}"
+             alt="{{ section.title }}"
+             class="w-full h-[450px] object-cover">
+    {% else %}
+        <div class="h-[350px] bg-green-800"></div>
+    {% endif %}
+
+    <div class="absolute inset-0 bg-black/50"></div>
+
+    <div class="absolute inset-0 flex items-center">
+
+        <div class="container mx-auto px-6">
+
+            <h1 class="text-5xl md:text-7xl font-bold text-white">
+                {{ section.title }}
+            </h1>
+
+            <p class="mt-4 text-lg text-gray-200">
+                Uruan Local Government Area, Akwa Ibom State
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- BREADCRUMB -->
+<section class="bg-gray-100 py-4">
+
+    <div class="container mx-auto px-6">
+
+        <a href="{% url 'home' %}"
+           class="text-green-700 font-semibold">
+            Home
+        </a>
+
+        <span class="mx-2">/</span>
+
+        <a href="{% url 'about_uruan' %}"
+           class="text-green-700 font-semibold">
+            About Uruan
+        </a>
+
+        <span class="mx-2">/</span>
+
+        <span class="text-gray-600">
+            {{ section.title }}
+        </span>
+
+    </div>
+
+</section>
+
+<!-- CONTENT -->
+<section class="py-16">
+
+    <div class="container mx-auto px-6">
+
+        <div class="grid lg:grid-cols-4 gap-10">
+
+            <!-- MAIN CONTENT -->
+            <div class="lg:col-span-3">
+
+                <div class="bg-white rounded-xl shadow-lg p-8">
+
+                    <h2 class="text-4xl font-bold text-green-800 mb-6">
+                        {{ section.title }}
+                    </h2>
+
+                    <div class="prose prose-lg max-w-none">
+
+                        {{ section.content|linebreaks }}
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- SIDEBAR -->
+                <div>
+
+                    <div class="bg-white rounded-xl shadow-lg p-6">
+
+                        <h3 class="text-2xl font-bold text-green-800 mb-4">
+                            About Uruan
+                        </h3>
+
+                        <ul class="space-y-3">
+
+                            {% for item in sections %}
+
+                                <li>
+
+                                    <a href="{% url 'about_detail' item.slug %}"
+                                    class="block hover:text-green-700 {% if item.id == section.id %}font-bold text-green-700{% endif %}">
+
+                                        {{ item.title }}
+
+                                    </a>
+
+                                </li>
+
+                            {% endfor %}
+
+                        </ul>
+
+                    </div>
+
+                </div>
+
+                <!-- QUICK FACTS -->
+                <div class="bg-green-800 text-white rounded-xl shadow-lg p-6 mt-8">
+
+                    <h3 class="text-2xl font-bold mb-4">
+                        Quick Facts
+                    </h3>
+
+                    <ul class="space-y-3">
+
+                        <li>
+                            📍 Location:
+                            Akwa Ibom State
+                        </li>
+
+                        <li>
+                            🏛️ LGA:
+                            Uruan
+                        </li>
+
+                        <li>
+                            🌊 Major Occupation:
+                            Fishing & Farming
+                        </li>
+
+                        <li>
+                            🎭 Known For:
+                            Rich Culture & Heritage
+                        </li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- CALL TO ACTION -->
+<section class="bg-green-800 py-16">
+
+    <div class="container mx-auto px-6 text-center">
+
+        <h2 class="text-4xl font-bold text-white">
+            Explore More About Uruan
+        </h2>
+
+        <p class="text-gray-200 mt-4">
+            Learn about our communities, projects,
+            tourism destinations and cultural heritage.
+        </p>
+
+        <div class="mt-8 flex justify-center gap-4">
+
+            <a href="{% url 'village_list' %}"
+               class="bg-yellow-500 hover:bg-yellow-600 text-black px-6 py-3 rounded-lg font-semibold">
+
+                View Villages
+
+            </a>
+
+            <a href="{% url 'tourism_home' %}"
+               class="border border-white text-white px-6 py-3 rounded-lg">
+
+                Tourism Sites
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

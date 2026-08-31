@@ -1,0 +1,89 @@
+
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="container mx-auto px-4 py-10">
+
+    <h1 class="text-4xl font-bold text-green-800 mb-6">
+
+        Uruan Interactive Map
+
+    </h1>
+
+    <div id="map"
+         class="w-full h-[700px] rounded-xl shadow-lg">
+    </div>
+
+</div>
+
+<script>
+
+function initMap() {
+
+    const uruan = {
+        lat: 4.9000,
+        lng: 8.0000
+    };
+
+    const map = new google.maps.Map(
+        document.getElementById("map"),
+        {
+            zoom: 11,
+            center: uruan,
+        }
+    );
+
+    {% for location in locations %}
+
+    const type = "{{ location.location_type }}";
+
+    let iconUrl = "";
+
+    if(type === "Village"){
+        iconUrl = "{% static 'icons/village.png' %}";
+    }
+    else if(type === "School"){
+        iconUrl = "/static/icons/school.png";
+    }
+    else if(type === "Health Centre"){
+        iconUrl = "{% static 'icons/school.png' %}";
+    }
+    else if(type === "Project"){
+        iconUrl = "{% static 'icons/project.png' %}";
+    }
+    else if(type === "Tourist Site"){
+        iconUrl = "{% static 'icons/tourism.png' %}";
+    }
+    else if(type === "Ward"){
+        iconUrl = "{% static 'icons/ward.png' %}";
+    }
+
+    const marker{{ location.id }} = new google.maps.Marker({
+
+        position: {
+            lat: {{ location.latitude }},
+            lng: {{ location.longitude }}
+        },
+
+        map: map,
+
+        title: "{{ location.name }}",
+
+        icon: {
+            url: iconUrl,
+            scaledSize: new google.maps.Size(40, 40)
+        }
+
+    });
+
+    {% endfor %}
+}
+
+</script>
+
+<script async
+src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB6sgf8erNaQB7UaUUdDsTOWOiOXS0l7Gc&callback=initMap">
+</script>
+
+{% endblock %}

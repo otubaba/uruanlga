@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<section class="py-16">
+
+    <div class="container mx-auto px-6">
+
+        <h1 class="text-5xl font-bold text-green-800 mb-10">
+
+            {{ gallery.title }}
+
+        </h1>
+
+        <p class="mb-8 text-gray-600">
+
+            {{ gallery.description }}
+
+        </p>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+
+            {% for image in gallery.images.all %}
+
+            <div>
+
+                <img src="{{ image.image.url }}"
+                     class="rounded-xl shadow-lg w-full h-64 object-cover">
+
+                {% if image.caption %}
+                <p class="mt-2 text-center text-sm">
+
+                    {{ image.caption }}
+
+                </p>
+                {% endif %}
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

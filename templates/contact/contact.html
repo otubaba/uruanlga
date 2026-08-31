@@ -1,0 +1,211 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<!-- PAGE HEADER -->
+
+<section class="bg-green-800 py-20">
+
+```
+<div class="container mx-auto px-6 text-center">
+
+    <h1 class="text-5xl font-bold text-white">
+        Contact Uruan Local Government Area
+    </h1>
+
+    <p class="text-white mt-4 text-lg">
+        We value your feedback, suggestions and enquiries.
+    </p>
+
+</div>
+```
+
+</section>
+
+<!-- CONTACT SECTION -->
+
+<section class="py-16 bg-gray-100">
+
+```
+<div class="container mx-auto px-6">
+
+    <div class="grid lg:grid-cols-3 gap-10">
+
+        <!-- CONTACT INFO -->
+        <div class="space-y-6">
+
+            <div class="bg-white rounded-xl shadow-lg p-6">
+
+                <h3 class="text-2xl font-bold text-green-800 mb-4">
+                    Contact Information
+                </h3>
+
+                <div class="space-y-4">
+
+                    <div>
+                        <p class="font-semibold">Address</p>
+                        <p class="text-gray-600">
+                            Uruan Local Government Secretariat,
+                            Akwa Ibom State, Nigeria
+                        </p>
+                    </div>
+
+                    <div>
+                        <p class="font-semibold">Phone</p>
+                        <p class="text-gray-600">
+                            +234 XXX XXX XXXX
+                        </p>
+                    </div>
+
+                    <div>
+                        <p class="font-semibold">Email</p>
+                        <p class="text-gray-600">
+                            info@uruanlga.gov.ng
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- DEPARTMENTS -->
+            <div class="bg-white rounded-xl shadow-lg p-6">
+
+                <h3 class="text-2xl font-bold text-green-800 mb-4">
+                    Departments
+                </h3>
+
+                {% for department in departments %}
+
+                <div class="border-b py-3">
+
+                    <h4 class="font-semibold">
+                        {{ department.name }}
+                    </h4>
+
+                    <p class="text-sm text-gray-600">
+                        {{ department.phone }}
+                    </p>
+
+                    <p class="text-sm text-gray-600">
+                        {{ department.email }}
+                    </p>
+
+                </div>
+
+                {% empty %}
+
+                <p>No departments available.</p>
+
+                {% endfor %}
+
+            </div>
+
+        </div>
+
+        <!-- CONTACT FORM -->
+        <div class="lg:col-span-2">
+
+            <div class="bg-white rounded-xl shadow-lg p-8">
+
+                <h2 class="text-3xl font-bold text-green-800 mb-6">
+                    Send Us A Message
+                </h2>
+
+                {% if messages %}
+
+                    {% for message in messages %}
+
+                    <div class="bg-green-100 text-green-800 p-4 rounded mb-4">
+                        {{ message }}
+                    </div>
+
+                    {% endfor %}
+
+                {% endif %}
+
+                <form method="POST">
+
+                    {% csrf_token %}
+
+                    <div class="grid md:grid-cols-2 gap-6">
+
+                        <div>
+                            <label class="block mb-2 font-medium">
+                                Full Name
+                            </label>
+
+                            <input type="text"
+                                   name="name"
+                                   class="w-full border rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-green-700">
+                        </div>
+
+                        <div>
+                            <label class="block mb-2 font-medium">
+                                Email Address
+                            </label>
+
+                            <input type="email"
+                                   name="email"
+                                   class="w-full border rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-green-700">
+                        </div>
+
+                    </div>
+
+                    <div class="mt-6">
+
+                        <label class="block mb-2 font-medium">
+                            Phone Number
+                        </label>
+
+                        <input type="text"
+                               name="phone"
+                               class="w-full border rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-green-700">
+
+                    </div>
+
+                    <div class="mt-6">
+
+                        <label class="block mb-2 font-medium">
+                            Subject
+                        </label>
+
+                        <input type="text"
+                               name="subject"
+                               class="w-full border rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-green-700">
+
+                    </div>
+
+                    <div class="mt-6">
+
+                        <label class="block mb-2 font-medium">
+                            Message
+                        </label>
+
+                        <textarea name="message"
+                                  rows="6"
+                                  class="w-full border rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-green-700"></textarea>
+
+                    </div>
+
+                    <button type="submit"
+                            class="mt-6 bg-green-700 hover:bg-green-800 text-white px-8 py-3 rounded-lg font-semibold">
+
+                        Send Message
+
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+```
+
+</section>
+
+{% endblock %}

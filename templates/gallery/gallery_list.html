@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<section class="bg-green-800 py-16">
+
+    <div class="container mx-auto px-6 text-center">
+
+        <h1 class="text-5xl font-bold text-white">
+            Uruan Photo Gallery
+        </h1>
+
+    </div>
+
+</section>
+
+<section class="py-16">
+
+    <div class="container mx-auto px-6">
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+
+            {% for gallery in galleries %}
+
+                <div class="bg-white rounded-xl shadow">
+
+                    {% if gallery.images.first %}
+
+                        <img src="{{ gallery.images.first.image.url }}"
+                            class="h-64 w-full object-cover">
+
+                    {% endif %}
+
+                    <div class="p-4">
+
+                        <h3 class="font-bold text-xl">
+                            {{ gallery.title }}
+                        </h3>
+
+                        <a href="{% url 'gallery_detail' gallery.slug %}">
+                            View Album →
+                        </a>
+
+                    </div>
+
+                </div>
+
+                {% endfor %}
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

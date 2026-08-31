@@ -1,0 +1,1645 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Uruan Local Government Area | Official Website
+{% endblock %}
+
+{% block content %}
+
+<!-- ============================================================
+     BREAKING NEWS
+============================================================ -->
+
+<div class="bg-white shadow-md overflow-hidden">
+
+    <!-- MOBILE -->
+    <div class="block md:hidden">
+
+        <div class="flex">
+
+            <div class="bg-red-600 flex items-center justify-center
+                        text-white font-bold px-4 py-3">
+
+                <span class="animate-pulse mr-2">●</span>
+                LIVE
+
+            </div>
+
+            <div class="flex-1 bg-yellow-500
+                        text-center text-black
+                        font-bold py-3">
+
+                BREAKING NEWS
+
+            </div>
+
+        </div>
+
+        <div class="overflow-hidden bg-green-700">
+
+            {% if breaking_news %}
+
+                <div class="ticker-track py-3
+                            text-white text-sm">
+
+                    {% for news in breaking_news %}
+
+                        <span class="px-8 whitespace-nowrap">
+                            📰 {{ news.title }}
+                        </span>
+
+                    {% endfor %}
+
+                    {% for news in breaking_news %}
+
+                        <span class="px-8 whitespace-nowrap">
+                            📰 {{ news.title }}
+                        </span>
+
+                    {% endfor %}
+
+                </div>
+
+            {% else %}
+
+                <div class="py-3 px-4 text-center text-white">
+                    No breaking news available.
+                </div>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+
+    <!-- DESKTOP -->
+
+    <div class="hidden md:flex items-center">
+
+        <div class="bg-red-600 px-6 py-4
+                    text-white font-bold
+                    flex items-center">
+
+            <span class="animate-pulse mr-2">●</span>
+            LIVE
+
+        </div>
+
+
+        <div class="bg-yellow-500
+                    text-black
+                    px-5 py-4
+                    font-bold
+                    whitespace-nowrap">
+
+            BREAKING NEWS
+
+        </div>
+
+
+        <div class="flex-1 overflow-hidden bg-green-700">
+
+            {% if breaking_news %}
+
+                <div class="ticker-track py-4 text-white">
+
+                    {% for news in breaking_news %}
+
+                        <span class="px-10 whitespace-nowrap">
+                            📰 {{ news.title }}
+                        </span>
+
+                    {% endfor %}
+
+                    {% for news in breaking_news %}
+
+                        <span class="px-10 whitespace-nowrap">
+                            📰 {{ news.title }}
+                        </span>
+
+                    {% endfor %}
+
+                </div>
+
+            {% else %}
+
+                <div class="py-4 px-5 text-white">
+                    No breaking news available.
+                </div>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ============================================================
+     HERO SECTION
+============================================================ -->
+
+<section
+    class="relative bg-cover bg-center min-h-screen"
+    {% if hero and hero.background_image %}
+        style="background-image:url('{{ hero.background_image.url }}');"
+    {% else %}
+        style="background-image:url('{% static 'images/uruan-banner.jpg' %}');"
+    {% endif %}
+>
+
+    <div class="absolute inset-0 bg-black/60"></div>
+
+
+    <div class="relative z-10 flex items-center min-h-screen">
+
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-20">
+
+            <div class="grid grid-cols-1 lg:grid-cols-2
+                        gap-12 lg:gap-16 items-center">
+
+
+                <!-- HERO TEXT -->
+
+                <div class="text-white text-center lg:text-left">
+
+                    <h1 class="text-4xl sm:text-5xl md:text-6xl
+                               xl:text-7xl font-extrabold
+                               leading-tight">
+
+                        {% if hero %}
+
+                            {{ hero.heading }}
+
+                            <span class="text-yellow-400">
+                                {{ hero.highlighted_text }}
+                            </span>
+
+                            {{ hero.heading_suffix }}
+
+                        {% else %}
+
+                            Building a Greater
+
+                            <span class="text-yellow-400">
+                                Uruan
+                            </span>
+
+                            Together
+
+                        {% endif %}
+
+                    </h1>
+
+
+                    <p class="mt-6 text-lg md:text-xl
+                              text-gray-200 leading-8
+                              max-w-2xl mx-auto lg:mx-0">
+
+                        {% if hero and hero.description %}
+
+                            {{ hero.description }}
+
+                        {% else %}
+
+                            Stay informed about government initiatives,
+                            community development, news, events,
+                            investment opportunities and public services
+                            across Uruan Local Government Area.
+
+                        {% endif %}
+
+                    </p>
+
+
+                    <!-- BUTTONS -->
+
+                    <div class="mt-10 flex flex-col sm:flex-row
+                                gap-4 justify-center lg:justify-start">
+
+                        {% if hero and hero.primary_button_url %}
+
+                            <a href="{{ hero.primary_button_url }}"
+                               class="bg-yellow-500 hover:bg-yellow-600
+                                      text-black font-semibold
+                                      px-8 py-4 rounded-lg
+                                      transition shadow-lg">
+
+                                {{ hero.primary_button_text }}
+
+                            </a>
+
+                        {% else %}
+
+                            <a href="{% url 'news:news_list' %}"
+                               class="bg-yellow-500 hover:bg-yellow-600
+                                      text-black font-semibold
+                                      px-8 py-4 rounded-lg
+                                      transition shadow-lg">
+
+                                Latest News
+
+                            </a>
+
+                        {% endif %}
+
+
+                        {% if hero and hero.secondary_button_url %}
+
+                            <a href="{{ hero.secondary_button_url }}"
+                               class="border-2 border-white
+                                      hover:bg-white
+                                      hover:text-green-800
+                                      font-semibold
+                                      px-8 py-4 rounded-lg
+                                      transition">
+
+                                {{ hero.secondary_button_text }}
+
+                            </a>
+
+                        {% else %}
+
+                            <a href="{% url 'project_list' %}"
+                               class="border-2 border-white
+                                      hover:bg-white
+                                      hover:text-green-800
+                                      font-semibold
+                                      px-8 py-4 rounded-lg
+                                      transition">
+
+                                Our Projects
+
+                            </a>
+
+                        {% endif %}
+
+                    </div>
+
+                </div>
+
+
+                <!-- STATISTICS -->
+
+                <div>
+
+                    <div class="grid grid-cols-2 gap-5">
+
+                        {% if hero %}
+
+                            <div class="bg-white/95 backdrop-blur
+                                        rounded-xl shadow-xl
+                                        p-6 text-center">
+
+                                <h3 class="text-3xl lg:text-4xl
+                                           font-bold text-green-700">
+
+                                    {{ hero.population }}
+
+                                </h3>
+
+                                <p class="mt-2 text-gray-600">
+                                    {{ hero.population_label }}
+                                </p>
+
+                            </div>
+
+
+                            <div class="bg-white/95 backdrop-blur
+                                        rounded-xl shadow-xl
+                                        p-6 text-center">
+
+                                <h3 class="text-3xl lg:text-4xl
+                                           font-bold text-green-700">
+
+                                    {{ hero.communities }}
+
+                                </h3>
+
+                                <p class="mt-2 text-gray-600">
+                                    {{ hero.communities_label }}
+                                </p>
+
+                            </div>
+
+
+                            <div class="bg-white/95 backdrop-blur
+                                        rounded-xl shadow-xl
+                                        p-6 text-center">
+
+                                <h3 class="text-3xl lg:text-4xl
+                                           font-bold text-green-700">
+
+                                    {{ hero.schools }}
+
+                                </h3>
+
+                                <p class="mt-2 text-gray-600">
+                                    {{ hero.schools_label }}
+                                </p>
+
+                            </div>
+
+
+                            <div class="bg-white/95 backdrop-blur
+                                        rounded-xl shadow-xl
+                                        p-6 text-center">
+
+                                <h3 class="text-3xl lg:text-4xl
+                                           font-bold text-green-700">
+
+                                    {{ hero.health_centres }}
+
+                                </h3>
+
+                                <p class="mt-2 text-gray-600">
+                                    {{ hero.health_centres_label }}
+                                </p>
+
+                            </div>
+
+
+                            <div class="bg-white/95 backdrop-blur
+                                        rounded-xl shadow-xl
+                                        p-6 text-center">
+
+                                <h3 class="text-3xl lg:text-4xl
+                                           font-bold text-green-700">
+
+                                    {{ hero.markets }}
+
+                                </h3>
+
+                                <p class="mt-2 text-gray-600">
+                                    {{ hero.markets_label }}
+                                </p>
+
+                            </div>
+
+
+                            <div class="bg-white/95 backdrop-blur
+                                        rounded-xl shadow-xl
+                                        p-6 text-center">
+
+                                <h3 class="text-3xl lg:text-4xl
+                                           font-bold text-green-700">
+
+                                    {{ hero.projects }}
+
+                                </h3>
+
+                                <p class="mt-2 text-gray-600">
+                                    {{ hero.projects_label }}
+                                </p>
+
+                            </div>
+
+                        {% else %}
+
+                            <div class="bg-white/95 rounded-xl shadow-xl
+                                        p-6 text-center">
+
+                                <h3 class="text-4xl font-bold text-green-700">
+                                    120K+
+                                </h3>
+
+                                <p class="mt-2 text-gray-600">
+                                    Population
+                                </p>
+
+                            </div>
+
+                            <div class="bg-white/95 rounded-xl shadow-xl
+                                        p-6 text-center">
+
+                                <h3 class="text-4xl font-bold text-green-700">
+                                    52
+                                </h3>
+
+                                <p class="mt-2 text-gray-600">
+                                    Communities
+                                </p>
+
+                            </div>
+
+                            <div class="bg-white/95 rounded-xl shadow-xl
+                                        p-6 text-center">
+
+                                <h3 class="text-4xl font-bold text-green-700">
+                                    85+
+                                </h3>
+
+                                <p class="mt-2 text-gray-600">
+                                    Schools
+                                </p>
+
+                            </div>
+
+                            <div class="bg-white/95 rounded-xl shadow-xl
+                                        p-6 text-center">
+
+                                <h3 class="text-4xl font-bold text-green-700">
+                                    12
+                                </h3>
+
+                                <p class="mt-2 text-gray-600">
+                                    Health Centres
+                                </p>
+
+                            </div>
+
+                        {% endif %}
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ============================================================
+     LATEST NEWS + CHAIRMAN MESSAGE
+============================================================ -->
+
+<section class="py-16 bg-gray-50">
+
+    <div class="container mx-auto px-4 md:px-6">
+
+        <div class="grid grid-cols-1 xl:grid-cols-3 gap-10">
+
+
+            <!-- ====================================================
+                 NEWS
+            ===================================================== -->
+
+            <div class="xl:col-span-2">
+
+                <div class="flex flex-col sm:flex-row
+                            justify-between sm:items-center
+                            gap-4 mb-8">
+
+                    <h2 class="text-2xl md:text-4xl
+                               font-bold text-green-800">
+
+                        Latest News
+
+                    </h2>
+
+                    <a href="{% url 'news:news_list' %}"
+                       class="text-green-700 font-semibold
+                              hover:text-green-900">
+
+                        View All →
+
+                    </a>
+
+                </div>
+
+
+                <div class="grid md:grid-cols-2 gap-6">
+
+                    {% for post in latest_posts %}
+
+                    <article
+                        class="bg-white rounded-xl
+                               overflow-hidden shadow
+                               hover:shadow-xl transition"
+                    >
+
+                        {% if post.image %}
+
+                        <img
+                            src="{{ post.image.url }}"
+                            alt="{{ post.title }}"
+                            class="w-full h-56 object-cover"
+                            loading="lazy"
+                        >
+
+                        {% endif %}
+
+
+                        <div class="p-6">
+
+                            <span class="inline-block
+                                         text-sm
+                                         bg-green-100
+                                         text-green-800
+                                         px-3 py-1
+                                         rounded">
+
+                                {{ post.category }}
+
+                            </span>
+
+
+                            <h3 class="text-xl font-bold mt-4">
+
+                                {{ post.title }}
+
+                            </h3>
+
+
+                            {% if post.summary %}
+
+                            <p class="text-gray-600 mt-3">
+
+                                {{ post.summary|truncatewords:20 }}
+
+                            </p>
+
+                            {% else %}
+
+                            <p class="text-gray-600 mt-3">
+
+                                {{ post.content|truncatewords:20 }}
+
+                            </p>
+
+                            {% endif %}
+
+
+                            <a href="{% url 'news:news_detail' post.slug %}"
+                               class="inline-block mt-4
+                                      text-green-700
+                                      font-semibold
+                                      hover:text-green-900">
+
+                                Read More →
+
+                            </a>
+
+                        </div>
+
+                    </article>
+
+                    {% empty %}
+
+                    <div class="md:col-span-2
+                                bg-white p-8
+                                rounded-xl shadow">
+
+                        <p class="text-gray-500">
+                            No news articles available.
+                        </p>
+
+                    </div>
+
+                    {% endfor %}
+
+                </div>
+
+            </div>
+
+
+            <!-- ====================================================
+                 CHAIRMAN MESSAGE
+            ===================================================== -->
+
+            <aside>
+
+                <div class="bg-white rounded-xl
+                            shadow-lg overflow-hidden
+                            lg:sticky lg:top-6">
+
+
+                    {% if chairman %}
+
+                        <!-- CHAIRMAN PHOTO -->
+
+                        {% if chairman.photo %}
+
+                        <img
+                            src="{{ chairman.photo.url }}"
+                            alt="{{ chairman.full_name }}"
+                            class="w-full h-72 object-cover"
+                            loading="lazy"
+                        >
+
+                        {% else %}
+
+                        <div class="w-full h-72
+                                    bg-green-50
+                                    flex items-center
+                                    justify-center">
+
+                            <svg
+                                class="w-28 h-28 text-green-700"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                            >
+
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="1.5"
+                                    d="M5.121 17.804A13.937
+                                       13.937 0 0112 16c2.5 0
+                                       4.847.655 6.879 1.804
+                                       M15 10a3 3 0 11-6 0
+                                       3 3 0 016 0z"
+                                />
+
+                            </svg>
+
+                        </div>
+
+                        {% endif %}
+
+
+                        <div class="p-6">
+
+                            <div class="inline-block
+                                        bg-green-100
+                                        text-green-800
+                                        px-3 py-1
+                                        rounded-full
+                                        text-sm
+                                        font-semibold">
+
+                                {{ chairman.message_title|default:"Chairman's Message" }}
+
+                            </div>
+
+
+                            <h3 class="text-2xl font-bold
+                                       text-green-800 mt-4">
+
+                                {% if chairman.title %}
+                                    {{ chairman.title }}
+                                {% endif %}
+
+                                {{ chairman.full_name }}
+
+                            </h3>
+
+
+                            <p class="text-sm
+                                      text-gray-500 mb-4">
+
+                                {{ chairman.display_designation }}
+
+                            </p>
+
+
+                            {% if chairman.chairman_message %}
+
+                            <div class="text-gray-700
+                                        leading-7">
+
+                                {{ chairman.chairman_message|truncatewords:35 }}
+
+                            </div>
+
+                            {% else %}
+
+                            <p class="text-gray-600 leading-7">
+
+                                Welcome to the official digital portal
+                                of Uruan Local Government Area. We remain
+                                committed to transparency, accountability,
+                                sustainable development and improving the
+                                lives of our people.
+
+                            </p>
+
+                            {% endif %}
+
+
+                            <!-- CHAIRMAN DETAILS -->
+
+                            {% if chairman.date_assumed_office %}
+
+                            <div class="mt-5 pt-5
+                                        border-t border-gray-200">
+
+                                <p class="text-xs uppercase
+                                          tracking-wider
+                                          text-gray-400
+                                          font-bold">
+
+                                    Serving Since
+
+                                </p>
+
+                                <p class="mt-1
+                                          text-gray-800
+                                          font-semibold">
+
+                                    {{ chairman.date_assumed_office|date:"F Y" }}
+
+                                </p>
+
+                            </div>
+
+                            {% endif %}
+
+
+                            <!-- READ FULL MESSAGE -->
+
+                            <a
+                                href="{% url 'chairman_message' %}"
+                                class="inline-flex
+                                       items-center
+                                       gap-2
+                                       mt-6
+                                       bg-green-700
+                                       hover:bg-green-800
+                                       text-white
+                                       px-5 py-3
+                                       rounded-lg
+                                       font-semibold
+                                       transition"
+                            >
+
+                                Read Full Message →
+
+                            </a>
+
+                        </div>
+
+
+                    {% else %}
+
+                        <!-- NO CHAIRMAN -->
+
+                        <div class="p-8 text-center">
+
+                            <div class="w-20 h-20
+                                        mx-auto
+                                        rounded-full
+                                        bg-green-100
+                                        flex items-center
+                                        justify-center">
+
+                                <svg
+                                    class="w-10 h-10 text-green-700"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="1.5"
+                                        d="M5.121 17.804A13.937
+                                           13.937 0 0112 16c2.5 0
+                                           4.847.655 6.879 1.804
+                                           M15 10a3 3 0 11-6 0
+                                           3 3 0 016 0z"
+                                    />
+
+                                </svg>
+
+                            </div>
+
+
+                            <h3 class="text-xl
+                                       font-bold
+                                       text-green-800 mt-5">
+
+                                Chairman's Message
+
+                            </h3>
+
+
+                            <p class="mt-3
+                                      text-gray-500
+                                      leading-relaxed">
+
+                                The Executive Chairman's official
+                                message will be published here.
+
+                            </p>
+
+                        </div>
+
+                    {% endif %}
+
+                </div>
+
+
+                <!-- QUICK LINKS -->
+
+                <div class="bg-white rounded-xl
+                            shadow mt-6 p-6">
+
+                    <h3 class="font-bold text-xl
+                               text-green-800 mb-4">
+
+                        Quick Access
+
+                    </h3>
+
+
+                    <ul class="space-y-3">
+
+                        <li>
+                            <a href="{% url 'project_list' %}"
+                               class="text-green-700
+                                      hover:text-green-900">
+
+                                Government Projects
+
+                            </a>
+                        </li>
+
+
+                        <li>
+                            <a href="{% url 'past_chairman_list' %}"
+                               class="text-green-700
+                                      hover:text-green-900">
+
+                                Council Leadership
+
+                            </a>
+                        </li>
+
+
+                        <li>
+                            <a href="{% url 'clan_list' %}"
+                               class="text-green-700
+                                      hover:text-green-900">
+
+                                Villages Directory
+
+                            </a>
+                        </li>
+
+
+                        <li>
+                            <a href="{% url 'tourism_home' %}"
+                               class="text-green-700
+                                      hover:text-green-900">
+
+                                Tourism Sites
+
+                            </a>
+                        </li>
+
+                    </ul>
+
+                </div>
+
+            </aside>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ============================================================
+     PROJECTS
+============================================================ -->
+
+<section class="py-16 bg-white">
+
+    <div class="container mx-auto px-6">
+
+        <div class="flex flex-col sm:flex-row
+                    justify-between
+                    sm:items-center
+                    gap-4 mb-10">
+
+            <div>
+
+                <span class="text-green-700
+                             text-sm font-bold
+                             uppercase tracking-wider">
+
+                    Development
+
+                </span>
+
+                <h2 class="text-3xl md:text-4xl
+                           font-bold text-green-800 mt-2">
+
+                    Ongoing Government Projects
+
+                </h2>
+
+            </div>
+
+
+            <a href="{% url 'project_list' %}"
+               class="text-green-700
+                      font-semibold
+                      hover:text-green-900">
+
+                View All Projects →
+
+            </a>
+
+        </div>
+
+
+        <div class="grid md:grid-cols-2
+                    lg:grid-cols-4 gap-6">
+
+            {% for project in projects %}
+
+            <article class="bg-white rounded-xl
+                            shadow overflow-hidden
+                            border border-gray-100
+                            hover:shadow-xl transition">
+
+                {% if project.image %}
+
+                <img
+                    src="{{ project.image.url }}"
+                    alt="{{ project.title }}"
+                    class="h-48 w-full object-cover"
+                    loading="lazy"
+                >
+
+                {% else %}
+
+                <div class="h-48 w-full
+                            bg-green-50
+                            flex items-center
+                            justify-center">
+
+                    <span class="text-green-700
+                                 font-semibold">
+
+                        Government Project
+
+                    </span>
+
+                </div>
+
+                {% endif %}
+
+
+                <div class="p-5">
+
+                    <span class="inline-block
+                                 bg-green-100
+                                 text-green-800
+                                 text-xs
+                                 px-3 py-1
+                                 rounded-full
+                                 mb-3">
+
+                        {{ project.status }}
+
+                    </span>
+
+
+                    <h3 class="font-bold text-lg">
+
+                        {{ project.title }}
+
+                    </h3>
+
+
+                    <p class="text-sm
+                              text-gray-500 mt-1">
+
+                        📍 {{ project.location }}
+
+                    </p>
+
+
+                    <div class="mt-5">
+
+                        <div class="flex justify-between
+                                    text-xs mb-2">
+
+                            <span class="text-gray-500">
+                                Progress
+                            </span>
+
+                            <span class="font-bold
+                                         text-green-700">
+
+                                {{ project.progress|default:0 }}%
+
+                            </span>
+
+                        </div>
+
+
+                        <div class="bg-gray-200
+                                    rounded-full
+                                    h-3
+                                    overflow-hidden">
+
+                            <div
+                                class="bg-green-700
+                                       h-3 rounded-full"
+                                style="width:{{ project.progress|default:0 }}%;"
+                            ></div>
+
+                        </div>
+
+                    </div>
+
+
+                    <a
+                        href="{% url 'project_detail' project.id %}"
+                        class="inline-block
+                               mt-5
+                               text-green-700
+                               font-semibold
+                               hover:text-green-900"
+                    >
+
+                        View Project →
+
+                    </a>
+
+                </div>
+
+            </article>
+
+            {% empty %}
+
+            <div class="lg:col-span-4
+                        text-center
+                        bg-gray-50
+                        rounded-xl
+                        p-10">
+
+                <p class="text-gray-500">
+                    No featured government projects available.
+                </p>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ============================================================
+     PROMINENT INDIGENES
+============================================================ -->
+
+<section class="py-20 bg-gray-50">
+
+    <div class="container mx-auto px-6">
+
+        <div class="max-w-3xl mx-auto
+                    text-center mb-12">
+
+            <span class="inline-block
+                         bg-green-100
+                         text-green-800
+                         px-4 py-2
+                         rounded-full
+                         text-sm
+                         font-semibold">
+
+                OUR PEOPLE
+
+            </span>
+
+
+            <h2 class="mt-4
+                       text-3xl
+                       sm:text-4xl
+                       lg:text-5xl
+                       font-extrabold
+                       text-green-900">
+
+                Prominent Indigenes of Uruan
+
+            </h2>
+
+
+            <div class="w-20 h-1
+                        bg-yellow-500
+                        mx-auto mt-5">
+            </div>
+
+
+            <p class="mt-6
+                      text-gray-600
+                      text-lg
+                      leading-relaxed">
+
+                Meet some of the distinguished sons and daughters
+                of Uruan whose contributions and achievements have
+                helped shape our communities and society.
+
+            </p>
+
+        </div>
+
+
+        {% if prominent_indigenes %}
+
+        <div class="grid grid-cols-1
+                    sm:grid-cols-2
+                    lg:grid-cols-3
+                    xl:grid-cols-4
+                    gap-8">
+
+            {% for person in prominent_indigenes %}
+
+            <article
+                class="group bg-white
+                       rounded-2xl overflow-hidden
+                       border border-gray-200
+                       shadow-md
+                       hover:shadow-2xl
+                       hover:-translate-y-2
+                       transition-all duration-300"
+            >
+
+                <a href="{{ person.get_absolute_url }}"
+                   class="block relative overflow-hidden">
+
+                    {% if person.photo %}
+
+                    <img
+                        src="{{ person.photo.url }}"
+                        alt="{{ person.name }}"
+                        loading="lazy"
+                        class="w-full h-72
+                               object-cover
+                               group-hover:scale-105
+                               transition-transform
+                               duration-700"
+                    >
+
+                    {% else %}
+
+                    <div class="w-full h-72
+                                bg-green-900
+                                flex items-center
+                                justify-center">
+
+                        <svg
+                            class="w-24 h-24 text-yellow-400"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                        >
+
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="1.5"
+                                d="M15.75 7.5a3.75 3.75
+                                   0 11-7.5 0
+                                   3.75 3.75 0
+                                   017.5 0z"
+                            />
+
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="1.5"
+                                d="M4.5 20.25a7.5
+                                   7.5 0 0115 0"
+                            />
+
+                        </svg>
+
+                    </div>
+
+                    {% endif %}
+
+
+                    <div class="absolute top-4 left-4
+                                bg-yellow-500
+                                text-green-950
+                                px-3 py-1
+                                rounded-full
+                                text-xs
+                                font-bold">
+
+                        Distinguished Indigene
+
+                    </div>
+
+                </a>
+
+
+                <div class="p-6">
+
+                    {% if person.title %}
+
+                    <p class="text-sm
+                              font-semibold
+                              text-yellow-600">
+
+                        {{ person.title }}
+
+                    </p>
+
+                    {% endif %}
+
+
+                    <h3 class="mt-1
+                               text-xl
+                               font-extrabold
+                               text-gray-900
+                               group-hover:text-green-700">
+
+                        {{ person.name }}
+
+                    </h3>
+
+
+                    {% if person.position %}
+
+                    <p class="mt-2
+                              text-sm
+                              font-semibold
+                              text-green-700">
+
+                        {{ person.position }}
+
+                    </p>
+
+                    {% elif person.profession %}
+
+                    <p class="mt-2
+                              text-sm
+                              font-semibold
+                              text-green-700">
+
+                        {{ person.profession }}
+
+                    </p>
+
+                    {% endif %}
+
+
+                    {% if person.community %}
+
+                    <p class="mt-3
+                              text-sm
+                              text-gray-500">
+
+                        📍 {{ person.community }}
+
+                    </p>
+
+                    {% endif %}
+
+
+                    {% if person.short_bio %}
+
+                    <p class="mt-4
+                              text-gray-600
+                              text-sm
+                              leading-relaxed">
+
+                        {{ person.short_bio|truncatewords:20 }}
+
+                    </p>
+
+                    {% endif %}
+
+
+                    <a href="{{ person.get_absolute_url }}"
+                       class="mt-5 inline-flex
+                              items-center gap-2
+                              text-green-700
+                              font-bold text-sm">
+
+                        View Profile →
+
+                    </a>
+
+                </div>
+
+            </article>
+
+            {% endfor %}
+
+        </div>
+
+        {% else %}
+
+        <div class="max-w-2xl mx-auto
+                    text-center
+                    bg-white
+                    border border-gray-200
+                    rounded-2xl
+                    p-10">
+
+            <h3 class="text-xl
+                       font-bold
+                       text-gray-900">
+
+                Distinguished Indigenes
+
+            </h3>
+
+            <p class="mt-2 text-gray-600">
+
+                Profiles of distinguished sons and daughters
+                of Uruan will be published here.
+
+            </p>
+
+        </div>
+
+        {% endif %}
+
+    </div>
+
+</section>
+
+
+<!-- ============================================================
+     TOURISM
+============================================================ -->
+
+<section class="py-20 bg-white">
+
+    <div class="container mx-auto px-6">
+
+        <div class="flex flex-col sm:flex-row
+                    justify-between
+                    sm:items-center
+                    gap-4 mb-10">
+
+            <h2 class="text-3xl md:text-4xl
+                       font-bold text-green-800">
+
+                Discover Uruan
+
+            </h2>
+
+
+            <a href="{% url 'tourism_home' %}"
+               class="text-green-700
+                      font-semibold">
+
+                View All Attractions →
+
+            </a>
+
+        </div>
+
+
+        <div class="grid md:grid-cols-2
+                    lg:grid-cols-4 gap-8">
+
+            {% for place in attractions %}
+
+            <article class="bg-white
+                            rounded-xl
+                            shadow-lg
+                            overflow-hidden
+                            hover:shadow-2xl
+                            transition">
+
+                {% if place.image %}
+
+                <img src="{{ place.image.url }}"
+                     alt="{{ place.name }}"
+                     class="h-64 w-full object-cover"
+                     loading="lazy">
+
+                {% endif %}
+
+
+                <div class="p-5">
+
+                    <span class="inline-block
+                                 bg-green-100
+                                 text-green-800
+                                 text-xs
+                                 px-3 py-1
+                                 rounded-full mb-3">
+
+                        {{ place.category }}
+
+                    </span>
+
+
+                    <h3 class="text-xl
+                               font-bold
+                               text-gray-800 mb-2">
+
+                        {{ place.name }}
+
+                    </h3>
+
+
+                    <p class="text-sm
+                              text-gray-500 mb-3">
+
+                        📍 {{ place.location }}
+
+                    </p>
+
+
+                    <p class="text-gray-600
+                              text-sm mb-4">
+
+                        {{ place.description|truncatewords:15 }}
+
+                    </p>
+
+
+                    <a href="{% url 'attraction_detail' place.slug %}"
+                       class="inline-block
+                              bg-green-700
+                              hover:bg-green-800
+                              text-white
+                              px-4 py-2
+                              rounded-lg">
+
+                        Explore More
+
+                    </a>
+
+                </div>
+
+            </article>
+
+            {% empty %}
+
+            <div class="lg:col-span-4
+                        text-center py-10">
+
+                <h3 class="text-2xl
+                           font-semibold
+                           text-gray-500">
+
+                    No tourist attractions available yet.
+
+                </h3>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ============================================================
+     COMMUNITY ENGAGEMENT
+============================================================ -->
+
+<section class="py-16 bg-gray-50">
+
+    <div class="container mx-auto px-6">
+
+        <h2 class="text-3xl md:text-4xl
+                   font-bold text-green-800
+                   text-center mb-12">
+
+            Community Engagement
+
+        </h2>
+
+
+        <div class="grid md:grid-cols-2
+                    lg:grid-cols-4 gap-8">
+
+            <div class="bg-white shadow
+                        rounded-xl p-8
+                        text-center">
+
+                <h3 class="font-bold text-xl mb-3">
+                    Report an Issue
+                </h3>
+
+                <p class="text-gray-600">
+                    Report community concerns and
+                    infrastructure issues.
+                </p>
+
+            </div>
+
+
+            <div class="bg-white shadow
+                        rounded-xl p-8
+                        text-center">
+
+                <h3 class="font-bold text-xl mb-3">
+                    Suggestions
+                </h3>
+
+                <p class="text-gray-600">
+                    Share ideas for improving
+                    Uruan communities.
+                </p>
+
+            </div>
+
+
+            <div class="bg-white shadow
+                        rounded-xl p-8
+                        text-center">
+
+                <h3 class="font-bold text-xl mb-3">
+                    Public Information
+                </h3>
+
+                <p class="text-gray-600">
+                    Request information from
+                    the Local Government.
+                </p>
+
+            </div>
+
+
+            <div class="bg-white shadow
+                        rounded-xl p-8
+                        text-center">
+
+                <h3 class="font-bold text-xl mb-3">
+                    Community Polls
+                </h3>
+
+                <p class="text-gray-600">
+                    Participate in community
+                    decision-making initiatives.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ============================================================
+     NEWSLETTER
+============================================================ -->
+
+<section class="bg-green-900 py-16">
+
+    <div class="container mx-auto px-6 text-center">
+
+        <h2 class="text-3xl md:text-4xl
+                   font-bold text-white">
+
+            Subscribe to Uruan Updates
+
+        </h2>
+
+
+        <p class="mt-4 text-green-100">
+
+            Receive the latest news, announcements
+            and development updates.
+
+        </p>
+
+
+        <form class="mt-8 max-w-xl mx-auto
+                     flex flex-col sm:flex-row">
+
+            <input
+                type="email"
+                placeholder="Enter your email"
+                class="flex-1 px-4 py-3
+                       rounded-lg sm:rounded-l-lg
+                       sm:rounded-r-none
+                       focus:outline-none"
+            >
+
+
+            <button
+                type="submit"
+                class="bg-yellow-500
+                       hover:bg-yellow-400
+                       px-6 py-3
+                       rounded-lg sm:rounded-r-lg
+                       sm:rounded-l-none
+                       font-bold">
+
+                Subscribe
+
+            </button>
+
+        </form>
+
+    </div>
+
+</section>
+
+{% endblock %}

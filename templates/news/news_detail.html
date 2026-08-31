@@ -1,0 +1,380 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+{{ post.title }} | Uruan News
+{% endblock %}
+
+{% block content %}
+
+<!-- ============================================================
+     ARTICLE HEADER
+============================================================ -->
+<section class="bg-green-950 text-white">
+
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8
+                py-14 lg:py-20">
+
+        <div class="max-w-5xl mx-auto">
+
+            <!-- Breadcrumb -->
+
+            <nav class="text-sm text-green-200 mb-7">
+
+                <a href="{% url 'home' %}"
+                   class="hover:text-yellow-400">
+
+                    Home
+
+                </a>
+
+                <span class="mx-2">/</span>
+
+                <a href="{% url 'news:news_list' %}"
+                   class="hover:text-yellow-400">
+
+                    News
+
+                </a>
+
+                <span class="mx-2">/</span>
+
+                <span class="text-yellow-400">
+                    Article
+                </span>
+
+            </nav>
+
+
+            <!-- CATEGORY -->
+
+            <span class="inline-block
+                         bg-yellow-500
+                         text-green-950
+                         px-4 py-2
+                         rounded-full
+                         text-sm
+                         font-bold">
+
+                {{ post.category }}
+
+            </span>
+
+
+            <!-- TITLE -->
+
+            <h1 class="mt-6
+                       text-4xl sm:text-5xl lg:text-6xl
+                       font-extrabold
+                       leading-tight">
+
+                {{ post.title }}
+
+            </h1>
+
+
+            <!-- META -->
+
+            <div class="mt-7
+                        flex flex-wrap
+                        items-center
+                        gap-x-6 gap-y-3
+                        text-green-100">
+
+                <span>
+                    Published {{ post.created_at|date:"F d, Y" }}
+                </span>
+
+                {% if post.author %}
+
+                <span>
+                    By {{ post.author.get_full_name|default:post.author.username }}
+                </span>
+
+                {% endif %}
+
+                <span>
+                    {{ post.views }} views
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ============================================================
+     ARTICLE
+============================================================ -->
+<section class="bg-white py-12 lg:py-16">
+
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+
+        <div class="max-w-5xl mx-auto">
+
+            {% if post.image %}
+
+            <figure class="mb-10">
+
+                <img src="{{ post.image.url }}"
+                     alt="{{ post.title }}"
+                     class="w-full
+                            max-h-[650px]
+                            object-cover
+                            rounded-2xl
+                            shadow-xl">
+
+            </figure>
+
+            {% endif %}
+
+
+            <div class="grid lg:grid-cols-12 gap-10">
+
+
+                <!-- SHARE -->
+
+                <aside class="lg:col-span-2">
+
+                    <div class="lg:sticky lg:top-24">
+
+                        <p class="text-xs
+                                  uppercase
+                                  tracking-widest
+                                  font-bold
+                                  text-gray-500
+                                  mb-4">
+
+                            Share
+
+                        </p>
+
+                        <div class="flex lg:flex-col gap-3">
+
+                            <button type="button"
+                                    onclick="navigator.clipboard.writeText(window.location.href)"
+                                    class="w-10 h-10
+                                           rounded-full
+                                           bg-gray-100
+                                           hover:bg-green-100
+                                           text-gray-700
+                                           flex items-center
+                                           justify-center">
+
+                                🔗
+
+                            </button>
+
+                            <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}"
+                               target="_blank"
+                               rel="noopener"
+                               class="w-10 h-10
+                                      rounded-full
+                                      bg-gray-100
+                                      hover:bg-blue-100
+                                      flex items-center
+                                      justify-center">
+
+                                f
+
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </aside>
+
+
+                <!-- ARTICLE BODY -->
+
+                <article class="lg:col-span-10">
+
+                    {% if post.summary %}
+
+                    <p class="text-xl
+                              lg:text-2xl
+                              font-medium
+                              text-gray-700
+                              leading-relaxed
+                              border-l-4
+                              border-yellow-500
+                              pl-6
+                              mb-8">
+
+                        {{ post.summary }}
+
+                    </p>
+
+                    {% endif %}
+
+
+                    <div class="prose prose-lg
+                                max-w-none
+                                prose-headings:text-green-900
+                                prose-a:text-green-700">
+
+                        {{ post.content|linebreaks }}
+
+                    </div>
+
+
+                    <!-- ARTICLE FOOTER -->
+
+                    <div class="mt-12
+                                pt-6
+                                border-t
+                                border-gray-200
+                                flex flex-wrap
+                                items-center
+                                justify-between
+                                gap-4">
+
+                        <div>
+
+                            <span class="text-sm text-gray-500">
+                                Category
+                            </span>
+
+                            <a href="{% url 'news:category_posts' post.category.slug %}"
+                               class="ml-2
+                                      text-green-700
+                                      font-semibold">
+
+                                {{ post.category }}
+
+                            </a>
+
+                        </div>
+
+                        <a href="{% url 'news:news_list' %}"
+                           class="text-green-700
+                                  font-semibold">
+
+                            ← Back to News
+
+                        </a>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ============================================================
+     RELATED STORIES
+============================================================ -->
+{% if related_posts %}
+
+<section class="bg-gray-50
+                border-t
+                border-gray-200
+                py-14 lg:py-20">
+
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+
+        <div class="max-w-6xl mx-auto">
+
+            <div class="mb-8">
+
+                <span class="text-sm
+                             font-bold
+                             uppercase
+                             tracking-widest
+                             text-green-700">
+
+                    Continue Reading
+
+                </span>
+
+                <h2 class="mt-2
+                           text-3xl
+                           font-bold
+                           text-gray-900">
+
+                    Related News
+
+                </h2>
+
+            </div>
+
+
+            <div class="grid sm:grid-cols-2
+                        lg:grid-cols-4
+                        gap-6">
+
+                {% for item in related_posts %}
+
+                <article class="bg-white
+                                rounded-xl
+                                overflow-hidden
+                                border border-gray-200
+                                shadow-sm
+                                hover:shadow-lg
+                                transition">
+
+                    {% if item.image %}
+
+                    <img src="{{ item.image.url }}"
+                         alt="{{ item.title }}"
+                         class="w-full h-40
+                                object-cover">
+
+                    {% endif %}
+
+                    <div class="p-5">
+
+                        <span class="text-xs
+                                     text-green-700
+                                     font-semibold">
+
+                            {{ item.category }}
+
+                        </span>
+
+                        <h3 class="mt-2
+                                   font-bold
+                                   text-gray-900">
+
+                            {{ item.title }}
+
+                        </h3>
+
+                        <a href="{% url 'news:news_detail' item.slug %}"
+                           class="inline-block
+                                  mt-4
+                                  text-green-700
+                                  font-semibold
+                                  text-sm">
+
+                            Read Story →
+
+                        </a>
+
+                    </div>
+
+                </article>
+
+                {% endfor %}
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endif %}
+
+{% endblock %}

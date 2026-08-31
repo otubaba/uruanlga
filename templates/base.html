@@ -1,0 +1,3045 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+          content="Official website of Uruan Local Government Area, Akwa Ibom State, Nigeria. Access government information, news, projects, events, tourism, services and community resources.">
+
+    <meta name="keywords"
+          content="Uruan Local Government Area, Uruan LGA, Akwa Ibom State, Nigeria, Uruan Government, Uruan News, Uruan Projects">
+
+    <meta name="author"
+          content="Uruan Local Government Area">
+
+    <meta name="theme-color"
+          content="#075c36">
+
+
+    <!-- =========================================================
+         TITLE
+    ========================================================== -->
+
+    <title>
+        {% block title %}
+            Uruan Local Government Area | Akwa Ibom State
+        {% endblock %}
+    </title>
+
+
+    <!-- =========================================================
+         FAVICON
+    ========================================================== -->
+
+    <link rel="icon"
+          type="image/jpeg"
+          href="{% static 'images/uruan-logo.jpeg' %}">
+
+
+    <!-- =========================================================
+         TAILWIND CSS
+    ========================================================== -->
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+
+    <!-- =========================================================
+         TAILWIND CONFIG
+    ========================================================== -->
+
+    <script>
+
+        tailwind.config = {
+
+            theme: {
+
+                extend: {
+
+                    colors: {
+
+                        uruan: {
+                            50:  '#f0fdf4',
+                            100: '#dcfce7',
+                            200: '#bbf7d0',
+                            300: '#86efac',
+                            400: '#4ade80',
+                            500: '#22c55e',
+                            600: '#16a34a',
+                            700: '#15803d',
+                            800: '#166534',
+                            900: '#14532d',
+                        },
+
+                        government: '#075c36',
+
+                        gold: '#d4af37',
+
+                    },
+
+                    boxShadow: {
+
+                        government:
+                            '0 10px 30px rgba(0,0,0,0.08)',
+
+                    },
+
+                }
+
+            }
+
+        }
+
+    </script>
+
+
+    <!-- =========================================================
+         CUSTOM CSS
+    ========================================================== -->
+
+    <style>
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+
+        body {
+            font-family:
+                Inter,
+                ui-sans-serif,
+                system-ui,
+                -apple-system,
+                BlinkMacSystemFont,
+                "Segoe UI",
+                sans-serif;
+        }
+
+
+        /* =====================================================
+           GOVERNMENT COLORS
+        ====================================================== */
+
+        .primary-green {
+            background-color: #075c36;
+        }
+
+        .primary-green-dark {
+            background-color: #06482b;
+        }
+
+        .gold {
+            background-color: #d4af37;
+        }
+
+        .text-green-custom {
+            color: #075c36;
+        }
+
+        .text-gold {
+            color: #d4af37;
+        }
+
+
+        /* =====================================================
+           ACCESSIBILITY
+        ====================================================== */
+
+        .skip-link {
+            position: fixed;
+            top: -100px;
+            left: 20px;
+            z-index: 9999;
+
+            background: #d4af37;
+            color: #052e1b;
+
+            padding: 12px 20px;
+
+            font-weight: 700;
+
+            border-radius: 0 0 8px 8px;
+
+            transition: top 0.2s ease;
+        }
+
+
+        .skip-link:focus {
+            top: 0;
+        }
+
+
+        /* =====================================================
+           NAVIGATION
+        ====================================================== */
+
+        .nav-link {
+            position: relative;
+
+            display: flex;
+            align-items: center;
+
+            height: 64px;
+
+            padding: 0 15px;
+
+            font-size: 0.92rem;
+
+            font-weight: 600;
+
+            color: white;
+
+            transition:
+                background-color 0.25s ease,
+                color 0.25s ease;
+        }
+
+
+        .nav-link::after {
+
+            content: "";
+
+            position: absolute;
+
+            left: 15px;
+            right: 15px;
+
+            bottom: 0;
+
+            height: 3px;
+
+            background: #d4af37;
+
+            transform: scaleX(0);
+
+            transform-origin: center;
+
+            transition:
+                transform 0.25s ease;
+
+        }
+
+
+        .nav-link:hover {
+
+            background-color: #06482b;
+
+            color: #facc15;
+
+        }
+
+
+        .nav-link:hover::after {
+
+            transform: scaleX(1);
+
+        }
+
+
+        .nav-link.active {
+
+            background-color: #06482b;
+
+            color: #facc15;
+
+        }
+
+
+        .nav-link.active::after {
+
+            transform: scaleX(1);
+
+        }
+
+
+        /* =====================================================
+           ANNOUNCEMENT TICKER
+        ====================================================== */
+
+        .ticker-wrapper {
+            overflow: hidden;
+            position: relative;
+        }
+
+
+        .ticker-track {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 3rem;
+
+            white-space: nowrap;
+
+            width: max-content;
+
+            animation:
+                ticker 30s linear infinite;
+
+        }
+
+
+        @keyframes ticker {
+
+            from {
+                transform: translateX(100%);
+            }
+
+            to {
+                transform: translateX(-100%);
+            }
+
+        }
+
+
+        .ticker-track:hover {
+
+            animation-play-state: paused;
+
+        }
+
+
+        /* =====================================================
+           MOBILE MENU
+        ====================================================== */
+
+        .mobile-nav-link {
+
+            display: block;
+
+            padding: 15px 20px;
+
+            border-bottom:
+                1px solid rgba(255,255,255,0.08);
+
+            transition:
+                background-color 0.25s ease,
+                color 0.25s ease;
+
+        }
+
+
+        .mobile-nav-link:hover {
+
+            background-color: #06482b;
+
+            color: #facc15;
+
+        }
+
+
+        .mobile-nav-link.active {
+
+            background-color: #d4af37;
+
+            color: #052e1b;
+
+            font-weight: 700;
+
+        }
+
+
+        /* =====================================================
+           FOCUS STATES
+        ====================================================== */
+
+        a:focus-visible,
+        button:focus-visible,
+        input:focus-visible {
+
+            outline: 3px solid #facc15;
+
+            outline-offset: 2px;
+
+        }
+
+
+        /* =====================================================
+           BACK TO TOP
+        ====================================================== */
+
+        #backToTop {
+
+            opacity: 0;
+
+            pointer-events: none;
+
+            transform: translateY(10px);
+
+            transition:
+                opacity 0.3s ease,
+                transform 0.3s ease;
+
+        }
+
+
+        #backToTop.show {
+
+            opacity: 1;
+
+            pointer-events: auto;
+
+            transform: translateY(0);
+
+        }
+
+
+        /* =====================================================
+           SCROLL PROGRESS
+        ====================================================== */
+
+        #scrollProgress {
+
+            position: fixed;
+
+            top: 0;
+
+            left: 0;
+
+            z-index: 9999;
+
+            height: 3px;
+
+            width: 0%;
+
+            background: #d4af37;
+
+        }
+
+
+    </style>
+
+
+    {% block extra_css %}
+    {% endblock %}
+
+</head>
+
+
+<body class="bg-gray-50 text-gray-800">
+
+
+<!-- =========================================================
+     SCROLL PROGRESS
+========================================================== -->
+
+<div id="scrollProgress"></div>
+
+
+<!-- =========================================================
+     ACCESSIBILITY SKIP LINK
+========================================================== -->
+
+<a href="#main-content"
+   class="skip-link">
+
+    Skip to main content
+
+</a>
+
+
+<!-- =========================================================
+     GOVERNMENT INFORMATION BAR
+========================================================== -->
+
+<div class="bg-green-950 text-white">
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        <div class="min-h-[42px]
+                    flex flex-col
+                    md:flex-row
+                    items-center
+                    justify-between
+                    gap-2
+                    py-2
+                    text-xs sm:text-sm">
+
+
+            <!-- LEFT -->
+
+            <div class="flex items-center gap-2 text-center">
+
+                <span class="text-yellow-400">
+                    ●
+                </span>
+
+                <span>
+                    Official Website of Uruan Local Government Area
+                </span>
+
+            </div>
+
+
+            <!-- RIGHT -->
+
+            <div class="flex items-center gap-4">
+
+                <span class="hidden sm:inline">
+                    Akwa Ibom State, Nigeria
+                </span>
+
+                <span class="hidden sm:inline text-green-700">
+                    |
+                </span>
+
+                <a href="#main-content"
+                   class="hover:text-yellow-300 transition">
+
+                    Accessibility
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     HEADER
+========================================================== -->
+
+<header class="bg-white shadow-sm">
+
+    <div class="max-w-7xl mx-auto
+                px-4 sm:px-6 lg:px-8">
+
+        <div class="min-h-[110px]
+                    flex flex-col
+                    lg:flex-row
+                    items-center
+                    justify-between
+                    gap-6
+                    py-5">
+
+
+            <!-- =================================================
+                 LOGO / GOVERNMENT IDENTITY
+            ================================================== -->
+
+            <a href="{% url 'home' %}"
+               class="flex items-center gap-4
+                      group
+                      text-center
+                      lg:text-left">
+
+                <div class="flex-shrink-0">
+
+                    <img
+                        src="{% static 'images/uruan-logo.jpeg' %}"
+                        alt="Uruan Local Government Area Logo"
+                        class="w-16 h-16
+                               sm:w-20 sm:h-20
+                               object-contain
+                               transition-transform
+                               duration-300
+                               group-hover:scale-105">
+
+                </div>
+
+
+                <div>
+
+                    <div class="text-xs
+                                uppercase
+                                tracking-[0.2em]
+                                text-gray-500
+                                font-semibold">
+
+                        Government of
+
+                    </div>
+
+
+                    <h1 class="text-2xl
+                               sm:text-3xl
+                               lg:text-4xl
+                               font-extrabold
+                               tracking-tight
+                               text-green-900">
+
+                        URUAN
+
+                    </h1>
+
+
+                    <p class="text-sm
+                              sm:text-base
+                              font-bold
+                              uppercase
+                              tracking-wide
+                              text-green-700">
+
+                        Local Government Area
+
+                    </p>
+
+
+                    <p class="text-xs
+                              sm:text-sm
+                              text-gray-500">
+
+                        Akwa Ibom State, Nigeria
+
+                    </p>
+
+                </div>
+
+            </a>
+
+
+            <!-- =================================================
+                 SEARCH + QUICK INFORMATION
+            ================================================== -->
+
+            <div class="w-full lg:w-auto">
+
+                <div class="flex
+                            flex-col
+                            sm:flex-row
+                            items-center
+                            gap-3">
+
+
+                    <!-- SEARCH -->
+
+                    <form
+                        method="GET"
+                        action="{% url 'news:search' %}"
+                        class="w-full sm:w-auto">
+
+                        <div class="flex">
+
+                            <label
+                                for="site-search"
+                                class="sr-only">
+
+                                Search this website
+
+                            </label>
+
+
+                            <input
+                                id="site-search"
+                                type="search"
+                                name="q"
+                                value="{{ request.GET.q|default:'' }}"
+                                placeholder="Search this website..."
+                                autocomplete="off"
+                                class="w-full
+                                       sm:w-72
+                                       border
+                                       border-gray-300
+                                       bg-gray-50
+                                       rounded-l-lg
+                                       px-4
+                                       py-3
+                                       text-sm
+                                       focus:bg-white
+                                       transition">
+
+
+                            <button
+                                type="submit"
+                                class="bg-green-800
+                                       hover:bg-green-900
+                                       text-white
+                                       px-5
+                                       rounded-r-lg
+                                       font-semibold
+                                       transition">
+
+                                Search
+
+                            </button>
+
+                        </div>
+
+                    </form>
+
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================================================
+         GOLD GOVERNMENT LINE
+    ========================================================== -->
+
+    <div class="h-1 bg-yellow-500"></div>
+
+</header>
+
+
+<!-- =========================================================
+     ANNOUNCEMENT / PUBLIC INFORMATION BAR
+========================================================== -->
+
+<div class="bg-green-800 text-white">
+
+    <div class="max-w-7xl mx-auto px-4">
+
+        <div class="flex items-stretch min-h-[42px]">
+
+
+            <div class="flex-shrink-0
+                        flex items-center
+                        bg-yellow-500
+                        text-green-950
+                        px-4
+                        font-bold
+                        text-xs
+                        sm:text-sm
+                        z-10">
+
+                <span class="mr-2">
+                    📢
+                </span>
+
+                PUBLIC NOTICE
+
+            </div>
+
+
+            <div class="ticker-wrapper flex-1 flex items-center">
+
+                <div class="ticker-track text-sm">
+
+                    <span>
+                        Welcome to the official website of Uruan Local Government Area.
+                    </span>
+
+                    <span>
+                        Access government information, projects, services and community updates.
+                    </span>
+
+                    <span>
+                        Uruan Local Government Area — Serving the people, developing our communities.
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     MAIN NAVIGATION
+========================================================== -->
+
+<nav
+    class="sticky top-0 z-50
+           bg-green-900
+           text-white
+           shadow-lg"
+    aria-label="Main navigation">
+
+
+    <div class="max-w-7xl mx-auto px-4">
+
+
+        <div class="flex items-center
+                    justify-between
+                    min-h-[64px]">
+
+
+            <!-- =================================================
+                 DESKTOP NAVIGATION
+            ================================================== -->
+
+            <ul class="hidden lg:flex
+                       items-center
+                       w-full
+                       justify-center
+                       font-semibold">
+
+
+                <!-- HOME -->
+
+                <li>
+
+                    <a
+                        href="{% url 'home' %}"
+                        class="nav-link
+                               {% if request.resolver_match.url_name == 'home' %}
+                                   active
+                               {% endif %}"
+                        {% if request.resolver_match.url_name == 'home' %}
+                            aria-current="page"
+                        {% endif %}>
+
+                        Home
+
+                    </a>
+
+                </li>
+
+
+                <!-- NEWS -->
+
+                <li>
+
+                    <a
+                        href="{% url 'news:news_list' %}"
+                        class="nav-link
+                               {% if request.resolver_match.url_name == 'news_list' %}
+                                   active
+                               {% endif %}"
+                        {% if request.resolver_match.url_name == 'news_list' %}
+                            aria-current="page"
+                        {% endif %}>
+
+                        News
+
+                    </a>
+
+                </li>
+
+
+                <!-- ABOUT -->
+
+                <li>
+
+                    <a
+                        href="{% url 'about_uruan' %}"
+                        class="nav-link
+                               {% if request.resolver_match.url_name == 'about_uruan' %}
+                                   active
+                               {% endif %}"
+                        {% if request.resolver_match.url_name == 'about_uruan' %}
+                            aria-current="page"
+                        {% endif %}>
+
+                        About Uruan
+
+                    </a>
+
+                </li>
+
+
+                <!-- ============================================================
+                    LEADERSHIP DROPDOWN
+                ============================================================ -->
+
+                <li class="relative group">
+
+                    <!-- Main Navigation Link -->
+                    <a
+                        href="{% url 'executive_leadership' %}"
+                        class="nav-link inline-flex items-center gap-1
+                            {% if request.resolver_match.url_name == 'executive_leadership' %}
+                                active
+                            {% elif request.resolver_match.url_name == 'legislative_leadership' %}
+                                active
+                            {% elif request.resolver_match.url_name == 'traditional_leadership' %}
+                                active
+                            {% elif request.resolver_match.url_name == 'chairman_list' %}
+                                active
+                            {% elif request.resolver_match.url_name == 'chairman_detail' %}
+                                active
+                            {% elif request.resolver_match.url_name == 'leadership_detail' %}
+                                active
+                            {% elif request.resolver_match.url_name == 'past_chairman_detail' %}
+                                active
+                            {% endif %}"
+                        aria-haspopup="true"
+                        aria-expanded="false"
+                    >
+
+                        Leadership
+
+                        <!-- Chevron -->
+                        <svg
+                            class="w-4 h-4 transition-transform duration-200
+                                group-hover:rotate-180"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                            aria-hidden="true"
+                        >
+
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M19 9l-7 7-7-7"
+                            />
+
+                        </svg>
+
+                    </a>
+
+
+                    <!-- ========================================================
+                        DROPDOWN MENU
+                    ========================================================= -->
+
+                    <div
+                        class="absolute left-0 top-full
+                            mt-3
+                            w-72
+                            bg-white
+                            rounded-2xl
+                            shadow-2xl
+                            border border-gray-100
+                            opacity-0
+                            invisible
+                            translate-y-2
+                            group-hover:opacity-100
+                            group-hover:visible
+                            group-hover:translate-y-0
+                            transition-all
+                            duration-200
+                            ease-out
+                            z-50
+                            overflow-hidden"
+                    >
+
+                        <!-- ====================================================
+                            DROPDOWN HEADER
+                        ==================================================== -->
+
+                        <div
+                            class="px-5 py-4
+                                bg-gradient-to-r
+                                from-green-950
+                                to-green-800
+                                text-white"
+                        >
+
+                            <div class="flex items-center gap-3">
+
+                                <div
+                                    class="w-10 h-10
+                                        rounded-xl
+                                        bg-yellow-500/20
+                                        border border-yellow-400/30
+                                        flex items-center
+                                        justify-center"
+                                >
+
+                                    <svg
+                                        class="w-5 h-5 text-yellow-400"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        viewBox="0 0 24 24"
+                                        aria-hidden="true"
+                                    >
+
+                                        <path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="M12 3l9 5-9 5-9-5 9-5z"
+                                        />
+
+                                        <path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="M5 12v4c0 1.5 3.13 3 7 3s7-1.5 7-3v-4"
+                                        />
+
+                                    </svg>
+
+                                </div>
+
+
+                                <div>
+
+                                    <p
+                                        class="text-xs
+                                            uppercase
+                                            tracking-widest
+                                            font-bold
+                                            text-yellow-400"
+                                    >
+                                        Government
+                                    </p>
+
+                                    <p
+                                        class="text-sm
+                                            text-green-100
+                                            mt-0.5"
+                                    >
+                                        Uruan Leadership
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- ====================================================
+                            EXECUTIVE LEADERSHIP
+                        ==================================================== -->
+
+                        <a
+                            href="{% url 'executive_leadership' %}"
+                            class="group/item flex items-center gap-3
+                                px-5 py-4
+                                text-gray-700
+                                hover:bg-green-50
+                                hover:text-green-800
+                                transition
+                                {% if request.resolver_match.url_name == 'executive_leadership' %}
+                                    bg-green-50 text-green-800
+                                {% endif %}"
+                        >
+
+                            <span
+                                class="w-10 h-10
+                                    flex-shrink-0
+                                    rounded-xl
+                                    bg-green-100
+                                    text-green-800
+                                    flex items-center
+                                    justify-center
+                                    group-hover/item:bg-green-200
+                                    transition"
+                            >
+
+                                <svg
+                                    class="w-5 h-5"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                    aria-hidden="true"
+                                >
+
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M12 14l9-5-9-5-9 5 9 5z"
+                                    />
+
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M12 14l6.16-3.42
+                                        A12.083 12.083 0 0118
+                                        20.5M12 14L5.84 10.58
+                                        A12.083 12.083 0 006
+                                        20.5"
+                                    />
+
+                                </svg>
+
+                            </span>
+
+
+                            <span class="flex-1">
+
+                                <span class="block font-bold text-sm">
+                                    Executive Leadership
+                                </span>
+
+                                <span class="block text-xs text-gray-500 mt-0.5">
+                                    Executive Chairman & Administration
+                                </span>
+
+                            </span>
+
+
+                            <svg
+                                class="w-4 h-4
+                                    text-gray-300
+                                    group-hover/item:text-green-700
+                                    group-hover/item:translate-x-1
+                                    transition"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                                aria-hidden="true"
+                            >
+
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M9 5l7 7-7 7"
+                                />
+
+                            </svg>
+
+                        </a>
+
+
+                        <!-- ====================================================
+                            LEGISLATIVE LEADERSHIP
+                        ==================================================== -->
+
+                        <a
+                            href="{% url 'legislative_leadership' %}"
+                            class="group/item flex items-center gap-3
+                                px-5 py-4
+                                text-gray-700
+                                hover:bg-yellow-50
+                                hover:text-green-800
+                                transition
+                                {% if request.resolver_match.url_name == 'legislative_leadership' %}
+                                    bg-yellow-50 text-green-800
+                                {% endif %}"
+                        >
+
+                            <span
+                                class="w-10 h-10
+                                    flex-shrink-0
+                                    rounded-xl
+                                    bg-yellow-100
+                                    text-yellow-700
+                                    flex items-center
+                                    justify-center
+                                    group-hover/item:bg-yellow-200
+                                    transition"
+                            >
+
+                                <svg
+                                    class="w-5 h-5"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                    aria-hidden="true"
+                                >
+
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M3 21h18M5 21V10
+                                        l7-4 7 4v11M9 21v-7h6v7"
+                                    />
+
+                                </svg>
+
+                            </span>
+
+
+                            <span class="flex-1">
+
+                                <span class="block font-bold text-sm">
+                                    Legislative Leadership
+                                </span>
+
+                                <span class="block text-xs text-gray-500 mt-0.5">
+                                    Legislative Council & Representatives
+                                </span>
+
+                            </span>
+
+
+                            <svg
+                                class="w-4 h-4
+                                    text-gray-300
+                                    group-hover/item:text-green-700
+                                    group-hover/item:translate-x-1
+                                    transition"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                                aria-hidden="true"
+                            >
+
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M9 5l7 7-7 7"
+                                />
+
+                            </svg>
+
+                        </a>
+
+
+                        <!-- ====================================================
+                            TRADITIONAL LEADERSHIP
+                        ==================================================== -->
+
+                        <a
+                            href="{% url 'traditional_leadership' %}"
+                            class="group/item flex items-center gap-3
+                                px-5 py-4
+                                text-gray-700
+                                hover:bg-orange-50
+                                hover:text-green-800
+                                transition
+                                {% if request.resolver_match.url_name == 'traditional_leadership' %}
+                                    bg-orange-50 text-green-800
+                                {% endif %}"
+                        >
+
+                            <span
+                                class="w-10 h-10
+                                    flex-shrink-0
+                                    rounded-xl
+                                    bg-orange-100
+                                    text-orange-700
+                                    flex items-center
+                                    justify-center
+                                    group-hover/item:bg-orange-200
+                                    transition"
+                            >
+
+                                <svg
+                                    class="w-5 h-5"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                    aria-hidden="true"
+                                >
+
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M12 3l2.5 5.5L20 10l-4
+                                        4 1 5.5-5-2.5-5 2.5L8
+                                        14l-4-4 5.5-1.5L12 3z"
+                                    />
+
+                                </svg>
+
+                            </span>
+
+
+                            <span class="flex-1">
+
+                                <span class="block font-bold text-sm">
+                                    Traditional Leadership
+                                </span>
+
+                                <span class="block text-xs text-gray-500 mt-0.5">
+                                    Traditional Institutions & Leaders
+                                </span>
+
+                            </span>
+
+
+                            <svg
+                                class="w-4 h-4
+                                    text-gray-300
+                                    group-hover/item:text-green-700
+                                    group-hover/item:translate-x-1
+                                    transition"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                                aria-hidden="true"
+                            >
+
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M9 5l7 7-7 7"
+                                />
+
+                            </svg>
+
+                        </a>
+
+
+                        <!-- ====================================================
+                            DIVIDER
+                        ==================================================== -->
+
+                        <div class="border-t border-gray-100"></div>
+
+
+                        <!-- ====================================================
+                            LEADERSHIP ARCHIVE
+                        ==================================================== -->
+
+                        <a
+                            href="{% url 'past_chairman_list' %}"
+                            class="group/item flex items-center gap-3
+                                px-5 py-4
+                                text-gray-700
+                                hover:bg-gray-50
+                                hover:text-green-800
+                                transition
+                                {% if request.resolver_match.url_name == 'past_chairman_list' %}
+                                    bg-gray-50 text-green-800
+                                {% elif request.resolver_match.url_name == 'past_chairman_detail' %}
+                                    bg-gray-50 text-green-800
+                                {% elif request.resolver_match.url_name == 'past_chairman_detail' %}
+                                    bg-gray-50 text-green-800
+                                {% endif %}"
+                        >
+
+                            <span
+                                class="w-10 h-10
+                                    flex-shrink-0
+                                    rounded-xl
+                                    bg-gray-100
+                                    text-gray-600
+                                    flex items-center
+                                    justify-center
+                                    group-hover/item:bg-gray-200
+                                    transition"
+                            >
+
+                                <svg
+                                    class="w-5 h-5"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                    aria-hidden="true"
+                                >
+
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M4 6h16M4 12h16M4 18h16"
+                                    />
+
+                                </svg>
+
+                            </span>
+
+
+                            <span class="flex-1">
+
+                                <span class="block font-bold text-sm">
+                                    Leadership Archive
+                                </span>
+
+                                <span class="block text-xs text-gray-500 mt-0.5">
+                                    Past Chairmen & Historical Records
+                                </span>
+
+                            </span>
+
+
+                            <svg
+                                class="w-4 h-4
+                                    text-gray-300
+                                    group-hover/item:text-green-700
+                                    group-hover/item:translate-x-1
+                                    transition"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                                aria-hidden="true"
+                            >
+
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M9 5l7 7-7 7"
+                                />
+
+                            </svg>
+
+                        </a>
+
+
+                        <!-- ====================================================
+                            FOOTER
+                        ==================================================== -->
+
+                        <div
+                            class="px-5 py-3
+                                bg-gray-50
+                                border-t border-gray-100"
+                        >
+
+                            <p
+                                class="text-xs
+                                    text-gray-500
+                                    text-center"
+                            >
+
+                                Official Leadership Information
+
+                                <span class="text-green-700 font-semibold">
+                                    • Uruan LGA
+                                </span>
+
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </li>
+
+
+
+
+                <!-- CLANS -->
+
+                <li>
+
+                    <a
+                        href="{% url 'clan_category_list' %}"
+                        class="nav-link
+                               {% if request.resolver_match.url_name == 'clan_category_list' %}
+                                   active
+                               {% endif %}"
+                        {% if request.resolver_match.url_name == 'clan_category_list' %}
+                            aria-current="page"
+                        {% endif %}>
+
+                        Clans
+
+                    </a>
+
+                </li>
+
+
+                <!-- PROJECTS -->
+
+                <li>
+
+                    <a
+                        href="{% url 'project_list' %}"
+                        class="nav-link
+                               {% if request.resolver_match.url_name == 'project_list' %}
+                                   active
+                               {% endif %}"
+                        {% if request.resolver_match.url_name == 'project_list' %}
+                            aria-current="page"
+                        {% endif %}>
+
+                        Projects
+
+                    </a>
+
+                </li>
+
+
+                <!-- TOURISM -->
+
+                <li>
+
+                    <a
+                        href="{% url 'tourism_home' %}"
+                        class="nav-link
+                               {% if request.resolver_match.url_name == 'tourism_home' %}
+                                   active
+                               {% endif %}"
+                        {% if request.resolver_match.url_name == 'tourism_home' %}
+                            aria-current="page"
+                        {% endif %}>
+
+                        Tourism
+
+                    </a>
+
+                </li>
+
+
+                <!-- EVENTS -->
+
+                <li>
+
+                    <a
+                        href="{% url 'event_list' %}"
+                        class="nav-link
+                               {% if request.resolver_match.url_name == 'event_list' %}
+                                   active
+                               {% endif %}"
+                        {% if request.resolver_match.url_name == 'event_list' %}
+                            aria-current="page"
+                        {% endif %}>
+
+                        Events
+
+                    </a>
+
+                </li>
+
+
+                <!-- GALLERY -->
+
+                <li>
+
+                    <a
+                        href="{% url 'gallery_list' %}"
+                        class="nav-link
+                               {% if request.resolver_match.url_name == 'gallery_list' %}
+                                   active
+                               {% endif %}"
+                        {% if request.resolver_match.url_name == 'gallery_list' %}
+                            aria-current="page"
+                        {% endif %}>
+
+                        Gallery
+
+                    </a>
+
+                </li>
+
+
+                <!-- MAP -->
+
+                <li>
+
+                    <a
+                        href="{% url 'uruan_map' %}"
+                        class="nav-link
+                               {% if request.resolver_match.url_name == 'uruan_map' %}
+                                   active
+                               {% endif %}"
+                        {% if request.resolver_match.url_name == 'uruan_map' %}
+                            aria-current="page"
+                        {% endif %}>
+
+                        Map
+
+                    </a>
+
+                </li>
+
+
+                <!-- CONTACT -->
+
+                <li>
+
+                    <a
+                        href="{% url 'contact' %}"
+                        class="nav-link
+                               {% if request.resolver_match.url_name == 'contact' %}
+                                   active
+                               {% endif %}"
+                        {% if request.resolver_match.url_name == 'contact' %}
+                            aria-current="page"
+                        {% endif %}>
+
+                        Contact
+
+                    </a>
+
+                </li>
+
+
+            </ul>
+
+
+            <!-- =================================================
+                 MOBILE MENU BUTTON
+            ================================================== -->
+
+            <div class="lg:hidden
+                        w-full
+                        flex
+                        items-center
+                        justify-between">
+
+
+                <span class="font-bold
+                             text-sm
+                             tracking-wide">
+
+                    URUAN LGA
+
+                </span>
+
+
+                <button
+                    id="mobileMenuBtn"
+                    type="button"
+                    class="w-11
+                           h-11
+                           flex
+                           items-center
+                           justify-center
+                           rounded-lg
+                           hover:bg-green-800
+                           hover:text-yellow-300
+                           transition"
+                    aria-label="Open navigation menu"
+                    aria-expanded="false"
+                    aria-controls="mobileMenu">
+
+                    <svg
+                        id="menuIcon"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke-width="2"
+                        stroke="currentColor"
+                        class="w-7 h-7">
+
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/>
+
+                    </svg>
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================================================
+        MOBILE NAVIGATION
+    ========================================================== -->
+
+    <div
+        id="mobileMenu"
+        class="hidden lg:hidden
+            bg-green-950
+            border-t
+            border-green-800">
+
+        <div class="max-w-7xl mx-auto">
+
+            <!-- =================================================
+                HOME
+            ================================================== -->
+
+            <a
+                href="{% url 'home' %}"
+                class="mobile-nav-link
+                    {% if request.resolver_match.url_name == 'home' %}
+                        active
+                    {% endif %}"
+                {% if request.resolver_match.url_name == 'home' %}
+                    aria-current="page"
+                {% endif %}>
+
+                Home
+
+            </a>
+
+
+            <!-- =================================================
+                NEWS
+            ================================================== -->
+
+            <a
+                href="{% url 'news:news_list' %}"
+                class="mobile-nav-link
+                    {% if request.resolver_match.url_name == 'news_list' %}
+                        active
+                    {% endif %}"
+                {% if request.resolver_match.url_name == 'news_list' %}
+                    aria-current="page"
+                {% endif %}>
+
+                News
+
+            </a>
+
+
+            <!-- =================================================
+                ABOUT URUAN
+            ================================================== -->
+
+            <a
+                href="{% url 'about_uruan' %}"
+                class="mobile-nav-link
+                    {% if request.resolver_match.url_name == 'about_uruan' %}
+                        active
+                    {% endif %}"
+                {% if request.resolver_match.url_name == 'about_uruan' %}
+                    aria-current="page"
+                {% endif %}>
+
+                About Uruan
+
+            </a>
+
+
+            <!-- =================================================
+                LEADERSHIP MOBILE DROPDOWN
+            ================================================== -->
+
+            <div
+                class="border-b border-white/10"
+                id="mobileLeadershipWrapper">
+
+                <!-- Leadership Button -->
+
+                <button
+                    id="mobileLeadershipBtn"
+                    type="button"
+                    class="w-full
+                        flex
+                        items-center
+                        justify-between
+                        px-5
+                        py-4
+                        text-left
+                        font-semibold
+                        text-white
+                        hover:bg-green-800
+                        hover:text-yellow-300
+                        transition"
+                    aria-expanded="false"
+                    aria-controls="mobileLeadershipMenu">
+
+                    <span class="flex items-center gap-3">
+
+                        <!-- Leadership Icon -->
+
+                        <span
+                            class="w-9 h-9
+                                rounded-lg
+                                bg-green-800
+                                flex
+                                items-center
+                                justify-center
+                                text-yellow-400">
+
+                            <svg
+                                class="w-5 h-5"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                                aria-hidden="true">
+
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M12 3l9 5-9 5-9-5 9-5z" />
+
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M5 12v4c0 1.5 3.13 3 7 3s7-1.5 7-3v-4" />
+
+                            </svg>
+
+                        </span>
+
+                        <span>
+
+                            <span class="block">
+                                Leadership
+                            </span>
+
+                            <span class="block text-xs text-green-300 font-normal">
+                                Government Leadership
+                            </span>
+
+                        </span>
+
+                    </span>
+
+
+                    <!-- Chevron -->
+
+                    <svg
+                        id="mobileLeadershipIcon"
+                        class="w-5 h-5
+                            text-yellow-400
+                            transition-transform
+                            duration-200"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        aria-hidden="true">
+
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M19 9l-7 7-7-7" />
+
+                    </svg>
+
+                </button>
+
+
+                <!-- =================================================
+                    LEADERSHIP SUBMENU
+                ================================================== -->
+
+                <div
+                    id="mobileLeadershipMenu"
+                    class="hidden
+                        bg-green-950/80
+                        border-t
+                        border-green-800">
+
+
+                    <!-- =================================================
+                        EXECUTIVE LEADERSHIP
+                    ================================================== -->
+
+                    <a
+                        href="{% url 'executive_leadership' %}"
+                        class="flex
+                            items-center
+                            gap-3
+                            px-8
+                            py-4
+                            border-b
+                            border-white/5
+                            text-green-100
+                            hover:bg-green-800
+                            hover:text-yellow-300
+                            transition
+                            {% if request.resolver_match.url_name == 'executive_leadership' %}
+                                bg-green-800 text-yellow-300
+                            {% endif %}">
+
+                        <span
+                            class="w-9 h-9
+                                flex-shrink-0
+                                rounded-lg
+                                bg-green-800
+                                text-green-200
+                                flex
+                                items-center
+                                justify-center">
+
+                            <svg
+                                class="w-5 h-5"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                                aria-hidden="true">
+
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M12 14l9-5-9-5-9 5 9 5z" />
+
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M12 14l6.16-3.42
+                                    A12.083 12.083 0 0118 20.5
+                                    M12 14L5.84 10.58
+                                    A12.083 12.083 0 006 20.5" />
+
+                            </svg>
+
+                        </span>
+
+                        <span>
+
+                            <span class="block font-semibold text-sm">
+                                Executive Leadership
+                            </span>
+
+                            <span class="block text-xs text-green-300">
+                                Executive Chairman & Administration
+                            </span>
+
+                        </span>
+
+                    </a>
+
+
+                    <!-- =================================================
+                        LEGISLATIVE LEADERSHIP
+                    ================================================== -->
+
+                    <a
+                        href="{% url 'legislative_leadership' %}"
+                        class="flex
+                            items-center
+                            gap-3
+                            px-8
+                            py-4
+                            border-b
+                            border-white/5
+                            text-green-100
+                            hover:bg-green-800
+                            hover:text-yellow-300
+                            transition
+                            {% if request.resolver_match.url_name == 'legislative_leadership' %}
+                                bg-green-800 text-yellow-300
+                            {% endif %}">
+
+                        <span
+                            class="w-9 h-9
+                                flex-shrink-0
+                                rounded-lg
+                                bg-yellow-900/40
+                                text-yellow-400
+                                flex
+                                items-center
+                                justify-center">
+
+                            <svg
+                                class="w-5 h-5"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                                aria-hidden="true">
+
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M3 21h18M5 21V10
+                                    l7-4 7 4v11
+                                    M9 21v-7h6v7" />
+
+                            </svg>
+
+                        </span>
+
+                        <span>
+
+                            <span class="block font-semibold text-sm">
+                                Legislative Leadership
+                            </span>
+
+                            <span class="block text-xs text-green-300">
+                                Legislative Council & Representatives
+                            </span>
+
+                        </span>
+
+                    </a>
+
+
+                    <!-- =================================================
+                        TRADITIONAL LEADERSHIP
+                    ================================================== -->
+
+                    <a
+                        href="{% url 'traditional_leadership' %}"
+                        class="flex
+                            items-center
+                            gap-3
+                            px-8
+                            py-4
+                            border-b
+                            border-white/5
+                            text-green-100
+                            hover:bg-green-800
+                            hover:text-yellow-300
+                            transition
+                            {% if request.resolver_match.url_name == 'traditional_leadership' %}
+                                bg-green-800 text-yellow-300
+                            {% elif request.resolver_match.url_name == 'traditional_leadership_detail' %}
+                                bg-green-800 text-yellow-300
+                            {% endif %}">
+
+                        <span
+                            class="w-9 h-9
+                                flex-shrink-0
+                                rounded-lg
+                                bg-orange-900/40
+                                text-orange-400
+                                flex
+                                items-center
+                                justify-center">
+
+                            <svg
+                                class="w-5 h-5"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                                aria-hidden="true">
+
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M12 3l2.5 5.5L20 10l-4
+                                    4 1 5.5-5-2.5-5 2.5L8
+                                    14l-4-4 5.5-1.5L12 3z" />
+
+                            </svg>
+
+                        </span>
+
+                        <span>
+
+                            <span class="block font-semibold text-sm">
+                                Traditional Leadership
+                            </span>
+
+                            <span class="block text-xs text-green-300">
+                                Traditional Institutions & Leaders
+                            </span>
+
+                        </span>
+
+                    </a>
+
+
+                    <!-- =================================================
+                        LEADERSHIP ARCHIVE
+                    ================================================== -->
+
+                    <a
+                        href="{% url 'past_chairman_list' %}"
+                        class="flex
+                            items-center
+                            gap-3
+                            px-8
+                            py-4
+                            text-green-100
+                            hover:bg-green-800
+                            hover:text-yellow-300
+                            transition
+                            {% if request.resolver_match.url_name == 'past_chairman_list' %}
+                                bg-green-800 text-yellow-300
+                            {% elif request.resolver_match.url_name == 'past_chairman_detail' %}
+                                bg-green-800 text-yellow-300
+                            {% endif %}">
+
+                        <span
+                            class="w-9 h-9
+                                flex-shrink-0
+                                rounded-lg
+                                bg-gray-800
+                                text-gray-300
+                                flex
+                                items-center
+                                justify-center">
+
+                            <svg
+                                class="w-5 h-5"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                                aria-hidden="true">
+
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M4 6h16M4 12h16M4 18h16" />
+
+                            </svg>
+
+                        </span>
+
+                        <span>
+
+                            <span class="block font-semibold text-sm">
+                                Leadership Archive
+                            </span>
+
+                            <span class="block text-xs text-green-300">
+                                Past Chairmen & Historical Records
+                            </span>
+
+                        </span>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                CLANS
+            ================================================== -->
+
+            <a
+                href="{% url 'clan_category_list' %}"
+                class="mobile-nav-link
+                    {% if request.resolver_match.url_name == 'clan_category_list' %}
+                        active
+                    {% endif %}"
+                {% if request.resolver_match.url_name == 'clan_category_list' %}
+                    aria-current="page"
+                {% endif %}>
+
+                Clans
+
+            </a>
+
+
+            <!-- =================================================
+                PROJECTS
+            ================================================== -->
+
+            <a
+                href="{% url 'project_list' %}"
+                class="mobile-nav-link
+                    {% if request.resolver_match.url_name == 'project_list' %}
+                        active
+                    {% endif %}">
+
+                Projects
+
+            </a>
+
+
+            <!-- =================================================
+                TOURISM
+            ================================================== -->
+
+            <a
+                href="{% url 'tourism_home' %}"
+                class="mobile-nav-link
+                    {% if request.resolver_match.url_name == 'tourism_home' %}
+                        active
+                    {% endif %}">
+
+                Tourism
+
+            </a>
+
+
+            <!-- =================================================
+                EVENTS
+            ================================================== -->
+
+            <a
+                href="{% url 'event_list' %}"
+                class="mobile-nav-link
+                    {% if request.resolver_match.url_name == 'event_list' %}
+                        active
+                    {% endif %}">
+
+                Events
+
+            </a>
+
+
+            <!-- =================================================
+                GALLERY
+            ================================================== -->
+
+            <a
+                href="{% url 'gallery_list' %}"
+                class="mobile-nav-link
+                    {% if request.resolver_match.url_name == 'gallery_list' %}
+                        active
+                    {% endif %}">
+
+                Gallery
+
+            </a>
+
+
+            <!-- =================================================
+                MAP
+            ================================================== -->
+
+            <a
+                href="{% url 'uruan_map' %}"
+                class="mobile-nav-link
+                    {% if request.resolver_match.url_name == 'uruan_map' %}
+                        active
+                    {% endif %}">
+
+                Map
+
+            </a>
+
+
+            <!-- =================================================
+                CONTACT
+            ================================================== -->
+
+            <a
+                href="{% url 'contact' %}"
+                class="mobile-nav-link
+                    {% if request.resolver_match.url_name == 'contact' %}
+                        active
+                    {% endif %}">
+
+                Contact
+
+            </a>
+
+        </div>
+
+    </div>
+
+
+
+</nav>
+
+
+<!-- =========================================================
+     MAIN CONTENT
+========================================================== -->
+
+<main id="main-content"
+      tabindex="-1">
+
+    {% block content %}
+
+    {% endblock %}
+
+</main>
+
+
+<!-- =========================================================
+     GOVERNMENT CALL-TO-ACTION / PUBLIC SERVICES
+========================================================== -->
+
+<section class="bg-white border-t border-gray-200">
+
+    <div class="max-w-7xl mx-auto
+                px-4 sm:px-6 lg:px-8
+                py-10">
+
+
+        <div class="grid grid-cols-1
+                    sm:grid-cols-2
+                    lg:grid-cols-4
+                    gap-4">
+
+
+            <!-- NEWS -->
+
+            <a
+                href="{% url 'news:news_list' %}"
+                class="group
+                       border
+                       border-gray-200
+                       rounded-xl
+                       p-5
+                       bg-gray-50
+                       hover:bg-green-50
+                       hover:border-green-300
+                       transition
+                       shadow-sm">
+
+                <div class="text-2xl mb-3">
+                    📰
+                </div>
+
+                <h3 class="font-bold
+                           text-green-900
+                           group-hover:text-green-700">
+
+                    Latest News
+
+                </h3>
+
+                <p class="text-sm
+                          text-gray-500
+                          mt-1">
+
+                    Government announcements and updates.
+
+                </p>
+
+            </a>
+
+
+            <!-- PROJECTS -->
+
+            <a
+                href="{% url 'project_list' %}"
+                class="group
+                       border
+                       border-gray-200
+                       rounded-xl
+                       p-5
+                       bg-gray-50
+                       hover:bg-green-50
+                       hover:border-green-300
+                       transition
+                       shadow-sm">
+
+                <div class="text-2xl mb-3">
+                    🏗️
+                </div>
+
+                <h3 class="font-bold
+                           text-green-900
+                           group-hover:text-green-700">
+
+                    Development Projects
+
+                </h3>
+
+                <p class="text-sm
+                          text-gray-500
+                          mt-1">
+
+                    Explore projects across Uruan.
+
+                </p>
+
+            </a>
+
+
+            <!-- TOURISM -->
+
+            <a
+                href="{% url 'tourism_home' %}"
+                class="group
+                       border
+                       border-gray-200
+                       rounded-xl
+                       p-5
+                       bg-gray-50
+                       hover:bg-green-50
+                       hover:border-green-300
+                       transition
+                       shadow-sm">
+
+                <div class="text-2xl mb-3">
+                    🌴
+                </div>
+
+                <h3 class="font-bold
+                           text-green-900
+                           group-hover:text-green-700">
+
+                    Tourism
+
+                </h3>
+
+                <p class="text-sm
+                          text-gray-500
+                          mt-1">
+
+                    Discover places and attractions in Uruan.
+
+                </p>
+
+            </a>
+
+
+            <!-- CONTACT -->
+
+            <a
+                href="{% url 'contact' %}"
+                class="group
+                       border
+                       border-gray-200
+                       rounded-xl
+                       p-5
+                       bg-gray-50
+                       hover:bg-green-50
+                       hover:border-green-300
+                       transition
+                       shadow-sm">
+
+                <div class="text-2xl mb-3">
+                    📞
+                </div>
+
+                <h3 class="font-bold
+                           text-green-900
+                           group-hover:text-green-700">
+
+                    Contact Government
+
+                </h3>
+
+                <p class="text-sm
+                          text-gray-500
+                          mt-1">
+
+                    Get in touch with the Local Government.
+
+                </p>
+
+            </a>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     FOOTER
+========================================================== -->
+
+<footer class="bg-green-950 text-white">
+
+
+    <div class="max-w-7xl mx-auto
+                px-4 sm:px-6 lg:px-8
+                py-14">
+
+
+        <div class="grid grid-cols-1
+                    sm:grid-cols-2
+                    lg:grid-cols-4
+                    gap-10">
+
+
+            <!-- =================================================
+                 GOVERNMENT IDENTITY
+            ================================================== -->
+
+            <div>
+
+                <div class="flex items-center gap-4">
+
+                    <img
+                        src="{% static 'images/uruan-logo.jpeg' %}"
+                        alt="Uruan Local Government Area Logo"
+                        class="w-20 h-20 object-contain">
+
+                    <div>
+
+                        <h3 class="font-bold
+                                   text-xl">
+
+                            URUAN LGA
+
+                        </h3>
+
+                        <p class="text-sm
+                                  text-green-300">
+
+                            Akwa Ibom State
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <p class="mt-5
+                          text-gray-300
+                          leading-relaxed
+                          text-sm">
+
+                    Building a greater Uruan through
+                    transparent governance, community
+                    development and citizen participation.
+
+                </p>
+
+            </div>
+
+
+            <!-- =================================================
+                 QUICK LINKS
+            ================================================== -->
+
+            <div>
+
+                <h3 class="font-bold
+                           text-lg
+                           mb-5
+                           text-yellow-400">
+
+                    Quick Links
+
+                </h3>
+
+
+                <ul class="space-y-3
+                           text-sm
+                           text-gray-300">
+
+
+                    <li>
+
+                        <a href="{% url 'home' %}"
+                           class="hover:text-yellow-400 transition">
+
+                            Home
+
+                        </a>
+
+                    </li>
+
+
+                    <li>
+
+                        <a href="{% url 'news:news_list' %}"
+                           class="hover:text-yellow-400 transition">
+
+                            News & Announcements
+
+                        </a>
+
+                    </li>
+
+
+                    <li>
+
+                        <a href="{% url 'about_uruan' %}"
+                           class="hover:text-yellow-400 transition">
+
+                            About Uruan
+
+                        </a>
+
+                    </li>
+
+
+                    <li>
+
+                        <a href="{% url 'project_list' %}"
+                           class="hover:text-yellow-400 transition">
+
+                            Projects
+
+                        </a>
+
+                    </li>
+
+
+                    <li>
+
+                        <a href="{% url 'contact' %}"
+                           class="hover:text-yellow-400 transition">
+
+                            Contact Us
+
+                        </a>
+
+                    </li>
+
+
+                </ul>
+
+            </div>
+
+
+            <!-- =================================================
+                 COMMUNITY
+            ================================================== -->
+
+            <div>
+
+                <h3 class="font-bold
+                           text-lg
+                           mb-5
+                           text-yellow-400">
+
+                    Explore Uruan
+
+                </h3>
+
+
+                <ul class="space-y-3
+                           text-sm
+                           text-gray-300">
+
+
+                    <li>
+
+                        <a href="{% url 'clan_list' %}"
+                           class="hover:text-yellow-400 transition">
+
+                            The 7 Clans
+
+                        </a>
+
+                    </li>
+
+
+                    <li>
+
+                        <a href="{% url 'past_chairman_list' %}"
+                           class="hover:text-yellow-400 transition">
+
+                            Past Chairmen
+
+                        </a>
+
+                    </li>
+
+
+                    <li>
+
+                        <a href="{% url 'tourism_home' %}"
+                           class="hover:text-yellow-400 transition">
+
+                            Tourism & Attractions
+
+                        </a>
+
+                    </li>
+
+
+                    <li>
+
+                        <a href="{% url 'event_list' %}"
+                           class="hover:text-yellow-400 transition">
+
+                            Events
+
+                        </a>
+
+                    </li>
+
+
+                    <li>
+
+                        <a href="{% url 'gallery_list' %}"
+                           class="hover:text-yellow-400 transition">
+
+                            Photo Gallery
+
+                        </a>
+
+                    </li>
+
+
+                    <li>
+
+                        <a href="{% url 'uruan_map' %}"
+                           class="hover:text-yellow-400 transition">
+
+                            Interactive Map
+
+                        </a>
+
+                    </li>
+
+
+                </ul>
+
+            </div>
+
+
+            <!-- =================================================
+                 CONTACT
+            ================================================== -->
+
+            <div>
+
+                <h3 class="font-bold
+                           text-lg
+                           mb-5
+                           text-yellow-400">
+
+                    Contact Us
+
+                </h3>
+
+
+                <div class="space-y-3
+                            text-sm
+                            text-gray-300">
+
+
+                    <p>
+
+                        <strong class="text-white">
+                            Address
+                        </strong>
+
+                        <br>
+
+                        Uruan Local Government Secretariat,
+                        Akwa Ibom State, Nigeria.
+
+                    </p>
+
+
+                    <p>
+
+                        <strong class="text-white">
+                            Email
+                        </strong>
+
+                        <br>
+
+                        info@uruanlga.gov.ng
+
+                    </p>
+
+
+                    <p>
+
+                        <strong class="text-white">
+                            Telephone
+                        </strong>
+
+                        <br>
+
+                        +234 xxx xxx xxxx
+
+                    </p>
+
+
+                </div>
+
+
+                <!-- SOCIAL MEDIA PLACEHOLDERS -->
+
+                <div class="flex items-center gap-3 mt-6">
+
+                    <a
+                        href="#"
+                        aria-label="Facebook"
+                        class="w-9 h-9
+                               rounded-full
+                               bg-green-900
+                               flex items-center
+                               justify-center
+                               hover:bg-yellow-500
+                               hover:text-green-950
+                               transition">
+
+                        f
+
+                    </a>
+
+
+                    <a
+                        href="#"
+                        aria-label="X"
+                        class="w-9 h-9
+                               rounded-full
+                               bg-green-900
+                               flex items-center
+                               justify-center
+                               hover:bg-yellow-500
+                               hover:text-green-950
+                               transition">
+
+                        𝕏
+
+                    </a>
+
+
+                    <a
+                        href="#"
+                        aria-label="YouTube"
+                        class="w-9 h-9
+                               rounded-full
+                               bg-green-900
+                               flex items-center
+                               justify-center
+                               hover:bg-yellow-500
+                               hover:text-green-950
+                               transition">
+
+                        ▶
+
+                    </a>
+
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================================================
+         FOOTER BOTTOM
+    ========================================================== -->
+
+    <div class="border-t
+                border-green-800">
+
+
+        <div class="max-w-7xl mx-auto
+                    px-4 sm:px-6 lg:px-8
+                    py-6">
+
+
+            <div class="flex flex-col
+                        md:flex-row
+                        justify-between
+                        items-center
+                        gap-3
+                        text-xs
+                        text-gray-400">
+
+
+                <p>
+
+                    © {% now "Y" %}
+                    Uruan Local Government Area.
+                    All Rights Reserved.
+
+                </p>
+
+
+                <div class="flex items-center gap-5">
+
+                    <a href="#"
+                       class="hover:text-yellow-400 transition">
+
+                        Privacy Policy
+
+                    </a>
+
+                    <a href="#"
+                       class="hover:text-yellow-400 transition">
+
+                        Terms of Use
+
+                    </a>
+
+                    <span>
+
+                        Official Government Portal
+
+                    </span>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+</footer>
+
+
+<!-- =========================================================
+     BACK TO TOP
+========================================================== -->
+
+<button
+    id="backToTop"
+    type="button"
+    aria-label="Back to top"
+    title="Back to top"
+    class="fixed
+           bottom-6
+           right-6
+           z-40
+           w-12
+           h-12
+           rounded-full
+           bg-green-800
+           text-white
+           shadow-xl
+           hover:bg-green-700
+           hover:text-yellow-300
+           transition">
+
+    ↑
+
+</button>
+
+
+<!-- =========================================================
+     JAVASCRIPT
+========================================================== -->
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+
+
+    /* =========================================================
+       MOBILE MENU
+    ========================================================== */
+
+    const mobileMenuBtn =
+        document.getElementById("mobileMenuBtn");
+
+    const mobileMenu =
+        document.getElementById("mobileMenu");
+
+    const menuIcon =
+        document.getElementById("menuIcon");
+
+
+    if (mobileMenuBtn && mobileMenu) {
+
+        mobileMenuBtn.addEventListener("click", function () {
+
+            const isOpen =
+                !mobileMenu.classList.contains("hidden");
+
+
+            mobileMenu.classList.toggle("hidden");
+
+            mobileMenuBtn.setAttribute(
+                "aria-expanded",
+                String(!isOpen)
+            );
+
+
+            /* Change hamburger icon */
+
+            if (menuIcon) {
+
+                if (!isOpen) {
+
+                    menuIcon.innerHTML = `
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            d="M6 18L18 6M6 6l12 12"/>
+                    `;
+
+                } else {
+
+                    menuIcon.innerHTML = `
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/>
+                    `;
+
+                }
+
+            }
+
+        });
+
+
+        /* Close mobile menu after navigation */
+
+        mobileMenu
+            .querySelectorAll("a")
+            .forEach(function (link) {
+
+                link.addEventListener("click", function () {
+
+                    mobileMenu.classList.add("hidden");
+
+                    mobileMenuBtn.setAttribute(
+                        "aria-expanded",
+                        "false"
+                    );
+
+                });
+
+            });
+
+    }
+
+
+    /* =========================================================
+       BACK TO TOP
+    ========================================================== */
+
+    const backToTop =
+        document.getElementById("backToTop");
+
+
+    function updateBackToTop() {
+
+        if (window.scrollY > 400) {
+
+            backToTop.classList.add("show");
+
+        } else {
+
+            backToTop.classList.remove("show");
+
+        }
+
+    }
+
+
+    window.addEventListener(
+        "scroll",
+        updateBackToTop,
+        { passive: true }
+    );
+
+
+    if (backToTop) {
+
+        backToTop.addEventListener(
+            "click",
+            function () {
+
+                window.scrollTo({
+                    top: 0,
+                    behavior: "smooth"
+                });
+
+            }
+        );
+
+    }
+
+
+    /* =========================================================
+       SCROLL PROGRESS
+    ========================================================== */
+
+    const scrollProgress =
+        document.getElementById("scrollProgress");
+
+
+    function updateScrollProgress() {
+
+        const scrollTop =
+            window.scrollY;
+
+        const documentHeight =
+            document.documentElement.scrollHeight
+            - window.innerHeight;
+
+
+        if (documentHeight <= 0) {
+
+            scrollProgress.style.width = "0%";
+
+            return;
+
+        }
+
+
+        const percentage =
+            (scrollTop / documentHeight) * 100;
+
+
+        scrollProgress.style.width =
+            percentage + "%";
+
+    }
+
+
+    window.addEventListener(
+        "scroll",
+        updateScrollProgress,
+        { passive: true }
+    );
+
+
+    updateBackToTop();
+    updateScrollProgress();
+
+
+});
+
+</script>
+
+
+{% block extra_js %}
+{% endblock %}
+
+
+</body>
+
+</html>

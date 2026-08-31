@@ -1,0 +1,1138 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    {{ ward.name }} | {{ clan.name }} | Uruan Local Government Area
+{% endblock %}
+
+{% block content %}
+
+<!-- ============================================================
+     HERO
+============================================================ -->
+<section class="relative overflow-hidden bg-green-950">
+
+    {% if ward.image %}
+
+    <div class="absolute inset-0">
+
+        <img
+            src="{{ ward.image.url }}"
+            alt="{{ ward.name }}"
+            class="w-full h-full object-cover"
+        >
+
+        <div class="absolute inset-0 bg-green-950/85"></div>
+
+    </div>
+
+    {% else %}
+
+    <div
+        class="absolute inset-0
+               bg-gradient-to-br
+               from-green-900
+               via-green-950
+               to-black"
+    ></div>
+
+    {% endif %}
+
+
+    <div
+        class="relative
+               container
+               mx-auto
+               px-6
+               py-20
+               sm:py-24
+               lg:py-32"
+    >
+
+        <!-- ====================================================
+             BREADCRUMB
+        ===================================================== -->
+        <nav
+            class="mb-8
+                   text-sm
+                   text-green-100
+                   flex flex-wrap
+                   items-center"
+            aria-label="Breadcrumb"
+        >
+
+            <a
+                href="{% url 'home' %}"
+                class="hover:text-yellow-300 transition"
+            >
+                Home
+            </a>
+
+            <span class="mx-2 text-green-400">
+                /
+            </span>
+
+            <a
+                href="{% url 'clan_list' %}"
+                class="hover:text-yellow-300 transition"
+            >
+                Clans
+            </a>
+
+            <span class="mx-2 text-green-400">
+                /
+            </span>
+
+            <a
+                href="{{ clan.get_absolute_url }}"
+                class="hover:text-yellow-300 transition"
+            >
+                {{ clan.name }}
+            </a>
+
+            <span class="mx-2 text-green-400">
+                /
+            </span>
+
+            <span class="text-yellow-300">
+                {{ ward.name }}
+            </span>
+
+        </nav>
+
+
+        <!-- ====================================================
+             CATEGORY BADGE
+        ===================================================== -->
+        <div
+            class="inline-flex
+                   items-center
+                   gap-2
+                   bg-yellow-500/20
+                   border
+                   border-yellow-400/40
+                   text-yellow-300
+                   px-4
+                   py-2
+                   rounded-full
+                   text-sm
+                   font-semibold"
+        >
+
+            <span
+                class="w-2
+                       h-2
+                       rounded-full
+                       bg-yellow-400"
+            ></span>
+
+            {{ category.get_name_display }}
+
+        </div>
+
+
+        <!-- ====================================================
+             TITLE
+        ===================================================== -->
+        <div class="max-w-4xl">
+
+            <h1
+                class="mt-6
+                       text-4xl
+                       sm:text-5xl
+                       lg:text-6xl
+                       font-extrabold
+                       text-white
+                       leading-tight"
+            >
+
+                {{ ward.name }}
+
+            </h1>
+
+
+            <div
+                class="mt-4
+                       flex flex-wrap
+                       items-center
+                       gap-3
+                       text-green-100"
+            >
+
+                <span>
+                    Part of
+                </span>
+
+                <a
+                    href="{{ clan.get_absolute_url }}"
+                    class="font-bold
+                           text-yellow-300
+                           hover:text-yellow-200
+                           transition"
+                >
+                    {{ clan.name }}
+                </a>
+
+            </div>
+
+
+            {% if ward.description %}
+
+            <p
+                class="mt-6
+                       text-lg
+                       sm:text-xl
+                       text-green-50
+                       max-w-3xl
+                       leading-relaxed"
+            >
+
+                {{ ward.description }}
+
+            </p>
+
+            {% else %}
+
+            <p
+                class="mt-6
+                       text-lg
+                       sm:text-xl
+                       text-green-50
+                       max-w-3xl
+                       leading-relaxed"
+            >
+
+                Explore the villages, communities and heritage
+                that make up {{ ward.name }}.
+
+            </p>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ============================================================
+     WARD SUMMARY
+============================================================ -->
+<section class="bg-white border-b border-gray-200">
+
+    <div class="container mx-auto px-6 py-10">
+
+        <div
+            class="max-w-5xl
+                   mx-auto
+                   grid
+                   grid-cols-1
+                   sm:grid-cols-3
+                   gap-6"
+        >
+
+            <!-- WARD -->
+            <div
+                class="bg-gray-50
+                       border
+                       border-gray-200
+                       rounded-2xl
+                       p-6
+                       text-center
+                       hover:shadow-lg
+                       transition"
+            >
+
+                <div
+                    class="w-14
+                           h-14
+                           mx-auto
+                           rounded-full
+                           bg-green-100
+                           text-green-700
+                           flex
+                           items-center
+                           justify-center"
+                >
+
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="w-7 h-7"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                    >
+
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M3 21h18
+                               M5 21V9l7-6 7 6v12
+                               M9 21v-6h6v6"
+                        />
+
+                    </svg>
+
+                </div>
+
+                <p
+                    class="mt-4
+                           text-3xl
+                           font-extrabold
+                           text-gray-900"
+                >
+                    1
+                </p>
+
+                <p class="mt-1 text-gray-500">
+                    Ward
+                </p>
+
+            </div>
+
+
+            <!-- VILLAGES -->
+            <div
+                class="bg-gray-50
+                       border
+                       border-gray-200
+                       rounded-2xl
+                       p-6
+                       text-center
+                       hover:shadow-lg
+                       transition"
+            >
+
+                <div
+                    class="w-14
+                           h-14
+                           mx-auto
+                           rounded-full
+                           bg-yellow-100
+                           text-yellow-700
+                           flex
+                           items-center
+                           justify-center"
+                >
+
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="w-7 h-7"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                    >
+
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M3 10l9-7 9 7v10
+                               a2 2 0 01-2 2H5
+                               a2 2 0 01-2-2V10z"
+                        />
+
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M9 21v-8h6v8"
+                        />
+
+                    </svg>
+
+                </div>
+
+                <p
+                    class="mt-4
+                           text-3xl
+                           font-extrabold
+                           text-gray-900"
+                >
+                    {{ village_count }}
+                </p>
+
+                <p class="mt-1 text-gray-500">
+                    Village{{ village_count|pluralize }}
+                </p>
+
+            </div>
+
+
+            <!-- CLAN -->
+            <div
+                class="bg-gray-50
+                       border
+                       border-gray-200
+                       rounded-2xl
+                       p-6
+                       text-center
+                       hover:shadow-lg
+                       transition"
+            >
+
+                <div
+                    class="w-14
+                           h-14
+                           mx-auto
+                           rounded-full
+                           bg-green-100
+                           text-green-700
+                           flex
+                           items-center
+                           justify-center"
+                >
+
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="w-7 h-7"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                    >
+
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M17 20h5v-2
+                               a4 4 0 00-4-4h-1
+                               M9 20H4v-2
+                               a4 4 0 014-4h1
+                               m4-4
+                               a4 4 0 100-8
+                               4 4 0 000 8z"
+                        />
+
+                    </svg>
+
+                </div>
+
+                <p
+                    class="mt-4
+                           text-xl
+                           font-extrabold
+                           text-gray-900"
+                >
+                    {{ clan.name }}
+                </p>
+
+                <p class="mt-1 text-gray-500">
+                    Clan
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ============================================================
+     VILLAGES
+============================================================ -->
+<section class="bg-gray-50 py-16 lg:py-24">
+
+    <div class="container mx-auto px-6">
+
+        <!-- SECTION HEADER -->
+        <div
+            class="max-w-3xl
+                   mx-auto
+                   text-center
+                   mb-14"
+        >
+
+            <span
+                class="text-green-700
+                       font-bold
+                       uppercase
+                       tracking-widest
+                       text-sm"
+            >
+                Community Structure
+            </span>
+
+
+            <h2
+                class="mt-3
+                       text-3xl
+                       sm:text-4xl
+                       font-bold
+                       text-gray-900"
+            >
+
+                Villages in {{ ward.name }}
+
+            </h2>
+
+
+            <div
+                class="w-20
+                       h-1
+                       bg-yellow-500
+                       mx-auto
+                       mt-5"
+            ></div>
+
+
+            <p
+                class="mt-6
+                       text-gray-600
+                       leading-relaxed"
+            >
+
+                Discover the villages and communities that
+                form part of {{ ward.name }}.
+
+            </p>
+
+        </div>
+
+
+        {% if villages %}
+
+        <!-- VILLAGE GRID -->
+        <div
+            class="max-w-6xl
+                   mx-auto
+                   grid
+                   grid-cols-1
+                   sm:grid-cols-2
+                   lg:grid-cols-3
+                   gap-7"
+        >
+
+            {% for village in villages %}
+
+            <article
+                class="group
+                       bg-white
+                       rounded-2xl
+                       overflow-hidden
+                       border
+                       border-gray-200
+                       shadow-sm
+                       hover:shadow-xl
+                       hover:-translate-y-1
+                       transition-all
+                       duration-300"
+            >
+
+                <!-- IMAGE -->
+                <a
+                    href="{{ village.get_absolute_url }}"
+                    class="block relative overflow-hidden"
+                >
+
+                    {% if village.image %}
+
+                    <img
+                        src="{{ village.image.url }}"
+                        alt="{{ village.name }}"
+                        loading="lazy"
+                        class="w-full
+                               h-56
+                               object-cover
+                               group-hover:scale-105
+                               transition-transform
+                               duration-700"
+                    >
+
+                    {% else %}
+
+                    <div
+                        class="w-full
+                               h-56
+                               bg-gradient-to-br
+                               from-green-800
+                               to-green-950
+                               flex
+                               items-center
+                               justify-center"
+                    >
+
+                        <div
+                            class="text-center
+                                   text-yellow-400"
+                        >
+
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                class="w-16
+                                       h-16
+                                       mx-auto"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                            >
+
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="1.5"
+                                    d="M3 10l9-7 9 7v10
+                                       a2 2 0 01-2 2H5
+                                       a2 2 0 01-2-2V10z"
+                                />
+
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="1.5"
+                                    d="M9 21v-8h6v8"
+                                />
+
+                            </svg>
+
+                        </div>
+
+                    </div>
+
+                    {% endif %}
+
+
+                    <!-- NUMBER -->
+                    <div
+                        class="absolute
+                               top-4
+                               left-4
+                               w-10
+                               h-10
+                               rounded-full
+                               bg-yellow-500
+                               text-green-950
+                               flex
+                               items-center
+                               justify-center
+                               font-extrabold
+                               shadow-lg"
+                    >
+
+                        {{ forloop.counter }}
+
+                    </div>
+
+                </a>
+
+
+                <!-- CONTENT -->
+                <div class="p-6">
+
+                    <h3
+                        class="text-2xl
+                               font-bold
+                               text-gray-900
+                               group-hover:text-green-700
+                               transition"
+                    >
+
+                        {{ village.name }}
+
+                    </h3>
+
+
+                    {% if village.description %}
+
+                    <p
+                        class="mt-3
+                               text-gray-600
+                               text-sm
+                               leading-relaxed"
+                    >
+
+                        {{ village.description|truncatewords:28 }}
+
+                    </p>
+
+                    {% else %}
+
+                    <p
+                        class="mt-3
+                               text-gray-500
+                               text-sm
+                               leading-relaxed"
+                    >
+
+                        Discover the community, history and
+                        heritage of {{ village.name }}.
+
+                    </p>
+
+                    {% endif %}
+
+
+                    <div
+                        class="mt-6
+                               pt-5
+                               border-t
+                               border-gray-100
+                               flex
+                               items-center
+                               justify-between"
+                    >
+
+                        <span
+                            class="inline-flex
+                                   items-center
+                                   gap-2
+                                   text-sm
+                                   text-gray-500"
+                        >
+
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                class="w-5 h-5 text-green-700"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                            >
+
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M3 10l9-7 9 7v10
+                                       a2 2 0 01-2 2H5
+                                       a2 2 0 01-2-2V10z"
+                                />
+
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M9 21v-8h6v8"
+                                />
+
+                            </svg>
+
+                            Village
+
+                        </span>
+
+
+                        <a
+                            href="{{ village.get_absolute_url }}"
+                            class="inline-flex
+                                   items-center
+                                   gap-2
+                                   text-green-700
+                                   font-semibold
+                                   text-sm
+                                   hover:text-green-900
+                                   transition"
+                        >
+
+                            Explore
+
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                class="w-4 h-4
+                                       group-hover:translate-x-1
+                                       transition-transform"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                            >
+
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M9 5l7 7-7 7"
+                                />
+
+                            </svg>
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+            {% endfor %}
+
+        </div>
+
+
+        {% else %}
+
+        <!-- ====================================================
+             EMPTY STATE
+        ===================================================== -->
+        <div
+            class="max-w-2xl
+                   mx-auto
+                   text-center
+                   bg-white
+                   border
+                   border-gray-200
+                   rounded-2xl
+                   p-12
+                   shadow-sm"
+        >
+
+            <div
+                class="w-16
+                       h-16
+                       mx-auto
+                       rounded-full
+                       bg-green-100
+                       text-green-700
+                       flex
+                       items-center
+                       justify-center"
+            >
+
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="w-8 h-8"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                >
+
+                    <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M19 20H5a2 2 0 01-2-2V6
+                           a2 2 0 012-2h6l2 2h6
+                           a2 2 0 012 2v10z"
+                    />
+
+                </svg>
+
+            </div>
+
+
+            <h3
+                class="mt-5
+                       text-xl
+                       font-bold
+                       text-gray-900"
+            >
+
+                No villages available
+
+            </h3>
+
+
+            <p class="mt-2 text-gray-600">
+
+                No village information has been added
+                to {{ ward.name }} yet.
+
+            </p>
+
+        </div>
+
+        {% endif %}
+
+    </div>
+
+</section>
+
+
+<!-- ============================================================
+     COMMUNITY HERITAGE
+============================================================ -->
+<section class="bg-white py-16 lg:py-20">
+
+    <div class="container mx-auto px-6">
+
+        <div
+            class="max-w-5xl
+                   mx-auto
+                   grid
+                   grid-cols-1
+                   lg:grid-cols-2
+                   gap-12
+                   items-center"
+        >
+
+            <!-- TEXT -->
+            <div>
+
+                <span
+                    class="text-green-700
+                           font-bold
+                           uppercase
+                           tracking-widest
+                           text-sm"
+                >
+                    Our Heritage
+                </span>
+
+
+                <h2
+                    class="mt-3
+                           text-3xl
+                           sm:text-4xl
+                           font-bold
+                           text-gray-900"
+                >
+
+                    The Communities of {{ ward.name }}
+
+                </h2>
+
+
+                <div
+                    class="w-20
+                           h-1
+                           bg-yellow-500
+                           mt-5"
+                ></div>
+
+
+                <p
+                    class="mt-6
+                           text-gray-600
+                           leading-relaxed"
+                >
+
+                    {{ ward.name }} is part of
+                    <strong>{{ clan.name }}</strong>,
+                    one of the community structures that
+                    contribute to the cultural and historical
+                    identity of Uruan Local Government Area.
+
+                </p>
+
+
+                <p
+                    class="mt-4
+                           text-gray-600
+                           leading-relaxed"
+                >
+
+                    Explore the villages above to learn more
+                    about the communities, people, traditions
+                    and heritage associated with this ward.
+
+                </p>
+
+            </div>
+
+
+            <!-- INFO CARD -->
+            <div
+                class="bg-green-950
+                       rounded-3xl
+                       p-8
+                       sm:p-10
+                       text-white
+                       shadow-xl"
+            >
+
+                <div
+                    class="w-14
+                           h-14
+                           rounded-2xl
+                           bg-yellow-500
+                           text-green-950
+                           flex
+                           items-center
+                           justify-center
+                           text-2xl"
+                >
+
+                    ★
+
+                </div>
+
+
+                <h3
+                    class="mt-6
+                           text-2xl
+                           font-bold"
+                >
+
+                    {{ ward.name }}
+
+                </h3>
+
+
+                <dl class="mt-6 space-y-4">
+
+                    <div
+                        class="flex
+                               items-center
+                               justify-between
+                               gap-4
+                               border-b
+                               border-green-800
+                               pb-4"
+                    >
+
+                        <dt class="text-green-200">
+                            Classification
+                        </dt>
+
+                        <dd class="font-semibold text-yellow-300">
+                            {{ category.get_name_display }}
+                        </dd>
+
+                    </div>
+
+
+                    <div
+                        class="flex
+                               items-center
+                               justify-between
+                               gap-4
+                               border-b
+                               border-green-800
+                               pb-4"
+                    >
+
+                        <dt class="text-green-200">
+                            Clan
+                        </dt>
+
+                        <dd class="font-semibold">
+                            {{ clan.name }}
+                        </dd>
+
+                    </div>
+
+
+                    <div
+                        class="flex
+                               items-center
+                               justify-between
+                               gap-4"
+                    >
+
+                        <dt class="text-green-200">
+                            Villages
+                        </dt>
+
+                        <dd class="font-semibold text-yellow-300">
+                            {{ village_count }}
+                        </dd>
+
+                    </div>
+
+                </dl>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ============================================================
+     NAVIGATION
+============================================================ -->
+<section class="bg-gray-50 py-12">
+
+    <div
+        class="container mx-auto px-6
+               flex
+               flex-col
+               sm:flex-row
+               items-center
+               justify-center
+               gap-4"
+    >
+
+        <!-- BACK TO CLAN -->
+        <a
+            href="{{ clan.get_absolute_url }}"
+            class="inline-flex
+                   items-center
+                   gap-2
+                   bg-green-700
+                   hover:bg-green-800
+                   text-white
+                   font-semibold
+                   px-7
+                   py-3
+                   rounded-lg
+                   transition
+                   shadow-md"
+        >
+
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="w-5 h-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+            >
+
+                <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M15 19l-7-7 7-7"
+                />
+
+            </svg>
+
+            Back to {{ clan.name }}
+
+        </a>
+
+
+        <!-- ALL CLANS -->
+        <a
+            href="{% url 'clan_list' %}"
+            class="inline-flex
+                   items-center
+                   gap-2
+                   border
+                   border-gray-300
+                   hover:border-green-700
+                   hover:text-green-700
+                   text-gray-700
+                   font-semibold
+                   px-7
+                   py-3
+                   rounded-lg
+                   transition"
+        >
+
+            All Clans
+
+        </a>
+
+
+        <!-- HOME -->
+        <a
+            href="{% url 'home' %}"
+            class="inline-flex
+                   items-center
+                   gap-2
+                   border
+                   border-gray-300
+                   hover:border-green-700
+                   hover:text-green-700
+                   text-gray-700
+                   font-semibold
+                   px-7
+                   py-3
+                   rounded-lg
+                   transition"
+        >
+
+            Return Home
+
+        </a>
+
+    </div>
+
+</section>
+
+{% endblock %}

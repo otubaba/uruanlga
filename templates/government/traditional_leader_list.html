@@ -1,0 +1,1069 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Traditional Leadership | Uruan Local Government Area
+{% endblock %}
+
+{% block content %}
+
+<!-- ============================================================
+     HERO
+============================================================ -->
+<section class="relative overflow-hidden bg-green-950 text-white">
+
+    <!-- Background -->
+    <div class="absolute inset-0">
+
+        <img
+            src="{% static 'images/traditional-leadership.jpg' %}"
+            alt=""
+            class="w-full h-full object-cover opacity-20"
+        >
+
+    </div>
+
+    <!-- Overlay -->
+    <div class="absolute inset-0 bg-gradient-to-r
+                from-green-950
+                via-green-950/95
+                to-green-900/80">
+    </div>
+
+
+    <div class="relative container mx-auto px-6
+                py-20 md:py-24 lg:py-28">
+
+        <!-- Breadcrumb -->
+        <nav class="mb-8 text-sm" aria-label="Breadcrumb">
+
+            <ol class="flex flex-wrap items-center gap-2">
+
+                <li>
+                    <a
+                        href="{% url 'home' %}"
+                        class="text-green-200 hover:text-yellow-300 transition"
+                    >
+                        Home
+                    </a>
+                </li>
+
+                <li class="text-green-500">
+                    /
+                </li>
+
+                <li class="text-green-200">
+                    Leadership
+                </li>
+
+                <li class="text-green-500">
+                    /
+                </li>
+
+                <li class="text-yellow-300">
+                    Traditional Leadership
+                </li>
+
+            </ol>
+
+        </nav>
+
+
+        <!-- Label -->
+        <div
+            class="inline-flex items-center gap-2
+                   px-4 py-2
+                   rounded-full
+                   bg-yellow-500/20
+                   border border-yellow-400/40
+                   text-yellow-300
+                   text-xs sm:text-sm
+                   font-bold
+                   uppercase
+                   tracking-widest"
+        >
+
+            <span
+                class="w-2 h-2
+                       bg-yellow-400
+                       rounded-full"
+            ></span>
+
+            Traditional Institution
+
+        </div>
+
+
+        <!-- Heading -->
+        <h1
+            class="mt-6
+                   text-4xl
+                   sm:text-5xl
+                   lg:text-6xl
+                   font-extrabold
+                   leading-tight"
+        >
+            Traditional Leadership
+        </h1>
+
+
+        <p
+            class="mt-6
+                   max-w-3xl
+                   text-lg
+                   md:text-xl
+                   text-green-100
+                   leading-relaxed"
+        >
+
+            Meet the traditional leaders who preserve the cultural heritage,
+            customs, values and identity of communities across Uruan
+            Local Government Area.
+
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- ============================================================
+     INTRODUCTION
+============================================================ -->
+<section class="bg-white py-14 md:py-18">
+
+    <div class="container mx-auto px-6">
+
+        <div class="max-w-4xl mx-auto text-center">
+
+            <span
+                class="inline-block
+                       bg-green-100
+                       text-green-800
+                       px-4 py-2
+                       rounded-full
+                       text-sm
+                       font-bold"
+            >
+                THE TRADITIONAL INSTITUTION
+            </span>
+
+
+            <h2
+                class="mt-5
+                       text-3xl
+                       md:text-4xl
+                       font-extrabold
+                       text-gray-900"
+            >
+                Custodians of Our Heritage
+            </h2>
+
+
+            <div
+                class="w-20 h-1
+                       bg-yellow-500
+                       mx-auto
+                       mt-5"
+            ></div>
+
+
+            <p
+                class="mt-6
+                       text-gray-600
+                       text-lg
+                       leading-relaxed"
+            >
+
+                The traditional institution remains an important part of
+                community leadership in Uruan. Our traditional leaders
+                provide guidance, preserve customs and traditions, promote
+                peace and contribute to the unity and development of their
+                communities.
+
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ============================================================
+     LEADERS GRID
+============================================================ -->
+<section class="bg-gray-50 py-16 md:py-20">
+
+    <div class="container mx-auto px-6">
+
+        <!-- Section Header -->
+        <div
+            class="flex flex-col
+                   md:flex-row
+                   md:items-end
+                   md:justify-between
+                   gap-5
+                   mb-10"
+        >
+
+            <div>
+
+                <p
+                    class="text-sm
+                           uppercase
+                           tracking-widest
+                           font-bold
+                           text-green-700"
+                >
+                    Traditional Leaders
+                </p>
+
+                <h2
+                    class="mt-2
+                           text-3xl
+                           md:text-4xl
+                           font-extrabold
+                           text-gray-900"
+                >
+                    Our Traditional Leadership
+                </h2>
+
+            </div>
+
+            <div
+                class="text-gray-500
+                       text-sm
+                       md:text-right"
+            >
+
+                {% if leaders %}
+                    {{ leaders|length }} leader{{ leaders|length|pluralize }}
+                {% else %}
+                    Traditional Leadership
+                {% endif %}
+
+            </div>
+
+        </div>
+
+
+        {% if leaders %}
+
+        <!-- ====================================================
+             GRID
+        ===================================================== -->
+        <div
+            class="grid
+                   grid-cols-1
+                   sm:grid-cols-2
+                   lg:grid-cols-3
+                   xl:grid-cols-4
+                   gap-7"
+        >
+
+            {% for leader in leaders %}
+
+            <article
+                class="group
+                       bg-white
+                       rounded-2xl
+                       overflow-hidden
+                       border border-gray-200
+                       shadow-sm
+                       hover:shadow-2xl
+                       hover:-translate-y-2
+                       transition-all
+                       duration-300"
+            >
+
+                <!-- =================================================
+                     PHOTO
+                ================================================== -->
+                <div class="relative overflow-hidden">
+
+                    {% if leader.photo %}
+
+                    <img
+                        src="{{ leader.photo.url }}"
+                        alt="{{ leader.full_name }}"
+                        loading="lazy"
+                        class="w-full
+                               h-72
+                               object-cover
+                               object-center
+                               group-hover:scale-105
+                               transition-transform
+                               duration-700"
+                    >
+
+                    {% else %}
+
+                    <div
+                        class="w-full
+                               h-72
+                               bg-gradient-to-br
+                               from-green-800
+                               to-green-950
+                               flex
+                               items-center
+                               justify-center"
+                    >
+
+                        <svg
+                            class="w-24 h-24 text-yellow-400"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                        >
+
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="1.5"
+                                d="M15.75 7.5a3.75 3.75 0 11-7.5 0
+                                   3.75 3.75 0 017.5 0z"
+                            />
+
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="1.5"
+                                d="M4.5 20.25a7.5 7.5 0 0115 0"
+                            />
+
+                        </svg>
+
+                    </div>
+
+                    {% endif %}
+
+
+                    <!-- CURRENT BADGE -->
+
+                    {% if leader.current %}
+
+                    <div class="absolute top-4 left-4">
+
+                        <span
+                            class="inline-flex
+                                   items-center
+                                   gap-2
+                                   bg-yellow-500
+                                   text-green-950
+                                   px-3 py-1.5
+                                   rounded-full
+                                   text-xs
+                                   font-bold
+                                   uppercase
+                                   tracking-wide
+                                   shadow-lg"
+                        >
+
+                            <span
+                                class="w-2 h-2
+                                       bg-green-900
+                                       rounded-full"
+                            ></span>
+
+                            Serving
+
+                        </span>
+
+                    </div>
+
+                    {% endif %}
+
+
+                    <!-- COMMUNITY -->
+
+                    {% if leader.community %}
+
+                    <div
+                        class="absolute
+                               bottom-4
+                               left-4
+                               right-4"
+                    >
+
+                        <span
+                            class="inline-flex
+                                   items-center
+                                   bg-black/60
+                                   backdrop-blur-sm
+                                   text-white
+                                   px-3 py-1.5
+                                   rounded-lg
+                                   text-xs
+                                   font-medium"
+                        >
+
+                            📍 {{ leader.community }}
+
+                        </span>
+
+                    </div>
+
+                    {% endif %}
+
+                </div>
+
+
+                <!-- =================================================
+                     CONTENT
+                ================================================== -->
+                <div class="p-6">
+
+                    <!-- TITLE -->
+
+                    {% if leader.title %}
+
+                    <p
+                        class="text-sm
+                               font-bold
+                               text-yellow-600
+                               uppercase
+                               tracking-wide"
+                    >
+
+                        {{ leader.title }}
+
+                    </p>
+
+                    {% endif %}
+
+
+                    <!-- NAME -->
+
+                    <h3
+                        class="mt-2
+                               text-xl
+                               font-extrabold
+                               text-gray-900
+                               group-hover:text-green-700
+                               transition"
+                    >
+
+                        {{ leader.full_name }}
+
+                    </h3>
+
+
+                    <!-- DESIGNATION -->
+
+                    {% if leader.designation %}
+
+                    <p
+                        class="mt-2
+                               text-sm
+                               font-semibold
+                               text-green-700"
+                    >
+
+                        {{ leader.designation }}
+
+                    </p>
+
+                    {% endif %}
+
+
+                    <!-- CLAN / COMMUNITY -->
+
+                    {% if leader.community %}
+
+                    <p
+                        class="mt-3
+                               flex
+                               items-center
+                               gap-2
+                               text-sm
+                               text-gray-500"
+                    >
+
+                        <svg
+                            class="w-4 h-4 text-green-700"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                        >
+
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M17.657 16.657L13.414
+                                   20.9a1.998 1.998 0 01-2.827
+                                   0l-4.244-4.243a8 8 0
+                                   1111.314 0z"
+                            />
+
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M15 11a3 3 0 11-6 0
+                                   3 3 0 016 0z"
+                            />
+
+                        </svg>
+
+                        {{ leader.community }}
+
+                    </p>
+
+                    {% endif %}
+
+
+                    <!-- SHORT BIO -->
+
+                    {% if leader.biography %}
+
+                    <p
+                        class="mt-4
+                               text-gray-600
+                               text-sm
+                               leading-relaxed"
+                    >
+
+                        {{ leader.biography|truncatewords:22 }}
+
+                    </p>
+
+                    {% endif %}
+
+
+                    <!-- VIEW PROFILE -->
+
+                    {% if leader.slug %}
+
+                    <a
+                        href="{% url 'traditional_leader_detail' leader.slug %}"
+                        class="mt-5
+                               inline-flex
+                               items-center
+                               gap-2
+                               text-green-700
+                               font-bold
+                               text-sm
+                               hover:text-green-900
+                               transition"
+                    >
+
+                        View Profile
+
+                        <svg
+                            class="w-4 h-4
+                                   group-hover:translate-x-1
+                                   transition-transform"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                        >
+
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M9 5l7 7-7 7"
+                            />
+
+                        </svg>
+
+                    </a>
+
+                    {% endif %}
+
+                </div>
+
+            </article>
+
+            {% endfor %}
+
+        </div>
+
+
+        {% else %}
+
+        <!-- ====================================================
+             EMPTY STATE
+        ===================================================== -->
+        <div
+            class="max-w-2xl
+                   mx-auto
+                   text-center
+                   bg-white
+                   rounded-2xl
+                   border border-gray-200
+                   shadow-sm
+                   p-10 md:p-14"
+        >
+
+            <div
+                class="w-20 h-20
+                       mx-auto
+                       rounded-full
+                       bg-green-100
+                       text-green-700
+                       flex
+                       items-center
+                       justify-center"
+            >
+
+                <svg
+                    class="w-10 h-10"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                >
+
+                    <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="1.5"
+                        d="M12 14a4 4 0 100-8
+                           4 4 0 000 8z"
+                    />
+
+                    <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="1.5"
+                        d="M4 20a8 8 0
+                           0116 0"
+                    />
+
+                </svg>
+
+            </div>
+
+
+            <h3
+                class="mt-6
+                       text-2xl
+                       font-extrabold
+                       text-gray-900"
+            >
+
+                Traditional Leaders
+
+            </h3>
+
+
+            <p
+                class="mt-3
+                       text-gray-600
+                       leading-relaxed"
+            >
+
+                Profiles of traditional leaders across Uruan Local
+                Government Area will be published here.
+
+            </p>
+
+        </div>
+
+        {% endif %}
+
+    </div>
+
+</section>
+
+
+<!-- ============================================================
+     ROLE OF TRADITIONAL INSTITUTION
+============================================================ -->
+<section class="bg-white py-16 md:py-20">
+
+    <div class="container mx-auto px-6">
+
+        <div class="max-w-6xl mx-auto">
+
+            <div class="text-center mb-12">
+
+                <p
+                    class="text-sm
+                           uppercase
+                           tracking-widest
+                           font-bold
+                           text-green-700"
+                >
+                    Our Heritage
+                </p>
+
+                <h2
+                    class="mt-2
+                           text-3xl
+                           md:text-4xl
+                           font-extrabold
+                           text-gray-900"
+                >
+
+                    Role of the Traditional Institution
+
+                </h2>
+
+            </div>
+
+
+            <div
+                class="grid
+                       md:grid-cols-2
+                       lg:grid-cols-4
+                       gap-6"
+            >
+
+                <!-- CARD 1 -->
+
+                <div
+                    class="bg-gray-50
+                           border border-gray-200
+                           rounded-2xl
+                           p-7
+                           text-center
+                           hover:shadow-lg
+                           transition"
+                >
+
+                    <div
+                        class="w-14 h-14
+                               mx-auto
+                               rounded-xl
+                               bg-green-100
+                               text-green-800
+                               flex
+                               items-center
+                               justify-center"
+                    >
+
+                        <svg
+                            class="w-7 h-7"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                        >
+
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M12 6v12m6-6H6"
+                            />
+
+                        </svg>
+
+                    </div>
+
+
+                    <h3 class="mt-5 font-bold text-lg text-gray-900">
+                        Cultural Heritage
+                    </h3>
+
+
+                    <p class="mt-3 text-sm text-gray-600 leading-relaxed">
+
+                        Preserving the customs, traditions and cultural
+                        identity of our communities.
+
+                    </p>
+
+                </div>
+
+
+                <!-- CARD 2 -->
+
+                <div
+                    class="bg-gray-50
+                           border border-gray-200
+                           rounded-2xl
+                           p-7
+                           text-center
+                           hover:shadow-lg
+                           transition"
+                >
+
+                    <div
+                        class="w-14 h-14
+                               mx-auto
+                               rounded-xl
+                               bg-yellow-100
+                               text-yellow-700
+                               flex
+                               items-center
+                               justify-center"
+                    >
+
+                        <svg
+                            class="w-7 h-7"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                        >
+
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M17 20h5v-2a4 4
+                                   0 00-4-4h-1M9 20H4v-2a4
+                                   4 0 014-4h1m4-9a4 4
+                                   0 110 8 4 4 0 010-8z"
+                            />
+
+                        </svg>
+
+                    </div>
+
+
+                    <h3 class="mt-5 font-bold text-lg text-gray-900">
+                        Community Unity
+                    </h3>
+
+
+                    <p class="mt-3 text-sm text-gray-600 leading-relaxed">
+
+                        Promoting unity, cooperation and peaceful
+                        coexistence among communities.
+
+                    </p>
+
+                </div>
+
+
+                <!-- CARD 3 -->
+
+                <div
+                    class="bg-gray-50
+                           border border-gray-200
+                           rounded-2xl
+                           p-7
+                           text-center
+                           hover:shadow-lg
+                           transition"
+                >
+
+                    <div
+                        class="w-14 h-14
+                               mx-auto
+                               rounded-xl
+                               bg-green-100
+                               text-green-800
+                               flex
+                               items-center
+                               justify-center"
+                    >
+
+                        <svg
+                            class="w-7 h-7"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                        >
+
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M9 12l2 2
+                                   4-4m5.618-4.016A11.955
+                                   11.955 0 0112 2.944a11.955
+                                   11.955 0 01-8.618
+                                   3.04A12.02 12.02
+                                   0 003 9c0 5.591
+                                   3.824 10.29 9 11.622
+                                   C17.176 19.29 21
+                                   14.591 21 9c0-1.042
+                                  -.133-2.052-.382-3.016z"
+                            />
+
+                        </svg>
+
+                    </div>
+
+
+                    <h3 class="mt-5 font-bold text-lg text-gray-900">
+                        Peace &amp; Mediation
+                    </h3>
+
+
+                    <p class="mt-3 text-sm text-gray-600 leading-relaxed">
+
+                        Supporting peaceful resolution of community
+                        matters and conflicts.
+
+                    </p>
+
+                </div>
+
+
+                <!-- CARD 4 -->
+
+                <div
+                    class="bg-gray-50
+                           border border-gray-200
+                           rounded-2xl
+                           p-7
+                           text-center
+                           hover:shadow-lg
+                           transition"
+                >
+
+                    <div
+                        class="w-14 h-14
+                               mx-auto
+                               rounded-xl
+                               bg-yellow-100
+                               text-yellow-700
+                               flex
+                               items-center
+                               justify-center"
+                    >
+
+                        <svg
+                            class="w-7 h-7"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                        >
+
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M13 10V3L4 14h7v7l9-11h-7z"
+                            />
+
+                        </svg>
+
+                    </div>
+
+
+                    <h3 class="mt-5 font-bold text-lg text-gray-900">
+                        Community Development
+                    </h3>
+
+
+                    <p class="mt-3 text-sm text-gray-600 leading-relaxed">
+
+                        Supporting initiatives that promote sustainable
+                        development and community welfare.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ============================================================
+     LEADERSHIP NAVIGATION
+============================================================ -->
+<section class="bg-green-950 py-14">
+
+    <div class="container mx-auto px-6">
+
+        <div class="max-w-4xl mx-auto text-center">
+
+            <p
+                class="text-yellow-400
+                       text-sm
+                       uppercase
+                       tracking-widest
+                       font-bold"
+            >
+                Uruan Leadership
+            </p>
+
+
+            <h2
+                class="mt-3
+                       text-3xl
+                       md:text-4xl
+                       font-extrabold
+                       text-white"
+            >
+
+                Explore Our Leadership
+
+            </h2>
+
+
+            <p
+                class="mt-4
+                       text-green-100
+                       leading-relaxed"
+            >
+
+                Learn more about the different institutions responsible
+                for governance, representation and community leadership
+                in Uruan.
+
+            </p>
+
+
+            <div
+                class="mt-8
+                       flex
+                       flex-col
+                       sm:flex-row
+                       justify-center
+                       gap-4"
+            >
+
+                <!-- EXECUTIVE -->
+
+                <a
+                    href="{% url 'executive_leadership' %}"
+                    class="inline-flex
+                           items-center
+                           justify-center
+                           bg-yellow-500
+                           hover:bg-yellow-400
+                           text-green-950
+                           font-bold
+                           px-6 py-3
+                           rounded-lg
+                           transition"
+                >
+
+                    Executive Leadership
+
+                </a>
+
+
+                <!-- LEGISLATIVE -->
+
+                <a
+                    href="{% url 'legislative_leadership' %}"
+                    class="inline-flex
+                           items-center
+                           justify-center
+                           border-2
+                           border-white
+                           hover:bg-white
+                           hover:text-green-950
+                           text-white
+                           font-bold
+                           px-6 py-3
+                           rounded-lg
+                           transition"
+                >
+
+                    Legislative Leadership
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}
