@@ -51,11 +51,11 @@ def project_list(request):
         context
     )
 
-def project_detail(request, pk):
+def project_detail(request, slug):
 
     project = get_object_or_404(
         Project,
-        id=pk
+        slug=slug
     )
 
     return render(
