@@ -1,5 +1,8 @@
 from django.db import models
 
+from django.urls import reverse
+from django.utils.text import slugify
+
 
 class Project(models.Model):
 
@@ -10,7 +13,14 @@ class Project(models.Model):
         ('Suspended', 'Suspended'),
     )
 
-    title = models.CharField(max_length=200)
+    title = models.CharField(
+        max_length=200
+    )
+
+    slug = models.SlugField(
+        unique=True,
+        blank=True
+    )
 
     image = models.ImageField(
         upload_to='projects/',
@@ -20,7 +30,9 @@ class Project(models.Model):
 
     description = models.TextField()
 
-    location = models.CharField(max_length=200)
+    location = models.CharField(
+        max_length=200
+    )
 
     contractor = models.CharField(
         max_length=200,
@@ -47,7 +59,9 @@ class Project(models.Model):
 
     expected_completion = models.DateField()
 
-    featured = models.BooleanField(default=False)
+    featured = models.BooleanField(
+        default=False
+    )
 
     created_at = models.DateTimeField(
         auto_now_add=True
@@ -59,6 +73,26 @@ class Project(models.Model):
 
     class Meta:
         ordering = ['-created_at']
+        verbose_name = 'Project'
+        verbose_name_plural = 'Projects'
 
     def __str__(self):
         return self.title
+
+    def save(self, *args, **kwargs):
+
+        if not self.slug:
+            self.slug = slugify(self.title)
+
+        # Prevent progress from exceeding 100
+        if self.progress > 100:
+            self.progress = 100
+
+        super().save(*args, **kwargs)
+
+    def get_absolute_url(self):
+        return reverse(
+            'project_detail',
+            kwargs={'slug': self.slug}
+        )
+    
