@@ -36,8 +36,6 @@ class Clan(models.Model):
         ClanCategory,
         on_delete=models.CASCADE,
         related_name="clans",
-        null=True,
-        blank=True,
     )
 
     name = models.CharField(

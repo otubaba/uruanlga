@@ -229,16 +229,19 @@ class WardAdmin(admin.ModelAdmin):
         ),
     )
 
+    @admin.display(description="Category")
     def category(self, obj):
+        if not obj.clan:
+            return "Not Assigned"
+
+        if not obj.clan.category:
+            return "Not Assigned"
+
         return obj.clan.category.get_name_display()
 
-    category.short_description = "Category"
-
+    @admin.display(description="Villages")
     def village_count(self, obj):
         return obj.villages.count()
-
-    village_count.short_description = "Villages"
-
 
 # ============================================================
 # VILLAGE ADMIN
