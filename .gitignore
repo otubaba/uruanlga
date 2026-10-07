@@ -8,14 +8,6 @@ venv/
 .env
 .venv/
 
-# Django
-db.sqlite3
-
-# Media
-media/
-
-# Static collected files
-staticfiles/
 
 # IDE
 .vscode/
